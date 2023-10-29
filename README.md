@@ -1,1 +1,1 @@
-there are memos
+* miniPLC is now developing
