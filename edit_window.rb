@@ -9,18 +9,18 @@ class EditWindow
   # scroll
 
   def initialize win
-    @window = win.subwin(win.maxy - Config::Command_window_size, win.maxx, 0, 0)
+    @win = win.subwin(win.maxy - Config::Command_window_size, win.maxx, 0, 0)
     @cursor_y = 0
     @cursor_x = 0
     @data = Stage.new
   end
 
   def getch
-    @window.getch
+    @win.getch
   end
 
   def move
-    @window.setpos(@cursor_y, @cursor_x)
+    @win.setpos(@cursor_y, @cursor_x)
   end
 
   def display_loop

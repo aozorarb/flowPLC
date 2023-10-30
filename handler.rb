@@ -1,4 +1,5 @@
-require_relative 'edit_window.rb'
+require_relative 'edit_window'
+require_relative 'command_window'
 
 class Handler
   def execute(win, in_ch)
@@ -7,6 +8,8 @@ class Handler
       return EditHandler.new
     when ?:
       CommandHandler.new
+    when ?t
+      CommandWindow.instance.show_message('test')
     when ?x
       win.delete
     when ?j
@@ -37,6 +40,11 @@ class EditHandler
 end
 
 class CommandHandler
+  def initialize
+    @command_window = CommandWindow.instance
+    @command_window.show_message('Command')
+  end
+
   def execute(win, in_ch)
     @buff = ''
     case in_ch

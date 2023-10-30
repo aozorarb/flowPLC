@@ -7,16 +7,17 @@ require_relative 'config'
 
 # main
 def main
-  main_window = Curses.stdscr
-  edit_window = EditWindow.new(main_window)
-  command_window = CommandWindow.new(main_window)
+  main_win = Curses.stdscr
+  edit_win = EditWindow.new(main_win)
+  cmd_win =  CommandWindow.instance
+  cmd_win.set_win(main_win)
   handler = Handler.new
   Config::Colors::init_colors
-  edit_window.display_loop
+  edit_win.display_loop
 
   while true
-    ch = edit_window.getch
-    handler = handler.execute(edit_window, ch)
+    ch = edit_win.getch
+    handler = handler.execute(edit_win, ch)
   end
 end
 
