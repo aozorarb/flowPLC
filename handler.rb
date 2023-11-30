@@ -1,15 +1,32 @@
 require_relative 'edit_window'
 require_relative 'command_window'
 
-class Handler
+class BasicHandler
+  private
+
+  def set_mode(mode_name)
+    # show first line
+    raise 'define mode_name' if mode_name.nil?
+    CommandWindow.instance.clear
+    CommandWindow.instance.show_msg(mode_name, 0, 0)
+  end
+
+  def execute
+    raise 'no implement'
+  end
+
+end
+
+class Handler < BasicHandler
+
+  def initialize
+    set_mode 'NORMAL'
+  end
+
   def execute(win, in_ch)
     case in_ch
     when ?i
       return EditHandler.new
-    when ?:
-      CommandHandler.new
-    when ?t
-      CommandWindow.instance.show_message('test')
     when ?x
       win.delete
     when ?j
@@ -27,7 +44,11 @@ class Handler
   end
 end
 
-class EditHandler
+class EditHandler < BasicHandler
+  def initialize
+    set_mode 'EDIT'
+  end
+
   def execute(win, in_ch)
     case in_ch
     when 0x1b
@@ -36,35 +57,5 @@ class EditHandler
       win.input(in_ch)
     end
   self
-  end
-end
-
-class CommandHandler
-  def initialize
-    @command_window = CommandWindow.instance
-    @command_window.show_message('Command')
-  end
-
-  def execute(win, in_ch)
-    @buff = ''
-    case in_ch
-    when 0x1b # ^[
-      return Handler.new
-    when 0x0a, 0x0e# ^J, ^M
-      enter_command
-    else
-      @buff << in_ch
-    end
-  self
-  end
-
-  def enter_command
-    case @buff
-    # TODO
-    when 'q'
-      puts "quit"
-      exit
-    end
-    @buff.clear
   end
 end

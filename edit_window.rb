@@ -1,5 +1,6 @@
 require 'curses'
 require_relative 'config'
+require_relative 'colors'
 
 class EditWindow
 
@@ -26,17 +27,31 @@ class EditWindow
   def display_loop
     Thread.new do
       while true
-        sleep 0.2
+        @win.erase
+        sleep 0.5
         @data.lines.each do |line|
+          # indicate on | off, first it is on
+          state = true
           Thread.new do
             line.each do |item|
-              # item has act method
-              item.act
+              # item has act method, return connection state
+              state = item.act(state)
+              # if on(true), attrset {Connect} color
+              if state && item.show_state
+                @win.attrset Curses.color_pair(Colors::Connect)
+              end
+              @win.addch item.represent
+              @win.attrset Curses::A_NORMAL
             end
+            @win.refresh
           end
         end
       end
     end
+  end
+
+  def test
+    raise 'called test'
   end
 
   def input(input_ch)

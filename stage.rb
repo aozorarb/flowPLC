@@ -8,7 +8,7 @@ class Stage
   attr :lines
 
   def initialize
-    @lines = [[Item::Start.new, Item::End.new]]
+    @lines = [[Item::Start.new, Item::Wire.new,  Item::End.new]]
   end
 
   def new_line
@@ -19,7 +19,7 @@ class Stage
     @lines.delete_at(y)
   end
 
-  def push_back(y, item)
+  def insert(y, item)
     if @lines.size > y
       raise
     else

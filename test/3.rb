@@ -1,3 +1,4 @@
+# item management
 class Manager
   private
   @@items = []

@@ -4,6 +4,7 @@ require_relative 'stage'
 require_relative 'command_window'
 require_relative 'handler'
 require_relative 'config'
+require_relative 'colors'
 
 # main
 def main
@@ -12,7 +13,7 @@ def main
   cmd_win =  CommandWindow.instance
   cmd_win.set_win(main_win)
   handler = Handler.new
-  Config::Colors::init_colors
+  Colors::init_colors
   edit_win.display_loop
 
   while true
@@ -25,6 +26,9 @@ Curses.init_screen
 Curses.cbreak
 Curses.noecho
 Curses.start_color
+at_exit do
+  Curses.close_screen
+end
 
 main()
-Curses.close_screen
+

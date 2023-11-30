@@ -1,3 +1,4 @@
+# curses color
 require 'curses'
 
 include Curses
@@ -17,7 +18,17 @@ addstr("ERROR")
 setpos 2, 0
 attroff A_COLOR
 addstr "Color Cancel"
+
+setpos 3, 0
+attrset A_NORMAL
+addstr "NORMAL"
+
+setpos 4, 0
+init_pair 3, COLOR_BLACK, COLOR_WHITE
+attrset color_pair(3)
+addstr "connecting"
 getch
+
 at_exit do
   close_screen
 end
