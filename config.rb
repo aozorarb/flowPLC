@@ -1,7 +1,16 @@
 require 'curses'
+require 'yaml'
+require 'singleton'
 
-module Config
+class Config
+  include Singleton
 
-  Command_window_size = 2
+  def initialize
+    @doc = YAML.load_file('config.yml')
+  end
 
+  def get(name)
+    raise "invalid config name #{name}" unless @doc.key?(name)
+    @doc[name]
+  end
 end

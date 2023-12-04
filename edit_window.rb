@@ -10,25 +10,23 @@ class EditWindow
   # scroll
 
   def initialize win
-    @win = win.subwin(win.maxy - Config::Command_window_size, win.maxx, 0, 0)
+    @data = Stage.new
+    @conf = Config.instance
+    @win = win.subwin(win.maxy - @conf.get('Command_window_size') ,win.maxx, 0, 0)
     @cursor_y = 0
     @cursor_x = 0
-    @data = Stage.new
   end
 
   def getch
     @win.getch
   end
 
-  def move
-    @win.setpos(@cursor_y, @cursor_x)
-  end
-
   def display_loop
     Thread.new do
       while true
+        sleep (1.0 / @conf.get('fps'))
         @win.erase
-        sleep 0.5
+        setpos(0, 0)
         @data.lines.each do |line|
           # indicate on | off, first it is on
           state = true
@@ -48,10 +46,6 @@ class EditWindow
         end
       end
     end
-  end
-
-  def test
-    raise 'called test'
   end
 
   def input(input_ch)
