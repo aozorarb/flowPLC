@@ -13,12 +13,19 @@ class EditWindow
     @data = Stage.new
     @conf = Config.instance
     @win = win.subwin(win.maxy - @conf.get('Command_window_size') ,win.maxx, 0, 0)
-    @cursor_y = 0
-    @cursor_x = 0
+    @win_lines = Curses.lines - Config.instance.get('Command_window_size')
+    @win_cols  = Curses.cols
+    @y = 0
+    @x = 0
   end
 
   def getch
     @win.getch
+  end
+
+  def move_refresh
+    @win.setpos @y, @x
+    @win.refresh
   end
 
   def display_loop
@@ -26,10 +33,14 @@ class EditWindow
       while true
         sleep (1.0 / @conf.get('fps'))
         @win.erase
-        setpos(0, 0)
+        @win.setpos(0, 0)
+        cursor_line = 0
         @data.lines.each do |line|
           # indicate on | off, first it is on
           state = true
+          @win.setpos(cursor_line, 0)
+          cursor_line += 1
+          break if cursor_line > @win_lines
           Thread.new do
             line.each do |item|
               # item has act method, return connection state
@@ -41,7 +52,7 @@ class EditWindow
               @win.addch item.represent
               @win.attrset Curses::A_NORMAL
             end
-            @win.refresh
+            move_refresh
           end
         end
       end
@@ -54,16 +65,14 @@ class EditWindow
   def delete
   end
 
-  def cursor_down
-  end
+  def cursor_down()   @y += 1 if @y.between?(0, @win_lines - 2) end
+  def cursor_up()     @y -= 1 if @y.between?(1, @win_lines - 1) end
+  def cursor_right()  @x += 1 if @x.between?(0, @win_cols  - 2) end
+  def cursor_left()   @x -= 1 if @x.between?(1, @win_cols  - 1) end
 
-  def cursor_up
+  # for debug methods: suffix d
+  def d_show_info
+    @win.addstr "#{@y}, #{@x}\n#{@win_lines}, #{@win_cols}"
+    @win.refresh
   end
-
-  def cursor_left
-  end
-
-  def cursor_right
-  end
-
 end

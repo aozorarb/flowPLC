@@ -12,7 +12,7 @@ class BasicHandler
   end
 
   def execute
-    raise 'no implement'
+    raise 'not implement'
   end
 
 end
@@ -37,6 +37,8 @@ class Handler < BasicHandler
       win.cursor_left
     when ?l
       win.cursor_right
+    when ?d
+      win.d_show_info
     when ?q
       exit
     end

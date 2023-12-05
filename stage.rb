@@ -8,7 +8,9 @@ class Stage
   attr :lines
 
   def initialize
-    @lines = [[Item::Start.new, Item::Wire.new,  Item::End.new]]
+    @lines = [
+      [Item::Start.new, Item::Wire.new,  Item::End.new],
+    ]
   end
 
   def new_line

@@ -37,7 +37,7 @@ module Item
     end
 
     def _initialize
-      # for children initialize
+      # for children custom initialize
     end
     def show_state_disable
       @show_state = false
@@ -90,6 +90,7 @@ module Item
       '-'
     end
   end
+
   # general output
   class Output < BasicItem
     public

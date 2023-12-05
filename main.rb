@@ -19,6 +19,7 @@ def main
   while true
     ch = edit_win.getch
     handler = handler.execute(edit_win, ch)
+    edit_win.move_refresh
   end
 end
 
