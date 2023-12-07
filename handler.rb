@@ -17,6 +17,7 @@ class BasicHandler
 
 end
 
+
 class Handler < BasicHandler
 
   def initialize
@@ -61,3 +62,17 @@ class EditHandler < BasicHandler
   self
   end
 end
+
+
+#class CommandHandler < BasicHandler
+#  def initialize
+#    set_mode 'COMMAND'
+#  end
+#
+#  def execute(win, in_ch)
+#    case in_ch
+#    when 0x1b
+#      return Handler.new
+#    end
+#  end
+#end

@@ -9,8 +9,7 @@ class Stage
 
   def initialize
     @lines = [
-      [Item::Start.new, Item::Wire.new,  Item::End.new],
-      [Item::End.new, Item::Wire.new, Item::Start.new],
+      [Item::Output.new(0x10)],
     ]
   end
 
