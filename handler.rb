@@ -6,9 +6,9 @@ class BasicHandler
 
   def set_mode(mode_name)
     # show first line
-    raise 'define mode_name' if mode_name.nil?
+    raise 'define mode_name at #{__method__}' if mode_name.nil?
     CommandWindow.instance.clear
-    CommandWindow.instance.show_msg(mode_name, 0, 0)
+    CommandWindow.instance.show_msg(mode_name, 0)
   end
 
   def execute
@@ -42,6 +42,8 @@ class Handler < BasicHandler
       win.d_show_info
     when ?q
       exit
+    when ?:
+      return CommandHandler.new
     end
     self
   end
@@ -64,15 +66,14 @@ class EditHandler < BasicHandler
 end
 
 
-#class CommandHandler < BasicHandler
-#  def initialize
-#    set_mode 'COMMAND'
-#  end
-#
-#  def execute(win, in_ch)
-#    case in_ch
-#    when 0x1b
-#      return Handler.new
-#    end
-#  end
-#end
+class CommandHandler < BasicHandler
+  def initialize
+    set_mode 'COMMAND'
+  end
+
+  def execute(win, in_ch)
+    CommandWindow.instance.input_command 
+    Handler.new
+  end
+
+end

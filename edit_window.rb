@@ -28,33 +28,28 @@ class EditWindow
     @win.refresh
   end
 
-  def display_loop
-    Thread.new do
-      while true
-        sleep (1.0 / @conf.get('fps'))
-        @win.erase
-        @win.setpos(0, 0)
-        cursor_line = 0
+  def display
+    @win.erase
+    @win.setpos(0, 0)
+    cursor_line = 0
 
-        @data.lines.each do |line|
-          # indicate on | off, first it is on
-          state = true
-          @win.setpos(cursor_line, 0)
-          cursor_line += 2
-          break if cursor_line > @win_lines
-          line.each do |item|
-            # item has act method, return connection state
-            state = item.act(state)
-            # if on(true), attrset {Connect} color
-            if state && item.show_state
-              @win.attrset Curses.color_pair(Colors::Connect)
-            end
-            @win.addstr item.represent
-            @win.attrset Curses::A_NORMAL
-          end
-          move_refresh
+    @data.lines.each do |line|
+      # indicate on | off, first it is on
+      state = true
+      @win.setpos(cursor_line, 0)
+      cursor_line += 2
+      break if cursor_line > @win_lines
+      line.each do |item|
+        # item has act method, return connection state
+        state = item.act(state)
+        # if on(true), attrset {Connect} color
+        if state && item.show_state
+          @win.attrset Curses.color_pair(Colors::Connect)
         end
+        @win.addstr item.represent
+        @win.attrset Curses::A_NORMAL
       end
+      move_refresh
     end
   end
 

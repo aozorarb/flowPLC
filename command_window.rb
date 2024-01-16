@@ -12,12 +12,35 @@ class CommandWindow
     @win.refresh
   end
 
-  def show_msg(msg, y, x)
+  def show_msg(msg, y, x=0)
     size = Config.instance.get('Command_window_size')
     raise 'y must be between from 0 to #{size-1}' unless y.between?(0, size - 1)
     @win.setpos(y, x)
     @win.addstr(msg)
     @win.refresh
+  end
+
+
+  def input_command
+    @win.setpos(1, 0)
+    show_msg(':', 1)
+    buf = ''
+    while true
+      show_msg(buf, 1, x=1)
+      in_ch = @win.getch
+      case in_ch
+      when 0x1b
+        break
+      when 0x0a, 0x0c
+        enter_command(buf)
+      else
+        buf << in_ch
+      end
+    end
+  end
+
+  def enter_command(command)
+
   end
 
   def clear
