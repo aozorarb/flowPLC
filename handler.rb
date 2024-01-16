@@ -15,6 +15,7 @@ class BasicHandler
     raise 'not implement'
   end
 
+  public :execute
 end
 
 
@@ -47,6 +48,7 @@ class Handler < BasicHandler
     end
     self
   end
+
 end
 
 class EditHandler < BasicHandler
@@ -72,7 +74,7 @@ class CommandHandler < BasicHandler
   end
 
   def execute(win, in_ch)
-    CommandWindow.instance.input_command 
+    CommandWindow.instance.input_command
     Handler.new
   end
 

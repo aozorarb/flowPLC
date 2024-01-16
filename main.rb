@@ -8,6 +8,7 @@ require_relative 'colors'
 
 # main
 def main
+  Colors::init_colors
   main_win = Curses.stdscr
   edit_win = EditWindow.new(main_win)
   cmd_win  =  CommandWindow.instance
@@ -18,7 +19,7 @@ def main
   while true
     sleep (1.0 / conf.get('fps'))
     edit_win.display
-    ch = edit_win.getch
+    ch = edit_win.getch 
     handler = handler.execute(edit_win, ch)
   end
 end
@@ -27,7 +28,6 @@ Curses.init_screen
 Curses.cbreak
 Curses.noecho
 Curses.start_color
-Colors::init_colors
 at_exit do
   Curses.close_screen
 end
