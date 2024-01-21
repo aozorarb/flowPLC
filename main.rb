@@ -19,7 +19,8 @@ def main
   while true
     sleep (1.0 / conf.get('fps'))
     edit_win.display
-    ch = edit_win.getch 
+    # BAD: fix to more good way
+    ch = edit_win.getch  unless handler.class == CommandHandler
     handler = handler.execute(edit_win, ch)
   end
 end

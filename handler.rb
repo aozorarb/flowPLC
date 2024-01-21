@@ -15,6 +15,7 @@ class BasicHandler
     raise 'not implement'
   end
 
+  private :set_mode
   public :execute
 end
 

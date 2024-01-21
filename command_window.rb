@@ -22,17 +22,21 @@ class CommandWindow
 
 
   def input_command
-    @win.setpos(1, 0)
     show_msg(':', 1)
+    @win.setpos(1, 0)
     buf = ''
     while true
       show_msg(buf, 1, x=1)
       in_ch = @win.getch
       case in_ch
-      when 0x1b
+      when 0x1b # ^[
         break
-      when 0x0a, 0x0c
+      when 0x0a, 0x0c # ^j, ^m
         enter_command(buf)
+        break
+      when 0x08, 0x7f # ^h, delete
+        @win.delch
+        buf.chop!
       else
         buf << in_ch
       end
@@ -40,13 +44,10 @@ class CommandWindow
   end
 
   def enter_command(command)
-
   end
 
   def clear
     @win.clear
   end
 
-  def input(msg)
-  end
 end
