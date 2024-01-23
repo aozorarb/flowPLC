@@ -1,25 +1,34 @@
+require_relative 'items'
+
 class PLC
 
-  attr_accessor :inputs
   attr_reader   :outputs
 
-  def initialize(size)
-    @inputs = Array.new(size, false)
-    @outputs = Array.new(size, false)
+  def initialize(amount_io)
+    @data = Hash.new
+    @outputs = Array.new(amount_io, false)
+  end
+
+  def set_item(item, val)
+    @data[item] = val
   end
 
   def run
-    @inputs.each_with_index do |input, idx|
-      @outputs[idx] = input
+    @inputs.each_with_index do |inp, idx|
+      @outputs[idx] = inp
     end
+  end
+
+  def puts_state
+    puts "Outputs:"
+    pp @outputs
   end
 end
 
 plc = PLC.new(2)
-plc.inputs[0] = true
-plc.inputs[1] = false
+plc.set_item(:x0, false)
+
 
 plc.run
 
-puts "Outputs: #{plc.outputs[0]}, #{plc.outputs[1]}"
-
+plc.puts_state
