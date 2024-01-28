@@ -6,7 +6,7 @@ class PLC
   attr_accessor :inputs, :timers
 
   def initialize(amount_io, amount_timer)
-    @inputs = Array.new(amount_io, false)
+    @inputs = Array.new(amount_io) { Item::Input.new }
     @outputs = Array.new(amount_io, false)
     @timers = Array.new(amount_timer) { Item::Timer.new }
   end
@@ -32,7 +32,7 @@ class PLC
 end
 
 plc = PLC.new(1, 1)
-plc.inputs[0] = true
+plc.inputs[0].state = true
 plc.timers[0].time = 10
 
 plc.run

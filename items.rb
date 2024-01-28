@@ -1,4 +1,11 @@
 module Item
+  class Input
+    attr_accessor :state
+    def initialize
+      @state = false
+    end
+  end
+
   class Timer
     attr_reader :state
     attr_accessor :time
