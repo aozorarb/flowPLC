@@ -41,14 +41,13 @@ class PLC
   def puts_state
     puts "Outputs:"
     pp @outputs
+    puts
+    puts "stage:"
+    @stage.show
   end
 end
 
 plc = PLC.new(1, 1)
-plc.inputs[0].state = true
-plc.timers[0].time = 10
-
-plc.run
-plc.puts_state
-10.times { plc.run }
+plc.new_flow(Item::Input.new)
+plc.push(0, Item::Timer.new)
 plc.puts_state
