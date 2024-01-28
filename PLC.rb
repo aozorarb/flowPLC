@@ -1,4 +1,5 @@
 require_relative 'items'
+require_relative 'stage'
 
 class PLC
 
