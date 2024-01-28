@@ -6,9 +6,22 @@ class PLC
   attr_accessor :inputs, :timers
 
   def initialize(amount_io, amount_timer)
+    @stage = Stage.new
     @inputs = Array.new(amount_io) { Item::Input.new }
     @outputs = Array.new(amount_io, false)
     @timers = Array.new(amount_timer) { Item::Timer.new }
+  end
+
+  def push(idx, item)
+    @stage.push(idx, item)
+  end
+  
+  def insert(flow_idx, inflow_idx, item)
+    @stage.insert(flow_idx, inflow_idx, item)
+  end
+
+  def new_flow(item)
+    @stage.new_flow(item)
   end
 
   def timer_run
