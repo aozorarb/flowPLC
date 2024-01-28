@@ -1,18 +1,35 @@
-module Items
+module Item
   class Timer
-    def initialize(delay)
-      @delay = delay
+    attr_reader :state
+    attr_accessor :time
+    def initialize
+      @time = 0
       @progress = 0
+      @state = false
+      @running = false
     end
 
-    # if input is not, progress reset.
-    def execute(cond)
-      if cond
-        @progress += 1
-      else
-        @progress = 0
+
+    def start() @running = true end
+    def stop()  @running = false end
+    def reset_start
+      @progress = 0
+      @state = false
+      @running = true
+    end
+
+    def reset_stop
+      @progress = 0
+      @state = false
+      @running = false
+    end
+
+    def run
+      @progress += 1 if @running
+      if @progress >= @time
+        stop
+        @state = true
       end
-      return (@delay <= @progress ? true : false)
     end
   end
 end
