@@ -1,18 +1,29 @@
 module Item
-  class Input
-    attr_accessor :state
-    def initialize
+  class BasicItem
+    attr_reader :name, :state
+
+    def initialize(name)
+      @name = name
       @state = false
+      class_initialize
+    end
+    
+    def class_initialize
+      # edit by children
     end
   end
 
+  class Input < BasicItem
+    def toggle() @state = !@state end
+    def on() @state = true end
+    def off() @state = false end
+  end
+
   class Timer
-    attr_reader :state
-    attr_accessor :time
-    def initialize
-      @time = 0
+    attr_reader :time
+    def class_initialize(time)
+      @time = time
       @progress = 0
-      @state = false
       @running = false
     end
 
