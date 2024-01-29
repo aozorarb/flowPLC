@@ -19,7 +19,7 @@ module Item
     def off() @state = false end
   end
 
-  class Timer
+  class Timer < BasicItem
     attr_reader :time
     def class_initialize(time)
       @time = time
