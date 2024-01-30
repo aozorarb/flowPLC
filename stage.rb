@@ -3,32 +3,40 @@
 # mainly recursion method
 
 class Stage
-  attr_accessor :data
+  attr_reader :data
 
   def initialize
     @data = []
   end
 
-# push to already exists flow
+  def flow_number
+    @data.size
+  end
+
+  # push to already exists flow
   def push(idx, item)
     @data[idx] << item
   end
 
-# insert to already exists flow
+  # insert to already exists flow
   def insert(flow_idx, inflow_idx, item)
     @data[flow_idx].insert(inflow_idx, item)
   end
-# make new flow
+
+  # make new flow
   def new_flow(item)
     @data << [item]
   end
 
   def show_class
+    puts
+    puts "stage:"
     @data.each do |dt|
       _show_class(dt)
     end
   end
 
+  # show only class name
   def _show_class(data)
     # if not nest, not flow
     if data.class == Array && data.class[0] == Array
@@ -41,6 +49,8 @@ class Stage
   alias :show :show_class
 
   def show_detail
+    puts
+    puts "stage:"
     pp @data
   end
 end
