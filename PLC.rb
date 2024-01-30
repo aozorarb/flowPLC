@@ -5,7 +5,6 @@ class PLC
 
   def initialize(amount_io)
     @stage = Stage.new
-    @outputs = Array.new(amount_io, false)
   end
 
   def push(idx, item)
@@ -29,8 +28,6 @@ class PLC
   end
 
   def puts_state
-    puts "Outputs:"
-    pp @outputs
     @stage.show
   end
 end

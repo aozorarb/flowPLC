@@ -29,6 +29,11 @@ module Item
   end
 
 
+  class Output < BasicItem
+    # Output just need to have state and name
+    # they defined in BasicItem
+  end
+
   class Timer < BasicItem
     attr_reader :time
     def class_initialize(arg)
