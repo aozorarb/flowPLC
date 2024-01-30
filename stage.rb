@@ -28,6 +28,15 @@ class Stage
     @data << [item]
   end
 
+  def delete_flow(idx)
+    @data.delete_at(idx)
+  end
+
+  def delete_at(flow_idx, inflow_idx)
+    @data[flow_idx].delete_at(inflow_idx)
+  end
+
+  # show only class name
   def show_class
     puts
     puts "stage:"
@@ -36,7 +45,6 @@ class Stage
     end
   end
 
-  # show only class name
   def _show_class(data)
     # if not nest, not flow
     if data.class == Array && data.class[0] == Array
