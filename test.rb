@@ -94,3 +94,5 @@ plc.start_timer(1, 6)
   plc.check_timers
   puts "Digital Outputs: #{plc.get_digital_output(0)}, #{plc.get_digital_output(1)}"
 end
+
+# test push from another PC
