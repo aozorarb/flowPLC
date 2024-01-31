@@ -3,51 +3,33 @@ require_relative 'stage'
 
 class PLC
 
-  attr_accessor :inputs, :timers
-
-  def initialize(amount_io, amount_timer)
+  def initialize(amount_io)
     @stage = Stage.new
-    @inputs = Array.new(amount_io) { Item::Input.new }
-    @outputs = Array.new(amount_io, false)
-    @timers = Array.new(amount_timer) { Item::Timer.new }
   end
 
-  def push(idx, item)
-    @stage.push(idx, item)
-  end
-  
-  def insert(flow_idx, inflow_idx, item)
-    @stage.insert(flow_idx, inflow_idx, item)
-  end
-
-  def new_flow(item)
-    @stage.new_flow(item)
-  end
-
-  def timer_run
-    @inputs.each_with_index do |inp, idx|
-      @timers[idx].start if inp
-      @timers[idx].run
-    end
-  end
+  # access Stage
+  def push(idx, item)  @stage.push(idx, item) end
+  def insert(flow_idx, inflow_idx, item) @stage.insert(flow_idx, inflow_idx, item) end
+  def new_flow(item)   @stage.new_flow(item) end
+  def delete_flow(idx) @stage.delete_flow(idx) end
+  def delete_at(idx, inflow_idx) @stage.delete_at(idx, inflow_idx) end
 
   def run
-    timer_run
-    @timers.each_with_index do |timer, idx|
-      @outputs[idx] = timer.state
+    @stage.each do |flow|
+      flow.each do |item|
+        item.run
+      end
     end
   end
 
   def puts_state
-    puts "Outputs:"
-    pp @outputs
-    puts
-    puts "stage:"
     @stage.show
+    @stage.show_state
   end
 end
 
-plc = PLC.new(1, 1)
-plc.new_flow(Item::Input.new)
-plc.push(0, Item::Timer.new)
+plc = PLC.new(1)
+plc.new_flow(Item::Input.new('in01'))
+plc.push(0, Item::Timer.new('timer', 10))
+plc.push(0, Item::Output.new('out01'))
 plc.puts_state
