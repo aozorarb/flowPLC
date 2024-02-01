@@ -14,27 +14,29 @@ class PLC
   def delete_flow(idx) @stage.delete_flow(idx) end
   def delete_at(idx, inflow_idx) @stage.delete_at(idx, inflow_idx) end
 
-  def item_exec(item, flow_idx, inflow_idx)
-    item_state = @stage.flow_state[flow_idx][inflow_idx]
+  def run_item(item)
     case item.class
     when Item::Input
-      item_state = item.state
     when Item::Output
-      item_state = 
     when Item::Timer
+      item.start
+    end
   end
 
   def run
     @stage.data.each_with_index do |flow, flow_idx|
       flow.each_with_index do |item, inflow_idx|
-        # when flow first, always previous is true
+        # item execute if previous item's state is true
+        # first item always execute
         if flow_idx == 0
-          item_exec(item, flow_idx, inflow_idx)
+          run_item(item, flow_idx, inflow_idx)
         else
           if @stage.flow_state[flow_idx][inflow_idx-1]
-            item_exec(item, flow_idx, inflow_idx)
+            run_item(item, flow_idx, inflow_idx)
           end
         end
+        # item refresh after item ran
+        @stage.flow_state[flow_idx][inflow_idx] = item.state
       end
     end
   end
