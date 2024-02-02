@@ -29,10 +29,10 @@ class PLC
         # item execute if previous item's state is true
         # first item always execute
         if flow_idx == 0
-          run_item(item, flow_idx, inflow_idx)
+          run_item(item)
         else
           if @stage.flow_state[flow_idx][inflow_idx-1]
-            run_item(item, flow_idx, inflow_idx)
+            run_item(item)
           end
         end
         # item refresh after item ran
@@ -45,10 +45,10 @@ class PLC
     @stage.show
     @stage.show_state
   end
+
+  def puts_state_deep
+    @stage.show_detail
+    @stage.show_state
+  end
 end
 
-plc = PLC.new
-plc.new_flow(Item::Input.new('in01'))
-plc.push(0, Item::Timer.new('timer', 10))
-plc.push(0, Item::Output.new('out01'))
-plc.puts_state
