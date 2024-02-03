@@ -8,3 +8,6 @@ plc.push(0, Item::Output.new('out01'))
 plc.puts_state
 1.times { plc.run }
 plc.puts_state
+
+
+
