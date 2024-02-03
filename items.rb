@@ -30,6 +30,8 @@ module Item
 
 
   class Output < BasicItem
+    def enable() @state = true end
+    def disable() @state = false end
     # Output just need to have state and name
     # they defined in BasicItem
   end
