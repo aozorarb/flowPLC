@@ -19,7 +19,7 @@ class PLC
   def run_item(item)
     case item
     when Item::Output
-      item.on
+      item.enable
     when Item::Timer
       item.start
       item.run

@@ -14,7 +14,7 @@ plc.input_turn_on('in01')
 
 pp StageManager
 plc.puts_state
-1.times { plc.run }
+10.times { plc.run }
 plc.puts_state
 
 
