@@ -25,6 +25,10 @@ class Stage
     raise_used_name(item) if @manager.add?(item).nil?
   end
 
+  def item_exec(name, command)
+    raise ArgumentError, "Invalid name: #{name}" if @manager.item_exec(name, command) == nil
+  end
+
   # push to already exists flow
   def push(idx, item)
     manager_add(item)
@@ -112,6 +116,15 @@ class Stage::Manager
       @register.delete(item)
     else
       @register.delete(item.name)
+    end
+  end
+
+  def item_exec(name, command, *args)
+    return nil unless @register.key?(name)
+    if args.size == 0
+      @register[name].method(command).call
+    else
+      @register[name].method(command).call(args)
     end
   end
 end
