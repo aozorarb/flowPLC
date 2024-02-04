@@ -70,6 +70,6 @@ class PLC
   # there methods for access to items
   # Item::Input
   def input_turn_on(name)
-    pp @stage.item_exec(name, 'on')
+    @stage.item_exec(name, 'on')
   end
 end

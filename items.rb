@@ -3,27 +3,21 @@ module Item
     attr_reader :name, :state
 
     def initialize(name, *args)
-      @name = name
+      @name = name.to_sym
       @state = false
-      class_initialize(args)
+      class_initialize(*args)
     end
     
-    def class_initialize(args)
+    def class_initialize
       # edit by children
-      # arg is array
     end
 
-    def check_argments(arguments, expected_number)
-      raise ArgumentError, "#{self.name}: expected #{expected_number} given #{arguments.size}" unless arguments.size == expected_number
-    end
-
-    private :check_argments, :class_initialize
+    private :class_initialize
 
   end
 
 
   class Input < BasicItem
-    def toggle() @state = !@state end
     def on() @state = true end
     def off() @state = false end
   end
@@ -32,15 +26,13 @@ module Item
   class Output < BasicItem
     def enable() @state = true end
     def disable() @state = false end
-    # Output just need to have state and name
-    # they defined in BasicItem
   end
+
 
   class Timer < BasicItem
     attr_reader :time
-    def class_initialize(arg)
-      check_argments(arg, 1)
-      @time = arg[0]
+    def class_initialize(time)
+      @time = time
       @progress = 0
       @running = false
     end
@@ -68,6 +60,7 @@ module Item
         @state = true
       end
     end
+
   end
 end
 

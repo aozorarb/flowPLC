@@ -26,7 +26,7 @@ class Stage
   end
 
   def item_exec(name, command)
-    raise ArgumentError, "Invalid name: #{name}" if @manager.item_exec(name, command) == nil
+    raise ArgumentError, "Invalid name: #{name}" if @manager.item_exec(name.to_sym, command) == nil
   end
 
   # push to already exists flow
