@@ -11,6 +11,7 @@ class Stage
     @data = []
     @flow_state = []
     @manager = Stage::Manager.new
+    @data_file = Stage::DataFileYaml.new
   end
 
   def flow_number
@@ -29,14 +30,14 @@ class Stage
     raise ArgumentError, "Invalid name: #{name}" if @manager.item_exec(name.to_sym, command) == nil
   end
 
-  # push to already exists flow
+  # push to already exist flow
   def push(idx, item)
     manager_add(item)
     @data[idx] << item
     @flow_state[idx] << false
   end
 
-  # insert to already exists flow
+  # insert to already exist flow
   def insert(flow_idx, inflow_idx, item)
     manager_add(item)
     @data[flow_idx].insert(inflow_idx, item)
@@ -64,6 +65,10 @@ class Stage
     @flow_state[flow_idx].delete_at(inflow_idx)
   end
 
+  def show_state
+    pp @flow_state
+  end
+
   # show only class name
   def show_class
     puts
@@ -73,9 +78,6 @@ class Stage
     end
   end
 
-  def show_state
-    pp @flow_state
-  end
 
   def _show_class(data)
     # if not nest, not flow
@@ -86,12 +88,18 @@ class Stage
     end
   end
 
-  alias :show :show_class
-
   def show_detail
     puts
     puts "stage:"
     pp @data
+  end
+
+  def save(file_name, overwrite: false)
+    @data_file.save(file_name, self, overwrite: overwrite)
+  end
+
+  def load(file_name)
+
   end
 end
 
@@ -127,4 +135,45 @@ class Stage::Manager
       @register[name].method(command).call(args)
     end
   end
+
+end
+
+# save and load yaml data file
+class Stage::DataFileYaml
+  def initialize
+    require 'yaml/store'
+  end
+
+  def file_name_usable?(file_name, exist_file_ok: false)
+    if File.directory?(file_name)
+      false
+    elsif !exist_file_ok && File.exist?(file_name)
+      false
+    else
+      true
+    end
+  end
+
+
+  def save(file_name, stage, overwrite: false)
+    is_file_name_usable = (overwrite ? file_name_usable?(file_name, exist_file_ok: true)
+                                     : file_name_usable?(file_name))
+    raise 'file name cannot be use' unless is_file_name_usable
+    @store = YAML::Store.new(file_name)
+    @store.transaction do
+      @store['stage'] = stage.data
+    end 
+  end
+
+  def load(file_name)
+    raise 'file name cannot be use' unless file_name_usable(file_name)
+    @store = YAML::Store.new(file_name)
+    res = ''
+    @store.transaction do
+      res = @store['stage']
+    end
+    res
+  end
+
+  private :file_name_usable?
 end

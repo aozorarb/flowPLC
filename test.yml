@@ -1,0 +1,14 @@
+---
+stage:
+- - !ruby/object:Item::Input
+    name: :in01
+    state: true
+  - !ruby/object:Item::Timer
+    name: :timer
+    state: true
+    time: 10
+    progress: 10
+    running: false
+  - !ruby/object:Item::Output
+    name: :out01
+    state: true

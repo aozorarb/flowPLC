@@ -15,6 +15,7 @@ class PLC
   def delete_at(idx, inflow_idx) @stage.delete_at(idx, inflow_idx) end
   def item_name_at(flow_idx, inflow_idx) return @stage[flow_idx][inflow_idx].name end
   def delete_item(name) @stage.delete(name) end
+
   # item execute if previous item's state is true
   def run_item(item)
     case item
@@ -58,7 +59,7 @@ class PLC
   end
 
   def puts_state
-    @stage.show
+    @stage.show_class
     @stage.show_state
   end
 
@@ -67,6 +68,13 @@ class PLC
     @stage.show_state
   end
 
+  def save(file_name)
+    @stage.save(file_name)
+  end
+
+  def save!(file_name)
+    @stage.save(file_name, overwrite: true)
+  end
   # there methods for access to items
   # Item::Input
   def input_turn_on(name)
