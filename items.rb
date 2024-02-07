@@ -31,23 +31,19 @@ module Item
 
   class Timer < BasicItem
     attr_reader :time
+
     def class_initialize(time)
       @time = time
       @progress = 0
       @running = false
+      @type 
     end
 
 
     def start() @running = true end
     def stop()  @running = false end
 
-    def reset_start
-      @progress = 0
-      @state = false
-      @running = true
-    end
-
-    def reset_stop
+    def reset
       @progress = 0
       @state = false
       @running = false

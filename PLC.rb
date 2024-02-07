@@ -33,8 +33,8 @@ class PLC
     when Item::Output
       item.disable
     when Item::Timer
-      # timer require constant input until count ok
-      item.reset_stop
+      # timer require constant input until count up
+      item.reset
     end
   end
 
