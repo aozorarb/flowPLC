@@ -5,10 +5,10 @@ stage:
     state: true
   - !ruby/object:Item::Timer
     name: :timer
-    state: true
+    state: false
     time: 10
-    progress: 10
+    progress: 0
     running: false
   - !ruby/object:Item::Output
     name: :out01
-    state: true
+    state: false

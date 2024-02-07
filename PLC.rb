@@ -75,6 +75,11 @@ class PLC
   def save!(file_name)
     @stage.save(file_name, overwrite: true)
   end
+
+  def load(file_name)
+    @stage.load(file_name)
+  end
+
   # there methods for access to items
   # Item::Input
   def input_turn_on(name)

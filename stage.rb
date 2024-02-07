@@ -11,7 +11,7 @@ class Stage
     @data = []
     @flow_state = []
     @manager = Stage::Manager.new
-    @data_file = Stage::DataFileYaml.new
+    @data_file = Stage::DataFile.new
   end
 
   def flow_number
@@ -95,15 +95,17 @@ class Stage
   end
 
   def save(file_name, overwrite: false)
-    @data_file.save(file_name, self, overwrite: overwrite)
+    @data_file.save(file_name, @data, overwrite: overwrite)
   end
 
   def load(file_name)
-
+    @data = @data_file.load(file_name)
+    @manager.consist_with_stage(@data)
   end
 end
 
 # check that a name which given with item is not registerd
+
 class Stage::Manager
   def initialize
     # @register[item.name] = item
@@ -118,6 +120,8 @@ class Stage::Manager
       @register[item.name] = item
     end
   end
+
+  alias :add :add?
 
   def delete(item)
     if item === String
@@ -136,10 +140,18 @@ class Stage::Manager
     end
   end
 
+  def consist_with_stage(stage_data)
+    @register.clear
+    stage_data.each do |flow|
+      flow.each do |item|
+        add(item)
+      end
+    end
+  end
 end
 
 # save and load yaml data file
-class Stage::DataFileYaml
+class Stage::DataFile
   def initialize
     require 'yaml/store'
   end
@@ -155,18 +167,18 @@ class Stage::DataFileYaml
   end
 
 
-  def save(file_name, stage, overwrite: false)
+  def save(file_name, stage_data, overwrite: false)
     is_file_name_usable = (overwrite ? file_name_usable?(file_name, exist_file_ok: true)
                                      : file_name_usable?(file_name))
     raise 'file name cannot be use' unless is_file_name_usable
     @store = YAML::Store.new(file_name)
     @store.transaction do
-      @store['stage'] = stage.data
+      @store['stage'] = stage_data
     end 
   end
 
   def load(file_name)
-    raise 'file name cannot be use' unless file_name_usable(file_name)
+    raise 'file name cannot be use' unless file_name_usable?(file_name, exist_file_ok: true)
     @store = YAML::Store.new(file_name)
     res = ''
     @store.transaction do
