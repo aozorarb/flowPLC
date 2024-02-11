@@ -99,8 +99,13 @@ class Stage
   end
 
   def load(file_name)
-    @data = @data_file.load(file_name)
-    @manager.consist_with_stage(@data)
+    data = @data_file.load(file_name)
+    if data == nil
+      return nil
+    else
+      @data = data
+      @manager.consist_with_stage(@data)
+    end
   end
 end
 
@@ -179,12 +184,17 @@ class Stage::DataFile
 
   def load(file_name)
     raise 'file name cannot be use' unless file_name_usable?(file_name, exist_file_ok: true)
+    raise 'file is not exist' unless File.exist?(file_name)
     @store = YAML::Store.new(file_name)
     res = ''
     @store.transaction do
       res = @store['stage']
     end
-    res
+    if res == ''
+      return nil
+    else
+      res
+    end
   end
 
   private :file_name_usable?

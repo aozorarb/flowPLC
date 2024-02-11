@@ -1,4 +1,4 @@
-require_relative 'PLC.rb'
+require_relative 'lib/miniPLC.rb'
 plc = PLC.new
 
 #debug

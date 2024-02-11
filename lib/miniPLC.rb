@@ -1,5 +1,5 @@
-require_relative 'items'
-require_relative 'stage'
+require_relative 'miniPLC/items'
+require_relative 'miniPLC/stage'
 
 class PLC
 
