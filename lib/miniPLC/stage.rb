@@ -3,6 +3,8 @@
 # mainly recursion method
 
 class Stage
+  require_relative 'stage/manager'
+  require_relative 'stage/data_file'
   attr_reader :data, :flow_state
 
   # data is flows union
@@ -109,5 +111,3 @@ class Stage
   end
 end
 
-require_relative 'stage/manager'
-require_relative 'stage/data_file'
