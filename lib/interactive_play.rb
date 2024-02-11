@@ -1,4 +1,5 @@
 require 'reline'
+require_relative 'miniPLC'
 # interactive miniPLC like be irb(interactive ruby)
 puts <<EOS
 Interactive miniPLC

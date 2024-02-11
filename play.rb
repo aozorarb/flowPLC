@@ -1,5 +1,5 @@
 require_relative 'lib/miniPLC.rb'
-plc = PLC.new
+plc = MiniPLC::Core.new
 
 #debug
 DStage = plc.instance_variable_get('@stage')
