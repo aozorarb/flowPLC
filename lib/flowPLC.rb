@@ -1,7 +1,7 @@
-require_relative 'miniPLC/items'
-require_relative 'miniPLC/stage'
+require_relative 'flowPLC/items'
+require_relative 'flowPLC/stage'
 
-module MiniPLC
+module FlowPLC
   class Core
     def initialize
       @stage = Stage.new

@@ -1,5 +1,5 @@
-require_relative 'lib/miniPLC.rb'
-plc = MiniPLC::Core.new
+require_relative 'lib/flowPLC.rb'
+plc = FlowPLC::Core.new
 
 #debug
 DStage = plc.instance_variable_get('@stage')

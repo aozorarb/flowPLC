@@ -1,8 +1,8 @@
 require 'reline'
-require_relative 'miniPLC'
-# interactive miniPLC like be irb(interactive ruby)
+require_relative 'flowPLC'
+# interactive flowPLC like be irb(interactive ruby)
 
-class IminiPLC
+class IPLC
   def initialize
     @stty_save = `stty -g`.chomp
     @line_no = 0
@@ -12,14 +12,14 @@ class IminiPLC
 
   def intoroduce
     puts <<-EOS
-    Interactive miniPLC
+    Interactive flowPLC
     EOS
   end
 
   def add_method_completion
-    mplc_public_methods = MiniPLC::Core.public_instance_methods
+    plc_public_methods = MiniPLC::Core.public_instance_methods
     # public_instance_methods returns symbol
-    methods = mplc_public_methods.map(&:to_s)
+    plc_public_methods = plc_public_methods.map(&:to_s)
     Reline.completion_proc = proc { |word| methods }
   end
 
@@ -28,7 +28,7 @@ class IminiPLC
   end
 
   def input_loop
-    while line = Reline.readline("#{format("ImP:%03d", @line_no)}> ", true)
+    while line = Reline.readline("#{format("IfP:%03d", @line_no)}> ", true)
       case line.chomp
       when 'exit', 'quit', 'q'
         exit 0
@@ -51,4 +51,4 @@ class IminiPLC
 
 end
 
-IminiPLC.new.main
+IPLC.main

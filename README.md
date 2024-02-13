@@ -1,1 +1,1 @@
-* miniPLC is now developing
+* FlowPLC is a virtual programmable logic controller.
