@@ -1,8 +1,9 @@
 # save and load yaml data file
-class Stage::DataFile
+class FlowPLC::Stage::DataFile
   def initialize
     require 'yaml/store'
   end
+
 
   def file_name_usable?(file_name, exist_file_ok: false)
     if File.directory?(file_name)
@@ -24,6 +25,7 @@ class Stage::DataFile
       @store['stage'] = stage_data
     end 
   end
+
 
   def load(file_name)
     raise 'file name cannot be use' unless file_name_usable?(file_name, exist_file_ok: true)

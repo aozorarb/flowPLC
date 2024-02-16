@@ -1,9 +1,10 @@
 # check that a name which given with item is not registerd
-class Stage::Manager
+class FlowPLC::Stage::Manager
   def initialize
     # @register[item.name] = item
     @register = {}
   end
+
 
   # check item's name has not used, and register the name. same ruby's  Set class
   def add?(item)
@@ -16,6 +17,7 @@ class Stage::Manager
 
   alias :add :add?
 
+
   def delete(item)
     if item === String
       @register.delete(item)
@@ -23,6 +25,7 @@ class Stage::Manager
       @register.delete(item.name)
     end
   end
+
 
   def item_exec(name, command, *args)
     return nil unless @register.key?(name)
@@ -33,6 +36,7 @@ class Stage::Manager
     end
   end
 
+
   def consist_with_stage(stage_data)
     @register.clear
     stage_data.each do |flow|
@@ -41,6 +45,8 @@ class Stage::Manager
       end
     end
   end
+
+
 end
 
 

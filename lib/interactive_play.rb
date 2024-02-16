@@ -3,6 +3,7 @@ require_relative 'flowPLC'
 # interactive flowPLC like be irb(interactive ruby)
 
 class IPLC
+
   def initialize
     @stty_save = `stty -g`.chomp
     @line_no = 0
@@ -10,11 +11,13 @@ class IPLC
     raise 'No support Environment'
   end
 
+
   def intoroduce
     puts <<-EOS
     Interactive flowPLC
     EOS
   end
+
 
   def add_method_completion
     plc_public_methods = MiniPLC::Core.public_instance_methods
@@ -23,9 +26,11 @@ class IPLC
     Reline.completion_proc = proc { |word| methods }
   end
 
+
   def finalize
     `stty #{@stty_save}` if @stty_save != nil
   end
+
 
   def input_loop
     while line = Reline.readline("#{format("IfP:%03d", @line_no)}> ", true)
@@ -41,6 +46,7 @@ class IPLC
     end
   end
 
+
   def main
     intoroduce
     add_method_completion
@@ -48,6 +54,7 @@ class IPLC
   rescue Interrupt
     finalize
   end
+
 
 end
 

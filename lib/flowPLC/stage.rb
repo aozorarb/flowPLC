@@ -2,7 +2,7 @@
 # method prefixed '_' helps  method with the same name without '_'
 # mainly recursion method
 
-class Stage
+class FlowPLC::Stage
   require_relative 'stage/manager'
   require_relative 'stage/data_file'
   attr_reader :data, :flow_state
