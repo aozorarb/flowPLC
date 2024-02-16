@@ -3,8 +3,8 @@
 # mainly recursion method
 
 class FlowPLC::Stage
-  require_relative 'stage/manager'
-  require_relative 'stage/data_file'
+  require_relative 'manager'
+  require_relative 'data_file'
   attr_reader :data, :flow_state
 
   # data is flows union
