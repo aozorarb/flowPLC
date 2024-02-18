@@ -1,7 +1,10 @@
-require_relative 'flowPLC/items'
-require_relative 'flowPLC/stage'
-
 module FlowPLC
+
+  require_relative 'flowPLC/items'
+  require_relative 'flowPLC/stage'
+  require_relative 'flowPLC/data_file.rb'
+
+
   class Core
     def initialize
       @stage = FlowPLC::Stage.new
@@ -16,6 +19,7 @@ module FlowPLC
     def item_name_at(flow_idx, inflow_idx)  @stage[flow_idx][inflow_idx].name end
     def delete_item(name)                   @stage.delete(name) end
 
+
     # item execute if previous item's state is true
     def run_enable_item(item)
       include FlowPLC
@@ -28,6 +32,7 @@ module FlowPLC
       end
     end
 
+
     # when previous item's state is false
     def run_disable_item(item)
       case item
@@ -38,6 +43,7 @@ module FlowPLC
         item.reset
       end
     end
+
 
     def run
       @stage.data.each_with_index do |flow, flow_idx|
@@ -59,32 +65,33 @@ module FlowPLC
       end
     end
 
+
     def puts_state
       @stage.show_class
       @stage.show_state
     end
+
 
     def puts_state_deep
       @stage.show_detail
       @stage.show_state
     end
 
+
     def save(file_name)
-      @stage.save(file_name)
+      DataFile.save(@stage, file_name)
     end
+
 
     def save!(file_name)
-      @stage.save(file_name, overwrite: true)
+      DataFile.save(@stage, file_name, overwrite: true)
     end
+
 
     def load(file_name)
-      @stage.load(file_name)
+      data = DataFile.load(file_name)
+      @stage.consist_with_data_file(data)
     end
 
-    # there methods for access to items
-    # Item::Input
-    def input_turn_on(name)
-      @stage.item_exec(name, 'on')
-    end
   end
 end

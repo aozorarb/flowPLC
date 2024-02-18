@@ -1,36 +1,41 @@
+require_relative 'stage_manager'
 # 'flow' indicates flow line
 # method prefixed '_' helps  method with the same name without '_'
 # mainly recursion method
 
 class FlowPLC::Stage
-  require_relative 'manager'
-  require_relative 'data_file'
-  attr_reader :data, :flow_state
 
+  attr_reader :data, :flow_state
   # data is flows union
   # flow_state is each item's state of each flows
+
+
   def initialize
     @data = []
     @flow_state = []
-    @manager = Stage::Manager.new
-    @data_file = Stage::DataFile.new
+    @manager = FlowPLC::StageManager.new
   end
+
 
   def flow_number
     @data.size
   end
 
+
   def raise_used_name(item)
     raise ArgumentError, "Already used item's name: #{item.name}"
   end
+
 
   def manager_add(item)
     raise_used_name(item) if @manager.add?(item).nil?
   end
 
+
   def item_exec(name, command)
     raise ArgumentError, "Invalid name: #{name}" if @manager.item_exec(name.to_sym, command) == nil
   end
+
 
   # push to already exist flow
   def push(idx, item)
@@ -39,6 +44,7 @@ class FlowPLC::Stage
     @flow_state[idx] << false
   end
 
+
   # insert to already exist flow
   def insert(flow_idx, inflow_idx, item)
     manager_add(item)
@@ -46,12 +52,14 @@ class FlowPLC::Stage
     @flow_state[flow_idx].insert(inflow_idx, false)
   end
 
+
   # make new flow
   def new_flow(item)
     manager_add(item)
     @data << [item]
     @flow_state << [false]
   end
+
 
   def delete_flow(idx)
     @data[idx].each do |dt|
@@ -61,15 +69,18 @@ class FlowPLC::Stage
     @flow_state.delete_at(idx)
   end
 
+
   def delete_at(flow_idx, inflow_idx)
     @manager.delete(@data[flow_idx][inflow_idx])
     @data[flow_idx].delete_at(inflow_idx)
     @flow_state[flow_idx].delete_at(inflow_idx)
   end
 
+
   def show_state
     pp @flow_state
   end
+
 
   # show only class name
   def show_class
@@ -90,18 +101,15 @@ class FlowPLC::Stage
     end
   end
 
+
   def show_detail
     puts
     puts "stage:"
     pp @data
   end
 
-  def save(file_name, overwrite: false)
-    @data_file.save(file_name, @data, overwrite: overwrite)
-  end
 
-  def load(file_name)
-    data = @data_file.load(file_name)
+  def consist_with_data_file(data)
     if data == nil
       return nil
     else
@@ -109,5 +117,6 @@ class FlowPLC::Stage
       @manager.consist_with_stage(@data)
     end
   end
+
 end
 

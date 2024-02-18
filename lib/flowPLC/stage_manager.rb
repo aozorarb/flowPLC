@@ -1,5 +1,5 @@
 # check that a name which given with item is not registerd
-class FlowPLC::Stage::Manager
+class FlowPLC::StageManager
   def initialize
     # @register[item.name] = item
     @register = {}

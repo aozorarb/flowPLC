@@ -27,6 +27,12 @@ class IPLC
   end
 
 
+  def add_object_methods_completion(obj)
+    obj_pub_methods = obj.public_instance_methods
+    obj_pub_methods = obj_pub_methods.map(&:to_s)
+  end
+
+
   def finalize
     `stty #{@stty_save}` if @stty_save != nil
   end
