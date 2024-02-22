@@ -20,7 +20,7 @@ class IPLC
 
 
   def add_method_completion
-    plc_public_methods = MiniPLC::Core.public_instance_methods
+    plc_public_methods = FlowPLC::Core.public_instance_methods
     # public_instance_methods returns symbol
     plc_public_methods = plc_public_methods.map(&:to_s)
     Reline.completion_proc = proc { |word| methods }
@@ -46,7 +46,7 @@ class IPLC
       when ''
         # NOP
       else
-        eval(line) rescue puts $!.split('#')[0]
+        eval(line) rescue puts 'error'
       end
       @line_no += 1
     end
@@ -64,4 +64,5 @@ class IPLC
 
 end
 
-IPLC.main
+iplc = IPLC.new
+iplc.main
