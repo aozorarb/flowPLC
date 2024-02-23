@@ -105,5 +105,12 @@ module FlowPLC
       false
     end
 
+
+    def item_exec(name, command)
+      @stage.item_exec(name, command)
+    rescue UnusableNameError
+      warn "#{name} is not usable"
+    end
+
   end
 end
