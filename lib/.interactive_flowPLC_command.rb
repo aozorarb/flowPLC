@@ -1,6 +1,11 @@
   include FlowPLC
+
+  def lp
+    load 'flowPLC.rb'
+    $p = Core.new
+  end
   puts <<-MSG
   Interactive FlowPLC
   Consist by irb.
-  You should create Core.new (already included FlowPLC)
+  type 'lp' to load flowPLC.rb and set $p to Core.new
   MSG

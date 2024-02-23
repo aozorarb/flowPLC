@@ -19,9 +19,8 @@ module FlowPLC
     def item_name_at(flow_idx, inflow_idx)  @stage[flow_idx][inflow_idx].name end
     def delete_item(name)                   @stage.delete(name) end
 
-
     # item execute if previous item's state is true
-    def run_enable_item(item)
+    private def run_enable_item(item)
       include FlowPLC
       case item
       when Item::Output
@@ -34,7 +33,8 @@ module FlowPLC
 
 
     # when previous item's state is false
-    def run_disable_item(item)
+    private def run_disable_item(item)
+      include FlowPLC
       case item
       when Item::Output
         item.disable
@@ -78,19 +78,31 @@ module FlowPLC
     end
 
 
-    def save(file_name)
-      DataFile.save(@stage, file_name)
+    def save(filename)
+      DataFile.save(@stage, filename)
+      true
+    rescue
+      warn "'#{filename}' is already used name"
+      false
     end
 
 
-    def save!(file_name)
-      DataFile.save(@stage, file_name, overwrite: true)
+    def save!(filename)
+      DataFile.save(@stage, filename, overwrite: true)
+      true
+    rescue
+      warn "'#{filename}' is not usable"
+      false
     end
 
 
     def load(file_name)
       data = DataFile.load(file_name)
       @stage.consist_with_data_file(data)
+      true
+    rescue
+      warn "'#{filename}' is not found"
+      false
     end
 
   end
