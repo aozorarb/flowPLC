@@ -5,6 +5,8 @@ require_relative 'stage_manager'
 
 class FlowPLC::Stage
 
+  class UnusableNameError < Exception;end
+
   attr_reader :data, :flow_state
   # data is flows union
   # flow_state is each item's state of each flows
@@ -22,18 +24,13 @@ class FlowPLC::Stage
   end
 
 
-  def raise_used_name(item)
-    raise ArgumentError, "Already used item's name: #{item.name}"
-  end
-
-
   def manager_add(item)
-    raise_used_name(item) if @manager.add?(item).nil?
+    @manager.add?(item)
   end
 
 
   def item_exec(name, command)
-    raise ArgumentError, "Invalid name: #{name}" if @manager.item_exec(name.to_sym, command) == nil
+    raise UnusableNameError, "Invalid name: #{name}" if @manager.item_exec(name.to_sym, command) == nil
   end
 
 
@@ -42,6 +39,7 @@ class FlowPLC::Stage
     manager_add(item)
     @data[idx] << item
     @flow_state[idx] << false
+    true
   end
 
 
@@ -50,6 +48,7 @@ class FlowPLC::Stage
     manager_add(item)
     @data[flow_idx].insert(inflow_idx, item)
     @flow_state[flow_idx].insert(inflow_idx, false)
+    true
   end
 
 
@@ -58,6 +57,7 @@ class FlowPLC::Stage
     manager_add(item)
     @data << [item]
     @flow_state << [false]
+    true
   end
 
 
@@ -92,7 +92,7 @@ class FlowPLC::Stage
   end
 
 
-  def _show_class(data)
+  private def _show_class(data)
     # if not nest, not flow
     if data.class == Array && data.class[0] == Array
       data.each { |dt| _show_class(dt) }
