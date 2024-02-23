@@ -1,5 +1,5 @@
 .irb_history
 *.swp
 .ruby-version
-.interactive_flowPLC_command.rb
+lib/.interactive_flowPLC_command.rb
 
