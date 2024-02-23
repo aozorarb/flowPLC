@@ -3,9 +3,8 @@
 module FlowPLC::DataFile
   require 'yaml/store'
 
-
   def self.save(stage_data, filename, overwrite: false)
-    raise 'The file name has already used'  if File.exist?(filename) && !overwrite
+    raise 'The file name has already used' if File.exist?(filename) && !overwrite
     store = YAML::Store.new(filename)
     store.transaction do
       store['stage'] = stage_data
