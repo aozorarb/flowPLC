@@ -8,11 +8,10 @@ module FlowPLC::Item
       class_initialize(*args)
     end
     
-    def class_initialize
+
+    private def class_initialize
       # edit by children
     end
-
-    private :class_initialize
 
   end
 
@@ -43,11 +42,13 @@ module FlowPLC::Item
     def start() @running = true end
     def stop()  @running = false end
 
+
     def reset
       @progress = 0
       @state = false
       @running = false
     end
+
 
     def run
       @progress += 1 if @running

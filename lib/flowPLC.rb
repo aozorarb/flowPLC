@@ -1,6 +1,6 @@
 module FlowPLC
 
-  require_relative 'flowPLC/items'
+  require_relative 'flowPLC/item'
   require_relative 'flowPLC/stage'
   require_relative 'flowPLC/data_file'
 
