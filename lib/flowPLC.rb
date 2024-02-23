@@ -1,10 +1,8 @@
+require_relative 'flowPLC/item'
+require_relative 'flowPLC/stage'
+require_relative 'flowPLC/data_file'
+
 module FlowPLC
-
-  require_relative 'flowPLC/item'
-  require_relative 'flowPLC/stage'
-  require_relative 'flowPLC/data_file'
-
-
   class Core
     def initialize
       @stage = FlowPLC::Stage.new

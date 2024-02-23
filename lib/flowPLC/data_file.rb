@@ -1,5 +1,7 @@
 # save and load yaml data file
 
+module FlowPLC;end
+
 module FlowPLC::DataFile
   require 'yaml/store'
 

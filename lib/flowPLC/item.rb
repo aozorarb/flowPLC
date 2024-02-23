@@ -1,3 +1,5 @@
+module FlowPLC;end
+
 module FlowPLC::Item
   class BasicItem
     attr_reader :name, :state
