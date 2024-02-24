@@ -7,7 +7,7 @@ module CLI
   def self.start
     plc = FlowPLC::Core.new
     main = CLI::Core.new(plc)
-
+    main.start
   end
 
 
@@ -17,6 +17,9 @@ module CLI
     end
 
 
+    def start
+
+    end
 
   end
 
