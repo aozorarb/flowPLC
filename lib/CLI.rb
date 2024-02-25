@@ -50,7 +50,7 @@ module CLI
         @cmd_win.draw
         ch = @flows_win.getch
         select_action(ch)
-        Curses.refresh
+        Curses.doupdate
       end
     end
 
