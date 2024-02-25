@@ -9,7 +9,7 @@ class CLI::FlowsWindow
   end
 
   
-  def resize
+  private def resize
     @win.move(0, 0)
     @win.resize(Curses.lines - 2, 0)
   end
@@ -21,6 +21,8 @@ class CLI::FlowsWindow
   def nodelay=(bool)
     @win.nodelay = bool
   end 
+
+
   def draw
     resize
     @win.erase
@@ -29,7 +31,7 @@ class CLI::FlowsWindow
       @win.setpos(line, 0)
       @win.addch('|') # start bar
     end
-    @win.refresh
+    @win.noutrefresh
   end
 
 end

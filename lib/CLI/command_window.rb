@@ -16,6 +16,12 @@ class CLI::CommandWindow
   
   def draw
     resize
+    @win.setpos(0, 0)
+    # line border
+    @win.maxx.times do
+      @win.addch '-'
+    end
+    @win.noutrefresh 
   end
 
 end
