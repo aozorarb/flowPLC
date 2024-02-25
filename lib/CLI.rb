@@ -18,7 +18,7 @@ module CLI
       curses_initialize
       @plc = plc
 
-      @flows_win = CLI::FlowsWindow.new
+      @flows_win = CLI::FlowsWindow.new(@plc)
       @cmd_win = CLI::CommandWindow.new
     end
 
@@ -33,6 +33,7 @@ module CLI
       at_exit { Curses.close_screen }
 
       Curses.noecho
+      Curses.cbreak
       curses_color_define
     end
 
@@ -44,11 +45,10 @@ module CLI
 
     private def draw_loop
       while true
+        @flows_win.draw
+        @cmd_win.draw
         ch = Curses.getch
         select_action(ch)
-
-        @flows_win.resize
-        @cmd_win.resize
       end
     end
 

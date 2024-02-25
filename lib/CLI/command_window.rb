@@ -13,4 +13,9 @@ class CLI::CommandWindow
     @win.resize(2, 0)
   end
 
+  
+  def draw
+    resize
+  end
+
 end
