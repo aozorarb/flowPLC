@@ -10,21 +10,57 @@ module CLI
     plc = FlowPLC::Core.new
     main = CLI::Core.new(plc)
     main.start
-
   end
 
 
   class Core
     def initialize(plc)
+      curses_initialize
       @plc = plc
 
-      Curses.init_screen
-      at_exit { Curses.close_screen }
       @flows_win = CLI::FlowsWindow.new
       @cmd_win = CLI::CommandWindow.new
     end
 
 
+    def start
+      draw_loop
+    end
+
+
+    private def curses_initialize
+      Curses.init_screen
+      at_exit { Curses.close_screen }
+
+      Curses.noecho
+      curses_color_define
+    end
+
+
+    private def curses_color_define
+      Curses.start_color
+    end
+
+
+    private def draw_loop
+      while true
+        ch = Curses.getch
+        select_action(ch)
+
+        @flows_win.resize
+        @cmd_win.resize
+      end
+    end
+
+
+    private def select_action(ch)
+      case ch
+      when 'q'
+        exit(0)
+      else
+        # NOP
+      end
+    end
 
   end
 

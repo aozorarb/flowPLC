@@ -1,4 +1,5 @@
 # https://linuxmag.osdn.jp/Japanese/March2002/article233.shtml
+# OSDNが死んだのでもう作れません
 require 'curses'
 Enter = 10
 Escape = 27
