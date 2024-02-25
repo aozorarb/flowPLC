@@ -16,7 +16,7 @@ module CLI
 
   class Core
     def initialize(plc)
-      @plc = flowplc
+      @plc = plc
 
       Curses.init_screen
       at_exit { Curses.close_screen }

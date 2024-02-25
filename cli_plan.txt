@@ -23,7 +23,7 @@ Let's say terminal window size (height, width) = (10, 20)
 (a) is FlowsWindow,   height is all height - 2.
 Show flows and control graphically.
 
-(b) is CommandWindow, height is 1.
+(b) is CommandWindow, height is 2(include border).
 Pressing ':' while in normal mode will enter command mode.
 In command mode, commands defined in lib/CLI/item_command.rb can be executable.
 
