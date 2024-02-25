@@ -20,7 +20,7 @@ module CLI
 
       @flows_win = CLI::FlowsWindow.new(@plc)
       @flows_win.nodelay = true
-      @cmd_win = CLI::CommandWindow.new
+      @cmd_win = CLI::CommandWindow.new(@plc)
     end
 
 
@@ -48,6 +48,7 @@ module CLI
       while true
         @flows_win.draw
         @cmd_win.draw
+        sleep 0.05 # 20 fps
         ch = @flows_win.getch
         select_action(ch)
         Curses.doupdate
@@ -59,8 +60,8 @@ module CLI
       case ch
       when 'q'
         exit(0)
-      else
-        # NOP
+      when ':'
+        @cmd_win.enter_command
       end
     end
 
