@@ -14,7 +14,13 @@ class CLI::FlowsWindow
     @win.resize(Curses.lines - 2, 0)
   end
 
+  def getch
+    @win.getch
+  end
 
+  def nodelay=(bool)
+    @win.nodelay = bool
+  end 
   def draw
     resize
     @win.erase

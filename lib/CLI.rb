@@ -19,6 +19,7 @@ module CLI
       @plc = plc
 
       @flows_win = CLI::FlowsWindow.new(@plc)
+      @flows_win.nodelay = true
       @cmd_win = CLI::CommandWindow.new
     end
 
@@ -47,7 +48,7 @@ module CLI
       while true
         @flows_win.draw
         @cmd_win.draw
-        ch = Curses.getch
+        ch = @flows_win.getch
         select_action(ch)
       end
     end

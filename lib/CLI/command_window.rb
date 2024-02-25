@@ -8,7 +8,7 @@ class CLI::CommandWindow
     @win = Curses::Window.new(2, 0, b_height, b_width)
   end
 
-  def resize
+  private def resize
     @win.move(Curses.lines - 2, 0)
     @win.resize(2, 0)
   end

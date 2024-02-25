@@ -11,8 +11,8 @@ Let's say terminal window size (height, width) = (10, 20)
 |                    |
 |                    |
 |                    |
-|        (a)         |
 |                    |
+|        (a)         |
 |                    |
 |                    |
 |                    |
@@ -26,6 +26,26 @@ Show flows and control graphically.
 (b) is CommandWindow, height is 2(include border).
 Pressing ':' while in normal mode will enter command mode.
 In command mode, commands defined in lib/CLI/item_command.rb can be executable.
+
+
+### FlowsWindow UI
+
+|  inp    tim  |
+|-| ! |--(   )-|
+|              |
+|  inp    out  |
+|-|   |--(   )-|
+^   ^      ^   ^
+(a) (b)   (c) (d)
+
+(a) is flow start bar, size is 1.
+
+(b) is item, consist 2 lines.
+First line show item's name.
+Second line show item's kind, state(on or off).
+The name space is decided by Config.
+This example's name space is 3.
+
 
 
 ## window template (height, width) = (10, 20)
