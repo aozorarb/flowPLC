@@ -25,9 +25,6 @@ module CLI
     end
 
 
-    def start
-
-    end
 
   end
 
