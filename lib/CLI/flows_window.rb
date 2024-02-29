@@ -6,6 +6,9 @@ class CLI::FlowsWindow
   def initialize(plc)
     @plc = plc
     @win = Curses::Window.new(Curses.lines - 2, 0, 0, 0)
+    @win.nodelay = true
+    @x = 0
+    @y = 0
   end
 
   
@@ -18,10 +21,8 @@ class CLI::FlowsWindow
     @win.getch
   end
 
-  def nodelay=(bool)
-    @win.nodelay = bool
-  end 
-
+  
+  def move_cursor() @win.setpos(@x, @y) end
 
   def draw
     resize

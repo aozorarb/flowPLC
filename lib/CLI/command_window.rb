@@ -142,6 +142,7 @@ class CLI::CommandWindow
         type_key(ch)
       end
     end
+    @win.clear_line(0, @win.maxx)
   end
 
 end

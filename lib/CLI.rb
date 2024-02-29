@@ -19,7 +19,6 @@ module CLI
       @plc = plc
 
       @flows_win = CLI::FlowsWindow.new(@plc)
-      @flows_win.nodelay = true
       @cmd_win = CLI::CommandWindow.new(@plc)
     end
 
@@ -48,6 +47,7 @@ module CLI
       while true
         @flows_win.draw
         @cmd_win.draw
+        @flows_win.move_cursor
         sleep 0.05 # 20 fps
         ch = @flows_win.getch
         select_action(ch)
