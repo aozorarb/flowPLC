@@ -69,7 +69,7 @@ class CLI::CommandWindow
   private def type_key(ch)
     # only alphabet and number
     # TODO: accept signs such as '(', ','
-    if ch.ord.between?('0'.ord, 'z'.ord)
+    if String === ch
       @buff << ch 
       @x += 1
     end
@@ -109,12 +109,20 @@ class CLI::CommandWindow
     @buff.slice!(@x .. -1)
   end
 
+  private def rindex_word(pos)
+    # Assume pos is str.size, str is ' str      '
+    # word_match_idx is 1              ^  ^    ^
+    #                        [[:word:]]+ \s*   \Z
+    word_match_idx = @buff[0 .. pos] =~ /[[:word:]]+\s*\Z/
+    word_match_idx ? word_match_idx : nil
+  end
+
   private def clear_before_word
-    separater_idx = @buff.rindex(' ', @x)
-    if separater_idx
-      @win.clear_line(separater_idx + 1, @x)
-      @buff.slice!(separater_idx + 1, @x)
-      @x = separater_idx + 1
+    word_idx = rindex_word(@x)
+    if word_idx
+      @win.clear_line(word_idx + 1, @x)
+      @buff.slice!(word_idx, @x)
+      @x = word_idx
     else
       clear_before_cursor
     end
@@ -129,8 +137,8 @@ class CLI::CommandWindow
   def enter_command
     @win.setpos(1, 0)
     @win.clear_line(0, @win.maxx)
-    @x = 0
     @win.addch ':'
+    @x = 0
     @end_enter_command = false
     @buff = ''
     until @end_enter_command
