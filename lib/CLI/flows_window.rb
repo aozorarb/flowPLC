@@ -6,6 +6,7 @@ class CLI::FlowsWindow
   def initialize(plc)
     @plc = plc
     @win = Curses::Window.new(Curses.lines - 2, 0, 0, 0)
+
     @win.nodelay = true
     @x = 0
     @y = 0
@@ -20,7 +21,6 @@ class CLI::FlowsWindow
   def getch
     @win.getch
   end
-
   
   def move_cursor() @win.setpos(@x, @y) end
 

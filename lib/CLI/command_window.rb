@@ -43,7 +43,8 @@ class CLI::CommandWindow
       0x7f => proc {backspace},
       0x17 => proc {clear_before_word},
       0x15 => proc {clear_before_cursor},
-      0x0b => proc {clear_after_cursor}
+      0x0b => proc {clear_after_cursor},
+      0x1b => proc {exit_enter_command}
     }
   end
 
@@ -76,7 +77,7 @@ class CLI::CommandWindow
 
 
   private def execute_command
-    @end_enter_command = true
+    exit_enter_command
   end
 
 
@@ -87,8 +88,13 @@ class CLI::CommandWindow
       @buff.slice!(@x - 1)
       @x -= 1
     else
-      @end_enter_command = true
+      exit_enter_command
     end
+  end
+
+
+  private def exit_enter_command
+    @end_enter_command = true
   end
 
 
@@ -114,9 +120,9 @@ class CLI::CommandWindow
     end
   end
 
-  private def cursor_forward() @x += 1 if @x + 1 <= @buff.size end
-  private def cursor_back()    @x -= 1 if @x - 1 >= 0 end
-  private def cursor_home()   @x = 0 end
+  private def cursor_forward() @x = (@x + 1).clamp(0, @buff.size) end
+  private def cursor_back()    @x = (@x - 1).clamp(0, @buff.size) end
+  private def cursor_home()    @x = 0 end
   private def cursor_end()     @x = @buff.size end
 
 
@@ -134,9 +140,7 @@ class CLI::CommandWindow
       @win.setpos(1, @x + 1)
 
       ch = @win.getch 
-      if ch == 0x1b
-        @end_enter_command = true
-      elsif @enter_commands.key?(ch)
+      if @enter_commands.key?(ch)
         @enter_commands[ch].call
       else
         type_key(ch)

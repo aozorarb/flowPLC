@@ -54,13 +54,25 @@ Stage	flowPLC/stage.rb	/^  class Stage$/;"	c	module:FlowPLC
 StageManager	flowPLC/stage_manager.rb	/^class FlowPLC::StageManager$/;"	c	module:FlowPLC
 Timer	flowPLC/item.rb	/^  class Timer < BasicItem$/;"	c	module:Item
 UnusableNameError	flowPLC/stage.rb	/^  class UnusableNameError < Exception;end$/;"	c	module:FlowPLC
+Window	CLI/command_window.rb	/^class Curses::Window$/;"	c	module:Curses
 _show_class	flowPLC/stage.rb	/^    private def _show_class(data)$/;"	f	class:FlowPLC.Stage
 add	flowPLC/stage_manager.rb	/^  alias :add :add?$/;"	a	class:StageManager
 add?	flowPLC/stage_manager.rb	/^  def add?(item)$/;"	f	class:StageManager
+backspace	CLI/command_window.rb	/^  private def backspace$/;"	f	class:CommandWindow
 class_initialize	flowPLC/item.rb	/^    def class_initialize(time)$/;"	f	class:Item.Timer
 class_initialize	flowPLC/item.rb	/^    private def class_initialize$/;"	f	class:Item.BasicItem
+clear_after_cursor	CLI/command_window.rb	/^  private def clear_after_cursor$/;"	f	class:CommandWindow
+clear_before_cursor	CLI/command_window.rb	/^  private def clear_before_cursor$/;"	f	class:CommandWindow
+clear_before_word	CLI/command_window.rb	/^  private def clear_before_word$/;"	f	class:CommandWindow
+clear_line	CLI/command_window.rb	/^  def clear_line(from, len)$/;"	f	class:Window
 consist_with_data_file	flowPLC/stage.rb	/^    def consist_with_data_file(data)$/;"	f	class:FlowPLC.Stage
 consist_with_stage	flowPLC/stage_manager.rb	/^  def consist_with_stage(stage_data)$/;"	f	class:StageManager
+curses_color_define	CLI.rb	/^    private def curses_color_define$/;"	f	class:CLI.Core
+curses_initialize	CLI.rb	/^    private def curses_initialize$/;"	f	class:CLI.Core
+cursor_back	CLI/command_window.rb	/^  private def cursor_back()    @x = (@x - 1).clamp(0, @buff.size) end$/;"	f	class:CommandWindow
+cursor_end	CLI/command_window.rb	/^  private def cursor_end()     @x = @buff.size end$/;"	f	class:CommandWindow
+cursor_forward	CLI/command_window.rb	/^  private def cursor_forward() @x = (@x + 1).clamp(0, @buff.size) end$/;"	f	class:CommandWindow
+cursor_home	CLI/command_window.rb	/^  private def cursor_home()    @x = 0 end$/;"	f	class:CommandWindow
 data	flowPLC/stage.rb	/^    attr_reader :data, :flow_state$/;"	A	class:FlowPLC.Stage
 delete	flowPLC/stage_manager.rb	/^  def delete(item)$/;"	f	class:StageManager
 delete_at	flowPLC.rb	/^    def delete_at(idx, inflow_idx)          @stage.delete_at(idx, inflow_idx) end$/;"	f	class:FlowPLC.Core
@@ -69,11 +81,19 @@ delete_flow	flowPLC.rb	/^    def delete_flow(idx)                    @stage.dele
 delete_flow	flowPLC/stage.rb	/^    def delete_flow(idx)$/;"	f	class:FlowPLC.Stage
 delete_item	flowPLC.rb	/^    def delete_item(name)                   @stage.delete(name) end$/;"	f	class:FlowPLC.Core
 disable	flowPLC/item.rb	/^    def disable() @state = false end$/;"	f	class:Item.Output
+draw	CLI/command_window.rb	/^  def draw$/;"	f	class:CommandWindow
+draw	CLI/flows_window.rb	/^  def draw$/;"	f	class:FlowsWindow
+draw_loop	CLI.rb	/^    private def draw_loop$/;"	f	class:CLI.Core
 enable	flowPLC/item.rb	/^    def enable() @state = true end$/;"	f	class:Item.Output
+enter_command	CLI/command_window.rb	/^  def enter_command$/;"	f	class:CommandWindow
+execute_command	CLI/command_window.rb	/^  private def execute_command$/;"	f	class:CommandWindow
+exit_enter_command	CLI/command_window.rb	/^  private def exit_enter_command$/;"	f	class:CommandWindow
 flow_number	flowPLC/stage.rb	/^    def flow_number$/;"	f	class:FlowPLC.Stage
 flow_state	flowPLC/stage.rb	/^    attr_reader :data, :flow_state$/;"	A	class:FlowPLC.Stage
+getch	CLI/flows_window.rb	/^  def getch$/;"	f	class:FlowsWindow
 initialize	CLI.rb	/^    def initialize(plc)$/;"	f	class:CLI.Core
-initialize	CLI/flows_window.rb	/^  def initialize$/;"	f	class:FlowsWindow
+initialize	CLI/command_window.rb	/^  def initialize(plc)$/;"	f	class:CommandWindow
+initialize	CLI/flows_window.rb	/^  def initialize(plc)$/;"	f	class:FlowsWindow
 initialize	flowPLC.rb	/^    def initialize$/;"	f	class:FlowPLC.Core
 initialize	flowPLC/item.rb	/^    def initialize(name, *args)$/;"	f	class:Item.BasicItem
 initialize	flowPLC/stage.rb	/^    def initialize$/;"	f	class:FlowPLC.Stage
@@ -87,8 +107,9 @@ item_name_at	flowPLC.rb	/^    def item_name_at(flow_idx, inflow_idx)  @stage[flo
 load	flowPLC.rb	/^    def load(file_name)$/;"	f	class:FlowPLC.Core
 load	flowPLC/data_file.rb	/^  def self.load(file_name)$/;"	S	module:DataFile
 lp	.interactive_flowPLC_command.rb	/^  def lp$/;"	f
-lp	interactive_flowPLC.rb	/^  def lp$/;"	f
+lp	interactive_flowPLC.rb	/^def lp$/;"	f
 manager_add	flowPLC/stage.rb	/^    def manager_add(item)$/;"	f	class:FlowPLC.Stage
+move_cursor	CLI/flows_window.rb	/^  def move_cursor() @win.setpos(@x, @y) end$/;"	f	class:FlowsWindow
 name	flowPLC/item.rb	/^    attr_reader :name, :state$/;"	A	class:Item.BasicItem
 new_flow	flowPLC.rb	/^    def new_flow(item)                      @stage.new_flow(item) end$/;"	f	class:FlowPLC.Core
 new_flow	flowPLC/stage.rb	/^    def new_flow(item)$/;"	f	class:FlowPLC.Stage
@@ -99,6 +120,8 @@ push	flowPLC/stage.rb	/^    def push(idx, item)$/;"	f	class:FlowPLC.Stage
 puts_state	flowPLC.rb	/^    def puts_state$/;"	f	class:FlowPLC.Core
 puts_state_deep	flowPLC.rb	/^    def puts_state_deep$/;"	f	class:FlowPLC.Core
 reset	flowPLC/item.rb	/^    def reset$/;"	f	class:Item.Timer
+resize	CLI/command_window.rb	/^  private def resize$/;"	f	class:CommandWindow
+resize	CLI/flows_window.rb	/^  private def resize$/;"	f	class:FlowsWindow
 run	flowPLC.rb	/^    def run$/;"	f	class:FlowPLC.Core
 run	flowPLC/item.rb	/^    def run$/;"	f	class:Item.Timer
 run_disable_item	flowPLC.rb	/^    private def run_disable_item(item)$/;"	f	class:FlowPLC.Core
@@ -106,6 +129,7 @@ run_enable_item	flowPLC.rb	/^    private def run_enable_item(item)$/;"	f	class:F
 save	flowPLC.rb	/^    def save(filename)$/;"	f	class:FlowPLC.Core
 save	flowPLC/data_file.rb	/^  def self.save(stage_data, filename, overwrite: false)$/;"	S	module:DataFile
 save!	flowPLC.rb	/^    def save!(filename)$/;"	f	class:FlowPLC.Core
+select_action	CLI.rb	/^    private def select_action(ch)$/;"	f	class:CLI.Core
 show_class	flowPLC/stage.rb	/^    def show_class$/;"	f	class:FlowPLC.Stage
 show_detail	flowPLC/stage.rb	/^    def show_detail$/;"	f	class:FlowPLC.Stage
 show_state	flowPLC/stage.rb	/^    def show_state$/;"	f	class:FlowPLC.Stage
@@ -115,3 +139,4 @@ start	flowPLC/item.rb	/^    def start() @running = true end$/;"	f	class:Item.Tim
 state	flowPLC/item.rb	/^    attr_reader :name, :state$/;"	A	class:Item.BasicItem
 stop	flowPLC/item.rb	/^    def stop()  @running = false end$/;"	f	class:Item.Timer
 time	flowPLC/item.rb	/^    attr_reader :time$/;"	A	class:Item.Timer
+type_key	CLI/command_window.rb	/^  private def type_key(ch)$/;"	f	class:CommandWindow
