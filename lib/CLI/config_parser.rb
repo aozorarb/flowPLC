@@ -35,7 +35,7 @@ class ConfigParser
   def command_parse(commands)
     parsed_commands = {}
     commands.each do |command|
-      parsed_commands[parse_key(command[0])] = command[1].to_sym.to_proc
+      parsed_commands[parse_key(command[0])] = command[1].to_sym
     end
     parsed_commands
   end

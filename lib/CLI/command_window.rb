@@ -31,12 +31,12 @@ class CLI::CommandWindow
   end
 
 
-  def load_key_commands
+  private def load_key_commands
     @window_commands = ConfigParser.instance.commands('command_commands')
   end
 
 
-  def resize
+  private def resize
     @win.move(Curses.lines - 2, 0)
     @win.resize(2, 0)
   end
@@ -53,7 +53,7 @@ class CLI::CommandWindow
   end
 
 
-  def type_key(ch)
+  private def type_key(ch)
     # ignore ctrl(ctrl-A, ctrl-[, ...) character
     if String === ch
       @buff << ch 
@@ -62,12 +62,12 @@ class CLI::CommandWindow
   end
 
 
-   def execute_command
+  private def execute_command
     exit_enter_command
   end
 
 
-   def backspace
+  private def backspace
     if @x - 1 >= 0
       @win.setpos(@win.cury, @x)
       @win.delch
@@ -79,23 +79,23 @@ class CLI::CommandWindow
   end
 
 
-   def exit_enter_command
+  private def exit_enter_command
     @end_enter_command = true
   end
 
 
-   def clear_before_cursor
+  private def clear_before_cursor
     @win.clear_line(1, @x)
     @buff.slice!(0, @x)
     @x = 0
   end
 
-   def clear_after_cursor
+  private def clear_after_cursor
     @win.clear_line(@x, @buff.size)
     @buff.slice!(@x .. -1)
   end
 
-   def rindex_word(pos)
+  private def rindex_word(pos)
     # Assume pos is str.size, str is ' str      '
     # word_match_idx is 1              ^  ^    ^
     #                        [[:word:]]+ \s*   \Z
@@ -103,7 +103,7 @@ class CLI::CommandWindow
     word_match_idx ? word_match_idx : nil
   end
 
-   def clear_before_word
+  private def clear_before_word
     word_idx = rindex_word(@x)
     if word_idx
       @win.clear_line(word_idx + 1, @x)
@@ -114,10 +114,10 @@ class CLI::CommandWindow
     end
   end
 
-   def cursor_forward() @x = (@x + 1).clamp(0, @buff.size) end
-   def cursor_back()    @x = (@x - 1).clamp(0, @buff.size) end
-   def cursor_home()    @x = 0 end
-   def cursor_end()     @x = @buff.size end
+  private def cursor_forward() @x = (@x + 1).clamp(0, @buff.size) end
+  private def cursor_back()    @x = (@x - 1).clamp(0, @buff.size) end
+  private def cursor_home()    @x = 0 end
+  private def cursor_end()     @x = @buff.size end
 
 
   def enter_command
@@ -135,7 +135,7 @@ class CLI::CommandWindow
 
       ch = @win.getch 
       if @window_commands.key?(ch)
-        @window_commands[ch].call(self)
+        self.send(@window_commands[ch])
       else
         type_key(ch)
       end
