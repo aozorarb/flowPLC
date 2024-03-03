@@ -6,8 +6,10 @@ class FlowPLC::StageManager
   end
 
 
-  # check item's name has not used, and register the name. same ruby's  Set class
+  # check item's name has not used, and register the name.
   def add?(item)
+    # TODO: refer item include FlowPLC::Item (but the method is not ready)
+    raise "not item: #{item}" unless item.kind_of?(FlowPLC::Item::BasicItem)
     if @register.key?(item.name)
       nil
     else

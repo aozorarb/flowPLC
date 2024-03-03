@@ -9,13 +9,13 @@ module FlowPLC
     end
 
     # access Stage methods
-    def push(idx, item)                     @stage.push(idx, item) end
-    def insert(flow_idx, inflow_idx, item)  @stage.insert(flow_idx, inflow_idx, item) end
-    def new_flow(item)                      @stage.new_flow(item) end
-    def delete_flow(idx)                    @stage.delete_flow(idx) end
-    def delete_at(idx, inflow_idx)          @stage.delete_at(idx, inflow_idx) end
-    def item_name_at(flow_idx, inflow_idx)  @stage[flow_idx][inflow_idx].name end
-    def delete_item(name)                   @stage.delete(name) end
+    def push_item(flow_idx, item)               @stage.push_item(flow_idx, item) end
+    def insert_item(flow_idx, inflow_idx, item) @stage.insert_item(flow_idx, inflow_idx, item) end
+    def new_flow(flow_idx)                      @stage.new_flow(flow_idx) end
+    def delete_flow(flow_idx)                   @stage.delete_flow(flow_idx) end
+    def delete_item_at(flow_idx, inflow_idx)    @stage.delete_at(flow_idx, inflow_idx) end
+    def item_name_at(flow_idx, inflow_idx)      @stage[flow_idx][inflow_idx].name end
+    def delete_item(name)                       @stage.delete(name) end
 
     # item execute if previous item's state is true
     private def run_enable_item(item)

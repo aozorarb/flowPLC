@@ -25,28 +25,25 @@ module FlowPLC
     end
 
 
-    def manager_add(item)
-      @manager.add?(item)
-    end
-
-
     def item_exec(name, command)
-      raise UnusableNameError, "Invalid name: #{name}" if @manager.item_exec(name.to_sym, command) == nil
+      raise UnusableNameError, "Invalid name: #{name}" if @manager.item_exec(name.to_sym, command).nil?
     end
 
 
-    # push to already exist flow
-    def push(idx, item)
-      manager_add(item)
-      @data[idx] << item
-      @flow_state[idx] << false
+    # push item to already exist flow
+    def push_item(flow_idx, item)
+      return nil if @data[flow_idx].nil?
+      @manager.add(item)
+      @data[flow_idx] << item
+      @flow_state[flow_idx] << false
       true
     end
 
 
-    # insert to already exist flow
-    def insert(flow_idx, inflow_idx, item)
-      manager_add(item)
+    # insert item to already exist flow
+    def insert_item(flow_idx, inflow_idx, item)
+      return nil if @data[flow_idx].nil? || inflow_idx > @data[flow_idx].size
+      @manager.add(item)
       @data[flow_idx].insert(inflow_idx, item)
       @flow_state[flow_idx].insert(inflow_idx, false)
       true
@@ -54,15 +51,15 @@ module FlowPLC
 
 
     # make new flow
-    def new_flow(item)
-      manager_add(item)
-      @data << [item]
-      @flow_state << [false]
+    def new_flow(flow_idx)
+      return nil if flow_idx > @data.size
+      @data.insert(flow_idx, [])
+      @flow_state.insert(flow_idx, [])
       true
     end
 
 
-    def delete_flow(idx)
+    def delete_flow(flow_idx)
       @data[idx].each do |dt|
         @manager.delete(dt)
       end
@@ -71,7 +68,14 @@ module FlowPLC
     end
 
 
-    def delete_at(flow_idx, inflow_idx)
+    def delete_item(item_name)
+      @manager.delete(item_name)
+      @data.delete!(item_name)
+    end
+
+
+    def delete_item_at(flow_idx, inflow_idx)
+      return nil if @manager[flow_idx][inflow_idx].nil?
       @manager.delete(@data[flow_idx][inflow_idx])
       @data[flow_idx].delete_at(inflow_idx)
       @flow_state[flow_idx].delete_at(inflow_idx)
@@ -95,10 +99,10 @@ module FlowPLC
 
     private def _show_class(data)
       # if not nest, not flow
-      if data.class == Array && data.class[0] == Array
-        data.each { |dt| _show_class(dt) }
+      if Array === data
+        data.each {|dt| _show_class(dt) }
       else
-        pp data.map { |dt| dt.class }
+        pp data.map {|dt| dt.class }
       end
     end
 
@@ -111,7 +115,7 @@ module FlowPLC
 
 
     def consist_with_data_file(data)
-      if data == nil
+      if data.nil?
         return nil
       else
         @data = data

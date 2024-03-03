@@ -1,8 +1,8 @@
+require 'curses'
 require_relative 'flowPLC'
 require_relative 'CLI/item_command'
 require_relative 'CLI/flows_window'
 require_relative 'CLI/command_window'
-require 'curses'
 
 
 module CLI
