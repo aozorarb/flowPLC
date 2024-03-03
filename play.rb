@@ -11,4 +11,5 @@ plc.new_flow(Item::Input.new('in01'))
 plc.push(0, Item::Timer.new('timer', 10))
 plc.push(0, Item::Output.new('out01'))
 plc.puts_state
+plc.save('test.yml')
 

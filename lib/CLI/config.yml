@@ -1,0 +1,21 @@
+command_commands:
+  C-J: execute_command
+  C-M: execute_command
+  KEY-ENTER: execute_command
+  C-A: cursor_home
+  KEY-HOME: cursor_home
+  C-E: cursor_end
+  KEY-END: cursor_end
+  C-F: cursor_forward
+  KEY-RIGHT: cursor_forward
+  C-B: cursor_back
+  KEY-LEFT: cursor_back
+  C-H: backspace
+  0x7f: backspace
+  KEY-BACKSPACE: backspace
+  C-W: clear_before_word
+  C-U: clear_before_cursor
+  C-K: clear_after_cursor
+  C-[: exit_enter_command
+
+

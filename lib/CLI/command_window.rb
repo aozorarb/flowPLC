@@ -1,4 +1,5 @@
 require 'curses'
+require_relative 'config_parser'
 
 module CLI;end
 
@@ -26,30 +27,16 @@ class CLI::CommandWindow
     @win.keypad(true)
 
     @x = 0
-    # TODO: define in config.yml and load here
-    @enter_commands = {
-      0x0a => proc {execute_command},
-      0x0d => proc {execute_command},
-      Curses::Key::HOME => proc {cursor_home},
-      0x01 => proc {cursor_home},
-      Curses::Key::END => proc {cursor_end},
-      0x05 => proc {cursor_end},
-      Curses::Key::RIGHT => proc {cursor_forward},
-      0x06 => proc {cursor_forward},
-      Curses::Key::LEFT => proc {cursor_back},
-      0x02 => proc {cursor_back},
-      Curses::Key::BACKSPACE => proc {backspace},
-      0x07 => proc {backspace},
-      0x7f => proc {backspace},
-      0x17 => proc {clear_before_word},
-      0x15 => proc {clear_before_cursor},
-      0x0b => proc {clear_after_cursor},
-      0x1b => proc {exit_enter_command}
-    }
+    load_key_commands
   end
 
 
-  private def resize
+  def load_key_commands
+    @window_commands = ConfigParser.instance.commands('command_commands')
+  end
+
+
+  def resize
     @win.move(Curses.lines - 2, 0)
     @win.resize(2, 0)
   end
@@ -66,9 +53,8 @@ class CLI::CommandWindow
   end
 
 
-  private def type_key(ch)
-    # only alphabet and number
-    # TODO: accept signs such as '(', ','
+  def type_key(ch)
+    # ignore ctrl(ctrl-A, ctrl-[, ...) character
     if String === ch
       @buff << ch 
       @x += 1
@@ -76,12 +62,12 @@ class CLI::CommandWindow
   end
 
 
-  private def execute_command
+   def execute_command
     exit_enter_command
   end
 
 
-  private def backspace
+   def backspace
     if @x - 1 >= 0
       @win.setpos(@win.cury, @x)
       @win.delch
@@ -93,23 +79,23 @@ class CLI::CommandWindow
   end
 
 
-  private def exit_enter_command
+   def exit_enter_command
     @end_enter_command = true
   end
 
 
-  private def clear_before_cursor
+   def clear_before_cursor
     @win.clear_line(1, @x)
     @buff.slice!(0, @x)
     @x = 0
   end
 
-  private def clear_after_cursor
+   def clear_after_cursor
     @win.clear_line(@x, @buff.size)
     @buff.slice!(@x .. -1)
   end
 
-  private def rindex_word(pos)
+   def rindex_word(pos)
     # Assume pos is str.size, str is ' str      '
     # word_match_idx is 1              ^  ^    ^
     #                        [[:word:]]+ \s*   \Z
@@ -117,7 +103,7 @@ class CLI::CommandWindow
     word_match_idx ? word_match_idx : nil
   end
 
-  private def clear_before_word
+   def clear_before_word
     word_idx = rindex_word(@x)
     if word_idx
       @win.clear_line(word_idx + 1, @x)
@@ -128,10 +114,10 @@ class CLI::CommandWindow
     end
   end
 
-  private def cursor_forward() @x = (@x + 1).clamp(0, @buff.size) end
-  private def cursor_back()    @x = (@x - 1).clamp(0, @buff.size) end
-  private def cursor_home()    @x = 0 end
-  private def cursor_end()     @x = @buff.size end
+   def cursor_forward() @x = (@x + 1).clamp(0, @buff.size) end
+   def cursor_back()    @x = (@x - 1).clamp(0, @buff.size) end
+   def cursor_home()    @x = 0 end
+   def cursor_end()     @x = @buff.size end
 
 
   def enter_command
@@ -148,8 +134,8 @@ class CLI::CommandWindow
       @win.setpos(1, @x + 1)
 
       ch = @win.getch 
-      if @enter_commands.key?(ch)
-        @enter_commands[ch].call
+      if @window_commands.key?(ch)
+        @window_commands[ch].call(self)
       else
         type_key(ch)
       end
