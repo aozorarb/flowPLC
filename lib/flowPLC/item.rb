@@ -1,6 +1,7 @@
 module FlowPLC;end
 
 module FlowPLC::Item
+  # item's superclass is always BasicItem
   class BasicItem
     attr_reader :name, :state
 

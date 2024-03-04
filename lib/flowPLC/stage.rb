@@ -8,7 +8,7 @@ module FlowPLC
 
   class Stage
 
-    attr_reader :data, :flow_state
+    attr_reader :data, :flow_state, :manager
     # data is flows union
     # flow_state is each item's state of each flows
 
@@ -60,17 +60,17 @@ module FlowPLC
 
 
     def delete_flow(flow_idx)
-      @data[idx].each do |dt|
+      @data[flow_idx].each do |dt|
         @manager.delete(dt)
       end
-      @data.delete_at(idx)
-      @flow_state.delete_at(idx)
+      @data.delete_at(flow_idx)
+      @flow_state.delete_at(flow_idx)
     end
 
 
     def delete_item(item_name)
       @manager.delete(item_name)
-      @data.delete!(item_name)
+      @data.delete(item_name)
     end
 
 
@@ -98,8 +98,8 @@ module FlowPLC
 
 
     private def _show_class(data)
-      # if not nest, not flow
-      if Array === data
+      # data is array and data.first is flow
+      if Array === data && Array === data.first
         data.each {|dt| _show_class(dt) }
       else
         pp data.map {|dt| dt.class }

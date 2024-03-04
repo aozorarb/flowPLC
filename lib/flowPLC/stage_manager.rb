@@ -8,7 +8,6 @@ class FlowPLC::StageManager
 
   # check item's name has not used, and register the name.
   def add?(item)
-    # TODO: refer item include FlowPLC::Item (but the method is not ready)
     raise "not item: #{item}" unless item.kind_of?(FlowPLC::Item::BasicItem)
     if @register.key?(item.name)
       nil
@@ -21,7 +20,7 @@ class FlowPLC::StageManager
 
 
   def delete(item)
-    if item === String
+    if String === item
       @register.delete(item)
     else
       @register.delete(item.name)
