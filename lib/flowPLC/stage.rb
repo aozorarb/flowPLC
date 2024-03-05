@@ -1,4 +1,5 @@
-require_relative 'stage_manager'
+# require_relative 'stage_manager'
+load 'flowPLC/stage_manager.rb'
 # 'flow' indicates flow line
 # method prefixed '_' helps  method with the same name without '_'
 # mainly recursion method
@@ -60,11 +61,12 @@ module FlowPLC
 
 
     def delete_flow(flow_idx)
+      return nil if @data[flow_idx].nil?
       @data[flow_idx].each do |dt|
         @manager.delete(dt)
       end
-      @data.delete_at(flow_idx)
       @flow_state.delete_at(flow_idx)
+      @data.delete_at(flow_idx)
     end
 
 
@@ -75,10 +77,10 @@ module FlowPLC
 
 
     def delete_item_at(flow_idx, inflow_idx)
-      return nil if @manager[flow_idx][inflow_idx].nil?
+      return nil unless flow_idx < @data.size && inflow_idx < @data[flow_idx].size
       @manager.delete(@data[flow_idx][inflow_idx])
-      @data[flow_idx].delete_at(inflow_idx)
       @flow_state[flow_idx].delete_at(inflow_idx)
+      @data[flow_idx].delete_at(inflow_idx)
     end
 
 
