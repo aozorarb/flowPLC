@@ -1,29 +1,33 @@
 # check that a name which given with item is not registerd
 class FlowPLC::StageManager
+
+  ItemHolder = Struct.new(:item, :count)
+
   def initialize
     # @register[item.name] = item
     @register = {}
   end
 
 
-  # check item's name has not used, and register the name.
-  def add?(item)
+  def add(item)
     raise "not item: #{item}" unless item.kind_of?(FlowPLC::Item::BasicItem)
     if @register.key?(item.name)
-      nil
+      @register[item.name].count += 1
     else
-      @register[item.name] = item
+      @register[item.name] = ItemHolder.new(item, 1)
     end
   end
 
-  alias :add :add?
 
 
   def delete(item)
-    if String === item
-      @register.delete(item)
+    item_name = (String === item ? item : item.name)
+    if @register.key?(item_name)
+      ret = @register[item_name].count -= 1
+      @register.delete(item_name) if @register[item_name].count == 0
+      ret
     else
-      @register.delete(item.name)
+      nil
     end
   end
 
