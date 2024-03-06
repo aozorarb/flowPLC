@@ -1,5 +1,6 @@
-# require_relative 'stage_manager'
-load 'flowPLC/stage_manager.rb'
+require_relative 'stage_manager'
+# load 'flowPLC/stage_manager.rb'
+
 # 'flow' indicates flow line
 # method prefixed '_' helps  method with the same name without '_'
 # mainly recursion method

@@ -1,9 +1,9 @@
-#require_relative 'flowPLC/item'
-#require_relative 'flowPLC/stage'
-#require_relative 'flowPLC/data_file'
-load 'flowPLC/item.rb'
-load 'flowPLC/stage.rb'
-load 'flowPLC/data_file.rb'
+require_relative 'flowPLC/item'
+require_relative 'flowPLC/stage'
+require_relative 'flowPLC/data_file'
+#load 'flowPLC/item.rb'
+#load 'flowPLC/stage.rb'
+#load 'flowPLC/data_file.rb'
 
 module FlowPLC
   class Core
