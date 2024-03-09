@@ -3,8 +3,9 @@ require 'curses'
 module CLI;end
 
 class CLI::FlowsWindow
-  def initialize(plc)
+  def initialize(plc, exec_command)
     @plc = plc
+    @exec_command = exec_command
     @win = Curses::Window.new(Curses.lines - 2, 0, 0, 0)
 
     @win.nodelay = true

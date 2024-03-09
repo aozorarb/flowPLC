@@ -19,9 +19,10 @@ end
 
 class CLI::CommandWindow
 
-  def initialize(plc)
+  def initialize(plc, exec_command)
 
     @plc = plc
+    @exec_command = exec_command
     b_height, b_width = Curses.lines - 2, 0
     @win = Curses::Window.new(2, 0, b_height, b_width)
     @win.keypad(true)
@@ -63,9 +64,28 @@ class CLI::CommandWindow
 
 
   private def execute_command
+    @exec_command.call(@buff)
+  rescue
+    print("#{@buff} is not command")
+  ensure
     exit_enter_command
   end
 
+
+  private def print(msg)
+    px, py = @win.curx, @win.cury
+    @win.setpos(1, 0)
+    @win.addstr(msg)
+    @win.refresh
+    @win.setpos(py, px)
+  end
+
+
+  private def warn(msg)
+    @win.standout
+    print(msg)
+    @win.standend
+  end
 
   private def backspace
     if @x - 1 >= 0
@@ -140,7 +160,7 @@ class CLI::CommandWindow
         type_key(ch)
       end
     end
-    @win.clear_line(0, @win.maxx)
+    # @win.clear_line(0, @win.maxx)
   end
 
 end

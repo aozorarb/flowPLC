@@ -40,7 +40,7 @@ class FlowPLC::StageManager
       @register[name].method(command).call(args)
     end
   rescue
-    raise 'Underfind method #{command} for #{name}'
+    raise "Underfind method #{command} for #{name}"
   end
 
 

@@ -1,6 +1,6 @@
 require 'curses'
 require_relative 'flowPLC'
-require_relative 'CLI/item_command'
+require_relative 'CLI/execute_command'
 require_relative 'CLI/flows_window'
 require_relative 'CLI/command_window'
 
@@ -18,8 +18,9 @@ module CLI
       curses_initialize
       @plc = plc
 
-      @flows_win = CLI::FlowsWindow.new(@plc)
-      @cmd_win = CLI::CommandWindow.new(@plc)
+      @exec_command = CLI::ExecuteCommand.new(@plc)
+      @flows_win = CLI::FlowsWindow.new(@plc, @exec_command)
+      @cmd_win = CLI::CommandWindow.new(@plc, @exec_command)
     end
 
 
