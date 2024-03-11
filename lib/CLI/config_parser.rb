@@ -11,6 +11,7 @@ class ConfigParser
     raise 'missing config.yml'
   end
 
+  def get() @config end
 
   def parse_key(key)
     if String === key

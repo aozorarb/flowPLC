@@ -41,6 +41,7 @@ module CLI
 
     private def curses_color_define
       Curses.start_color
+      CLI::Colors.initialize
     end
 
 

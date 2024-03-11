@@ -87,6 +87,7 @@ class CLI::CommandWindow
     @win.standend
   end
 
+
   private def backspace
     if @x - 1 >= 0
       @win.setpos(@win.cury, @x)
