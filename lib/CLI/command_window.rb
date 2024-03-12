@@ -1,4 +1,5 @@
 require 'curses'
+require_relative 'error'
 require_relative 'config_parser'
 
 module CLI;end
@@ -65,8 +66,8 @@ class CLI::CommandWindow
 
   private def execute_command
     @exec_command.call(@buff)
-  rescue
-    print("#{@buff} is not command")
+  rescue CLI::InvalidCommandError
+    warn "#{@buff} is not command"
   ensure
     exit_enter_command
   end
@@ -86,6 +87,7 @@ class CLI::CommandWindow
     print(msg)
     @win.attroff(CLI::Colors::Warning)
   end
+
 
 
   private def backspace
