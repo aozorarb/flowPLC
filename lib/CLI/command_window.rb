@@ -33,7 +33,7 @@ class CLI::CommandWindow
 
 
   private def load_key_commands
-    @window_commands = ConfigParser.instance.commands('command_commands')
+    @window_commands = CLI::ConfigParser.instance.commands('command_commands')
   end
 
 
@@ -82,9 +82,9 @@ class CLI::CommandWindow
 
 
   private def warn(msg)
-    @win.standout
+    @win.attron(CLI::Colors::Warning)
     print(msg)
-    @win.standend
+    @win.attroff(CLI::Colors::Warning)
   end
 
 

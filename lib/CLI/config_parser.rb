@@ -2,7 +2,9 @@ require 'yaml'
 require 'curses'
 require 'singleton'
 
-class ConfigParser
+module CLI;end
+
+class CLI::ConfigParser
   include Singleton
 
   def initialize

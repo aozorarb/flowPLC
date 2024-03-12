@@ -22,4 +22,4 @@ command_commands:
 # format: name: [r, g, b]
 # r, g, b are between from 0 to 1000
 colors:
-  warning: [1000, 0, 0]
+  Warning: [1000, 0, 0]
