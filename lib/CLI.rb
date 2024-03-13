@@ -3,7 +3,7 @@ require_relative 'flowPLC'
 require_relative 'CLI/execute_command'
 require_relative 'CLI/flows_window'
 require_relative 'CLI/command_window'
-require_relative 'CLI/colors'
+require_relative 'CLI/color'
 
 
 module CLI
@@ -34,7 +34,7 @@ module CLI
       Curses.init_screen
       at_exit do 
         Curses.close_screen
-        CLI::Colors.finalize
+        CLI::Color.finalize
       end
       Curses.noecho
       Curses.cbreak
@@ -44,7 +44,7 @@ module CLI
 
     private def curses_color_define
       Curses.start_color
-      CLI::Colors.initialize
+      CLI::Color.initialize
     end
 
 

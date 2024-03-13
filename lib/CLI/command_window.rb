@@ -81,10 +81,15 @@ class CLI::CommandWindow
   end
 
 
-  private def warn(msg)
-    @win.attron(CLI::Colors::Warning)
+  private def color_print(color, msg)
+    @win.attron(color)
     print(msg)
-    @win.attroff(CLI::Colors::Warning)
+    @win.attroff(color)
+  end
+
+
+  private def warn(msg)
+    color_print(CLI::Color::Warning, msg)
   end
 
 
