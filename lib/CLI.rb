@@ -63,8 +63,6 @@ module CLI
 
     private def select_action(ch)
       case ch
-      when 'q'
-        exit(0)
       when ':'
         @cmd_win.enter_command
       end
