@@ -2,7 +2,6 @@ require 'curses'
 require_relative 'error'
 require_relative 'config_parser'
 
-module CLI;end
 
 class Curses::Window
   def clear_line(from, len)

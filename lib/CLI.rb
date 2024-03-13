@@ -32,8 +32,10 @@ module CLI
 
     private def curses_initialize
       Curses.init_screen
-      at_exit { Curses.close_screen }
-
+      at_exit do 
+        Curses.close_screen
+        CLI::Colors.finalize
+      end
       Curses.noecho
       Curses.cbreak
       curses_color_define

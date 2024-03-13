@@ -1,7 +1,4 @@
-
-module CLI
-  class InvalidCommandError < Exception;end
-end
+require_relative 'error'
 
 class CLI::ExecuteCommand
   def initialize(plc)
@@ -12,7 +9,7 @@ class CLI::ExecuteCommand
   def call(command)
     self.public_send(command)
   rescue 
-    raise InvalidCommandError
+    raise CLI::InvalidCommandError
   end
 
 
