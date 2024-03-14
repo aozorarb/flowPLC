@@ -22,11 +22,6 @@ module FlowPLC
     end
 
 
-    def flow_number
-      @data.size
-    end
-
-
     def item_exec(name, command)
       raise UnusableNameError, "Invalid name: #{name}" if @manager.item_exec(name.to_sym, command).nil?
     end

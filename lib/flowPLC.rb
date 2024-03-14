@@ -10,7 +10,6 @@ module FlowPLC
     def initialize
       @stage = FlowPLC::Stage.new
     end
-    # for debug 
     attr_reader :stage
 
     # access Stage methods

@@ -18,7 +18,9 @@ command_commands:
   C-K: clear_after_cursor
   C-[: exit_enter_command
 
-item_looks:
+item-size: 5
+
+item-looks:
   Input:
     open-bracket:  '('
     close-bracket: ')'
