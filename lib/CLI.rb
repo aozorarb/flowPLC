@@ -5,7 +5,6 @@ require_relative 'CLI/flows_window'
 require_relative 'CLI/command_window'
 require_relative 'CLI/color'
 
-
 module CLI
   def self.start
     plc = FlowPLC::Core.new

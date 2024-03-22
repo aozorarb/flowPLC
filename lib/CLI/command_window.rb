@@ -65,8 +65,11 @@ class CLI::CommandWindow
 
   private def execute_command
     @exec_command.call(@buff)
-  rescue CLI::InvalidCommandError
+  rescue NoMethodError
     warn "#{@buff} is not command"
+  rescue ArgumentError
+    /given (?<given>\d+), expected (?<expected>\d+)/ =~ $!.full_message
+    warn "wrong number of argments: expected #{expected} but given #{given}"
   ensure
     exit_enter_command
   end
