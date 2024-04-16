@@ -13,6 +13,13 @@ class Curses::Window
     setpos(cury, x)
   end
 
+  def keep_pos(&block)
+    px = curx
+    py = cury
+
+    block.call
+    setpos(py, px)
+  end
 end
 
 
@@ -75,27 +82,28 @@ class CLI::CommandWindow
   end
 
 
-  private def print(msg)
+  def print(msg)
     px, py = @win.curx, @win.cury
-    @win.setpos(1, 0)
+    @win.clear_line(1, @win.maxx)
     @win.addstr(msg)
     @win.refresh
-    @win.setpos(py, px)
   end
 
 
-  private def color_print(color, msg)
+  def color_print(color, msg)
     @win.attron(color)
     print(msg)
     @win.attroff(color)
   end
 
 
-  private def warn(msg)
+  def warn(msg)
     color_print(CLI::Color::Warning, msg)
   end
 
-
+  def sleep_until_key_type
+    @win.getch
+  end
 
   private def backspace
     if @x - 1 >= 0
@@ -120,10 +128,12 @@ class CLI::CommandWindow
     @x = 0
   end
 
+
   private def clear_after_cursor
     @win.clear_line(@x, @buff.size)
     @buff.slice!(@x .. -1)
   end
+
 
   private def rindex_word(pos)
     # Assume pos is str.size, str is ' str      '
@@ -132,6 +142,7 @@ class CLI::CommandWindow
     word_match_idx = @buff[0 .. pos] =~ /[[:word:]]+\s*\Z/
     word_match_idx ? word_match_idx : nil
   end
+
 
   private def clear_before_word
     word_idx = rindex_word(@x)
@@ -143,6 +154,7 @@ class CLI::CommandWindow
       clear_before_cursor
     end
   end
+
 
   private def cursor_forward() @x = (@x + 1).clamp(0, @buff.size) end
   private def cursor_back()    @x = (@x - 1).clamp(0, @buff.size) end
@@ -173,4 +185,22 @@ class CLI::CommandWindow
     # @win.clear_line(0, @win.maxx)
   end
 
+
+  private def change_window_size(h, w, &block)
+    wh = Curses.lines - h
+    ww = w
+    @win.move(wh, ww)
+
+    block.call
+    resize
+  end
+
+
+  def expand_print(str)
+    need_line = (str.size + 1) / @win.maxx
+    @win.clear
+    change_window_size(need_line, 0) do
+      need_line.times do |line|
+    end
+  end
 end

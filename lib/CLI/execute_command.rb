@@ -1,29 +1,37 @@
+require 'logger'
 require_relative 'error'
+require_relative 'command_window'
+
 
 class CLI::ExecuteCommand
   def initialize(plc)
     @plc = plc
+    @logger = Logger.new('log/execute_command.log')
   end
-
+  attr_writer :cmd_win
 
   # error: NoMethodError, ArgumentError
   def call(command, args)
-    self.public_send(command, args)
+    public_send(command, args)
   end
 
 
   def call(line)
     match_data = line.match(/(?<cmd>\w*) *(?<args>.*)/)
+    @logger.debug(match_data)
     cmd, args = match_data[:cmd], match_data[:args]
     args = args.split(',').map(&:strip)
-    self.public_send(cmd, *args)
+    public_send(cmd, *args)
+  rescue # for DEBUG
+    raise Exception, $!
   end
 
 
-  def exit 
+  def exit
     # Kernel.exit
     super
   end
+
   alias :q :exit
   alias :quit :exit
 
@@ -36,4 +44,8 @@ class CLI::ExecuteCommand
   def item_name_at(flow_idx, inflow_idx)      @plc.item_name_at(flow_idx, inflow_idx) end
   def delete_item(name)                       @plc.delete_item(name) end
   
+  
+  def commands
+    cmds = public_methods
+    @cmd_win.expand_print(cmds)
 end

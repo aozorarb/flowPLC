@@ -17,10 +17,10 @@ module CLI
     def initialize(plc)
       curses_initialize
       @plc = plc
-
       @exec_command = CLI::ExecuteCommand.new(@plc)
       @flows_win = CLI::FlowsWindow.new(@plc, @exec_command)
       @cmd_win = CLI::CommandWindow.new(@plc, @exec_command)
+      @exec_command.cmd_win = @cmd_win
     end
 
 
@@ -46,11 +46,14 @@ module CLI
       CLI::Color.initialize
     end
 
+    private def draw
+      @flows_win.draw
+      @cmd_win.draw
+    end
 
     private def draw_loop
       while true
-        @flows_win.draw
-        @cmd_win.draw
+        draw
         @flows_win.move_cursor
         sleep 0.05 # 20 fps
         ch = @flows_win.getch
