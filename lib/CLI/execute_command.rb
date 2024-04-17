@@ -48,4 +48,6 @@ class CLI::ExecuteCommand
   def commands
     cmds = public_methods
     @cmd_win.expand_print(cmds)
+    @cmd_win.print('test')
+  end
 end

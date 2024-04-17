@@ -83,10 +83,19 @@ class CLI::CommandWindow
 
 
   def print(msg)
-    px, py = @win.curx, @win.cury
-    @win.clear_line(1, @win.maxx)
-    @win.addstr(msg)
-    @win.refresh
+    @win.keep_pos do
+      @win.clear_line(1, @win.maxx)
+      @win.addstr(msg)
+      @win.refresh
+    end
+  end
+
+  def print_no_refresh(msg)
+    @win.keep_pos do
+      @win.clear_line(1, @win.maxx)
+      @win.addstr(msg)
+      @win.noutrefresh
+    end
   end
 
 
@@ -199,8 +208,14 @@ class CLI::CommandWindow
   def expand_print(str)
     need_line = (str.size + 1) / @win.maxx
     @win.clear
+    win_maxx = @win.maxx
     change_window_size(need_line, 0) do
       need_line.times do |line|
+        @win.setpos(line, 0)
+        show_str = str[line * maxx ... line * maxx + 1]
+        print show_str
+      end
     end
+    sleep_until_key_type
   end
 end
