@@ -23,7 +23,7 @@ class CLI::ExecuteCommand
     args = args.split(',').map(&:strip)
     public_send(cmd, *args)
   rescue # for DEBUG
-    raise Exception, $!
+    raise #Exception, $!
   end
 
 
@@ -48,6 +48,9 @@ class CLI::ExecuteCommand
   def commands
     cmds = public_methods
     @cmd_win.expand_print(cmds)
+  end
+
+  def tes
     @cmd_win.print('test')
   end
 end

@@ -20,6 +20,7 @@ class Curses::Window
     block.call
     setpos(py, px)
   end
+
 end
 
 
@@ -199,6 +200,7 @@ class CLI::CommandWindow
     wh = Curses.lines - h
     ww = w
     @win.move(wh, ww)
+    @win.resize(h, w)
 
     block.call
     resize
@@ -207,13 +209,16 @@ class CLI::CommandWindow
 
   def expand_print(str)
     need_line = (str.size + 1) / @win.maxx
-    @win.clear
     win_maxx = @win.maxx
-    change_window_size(need_line, 0) do
-      need_line.times do |line|
-        @win.setpos(line, 0)
-        show_str = str[line * maxx ... line * maxx + 1]
-        print show_str
+    @win.keep_pos do
+      change_window_size(need_line, 0) do
+        @win.clear
+        need_line.times do |line|
+          @win.setpos(line, 0)
+          #show_str = str[line * maxx ... line * maxx + 1]
+          show_str = 'ts'
+          print show_str
+        end
       end
     end
     sleep_until_key_type
