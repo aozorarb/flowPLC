@@ -114,5 +114,10 @@ module FlowPLC
       warn "#{name} is not usable"
     end
 
+
+    # for code test. evec by self.send
+    private def test_mode
+      @stage.send(:test_mode)
+    end
   end
 end

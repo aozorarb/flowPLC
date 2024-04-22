@@ -53,7 +53,7 @@ class FlowPLC::StageManager
     end
   end
 
-
+  private def test_mode
+    attr_accessor :register
+  end
 end
-
-

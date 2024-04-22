@@ -10,7 +10,7 @@ module FlowPLC
 
   class Stage
 
-    attr_reader :data, :flow_state, :manager
+    attr_reader :data
     # data is flows union
     # flow_state is each item's state of each flows
 
@@ -121,5 +121,10 @@ module FlowPLC
       end
     end
 
+
+    private def test_mode
+      attr_accessor :manager, :flow_state
+      @manager.send(:test_mode)
+    end
   end
 end

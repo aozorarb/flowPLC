@@ -52,3 +52,5 @@ D, [2024-04-17T16:46:17.672116 #6929] DEBUG -- : #<MatchData "q" cmd:"q" args:""
 D, [2024-04-17T16:46:24.323735 #6948] DEBUG -- : #<MatchData "commands" cmd:"commands" args:"">
 D, [2024-04-17T16:46:39.904254 #6948] DEBUG -- : #<MatchData "commands" cmd:"commands" args:"">
 D, [2024-04-17T16:47:40.316634 #6948] DEBUG -- : #<MatchData "q" cmd:"q" args:"">
+D, [2024-04-18T21:28:19.813281 #48961] DEBUG -- : #<MatchData "command" cmd:"command" args:"">
+D, [2024-04-18T21:28:30.614404 #48961] DEBUG -- : #<MatchData "commands" cmd:"commands" args:"">
