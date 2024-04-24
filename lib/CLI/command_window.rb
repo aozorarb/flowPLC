@@ -13,10 +13,10 @@ class Curses::Window
     setpos(cury, x)
   end
 
+
   def keep_pos(&block)
     px = curx
     py = cury
-
     block.call
     setpos(py, px)
   end
@@ -85,7 +85,17 @@ class CLI::CommandWindow
 
   def print(msg)
     @win.keep_pos do
+      @win.setpos(1, 0)
       @win.clear_line(1, @win.maxx)
+      @win.addstr(msg)
+      @win.refresh
+    end
+  end
+
+  def print_at(msg, y, x)
+    @win.keep_pos do
+      @win.setpos(y, x)
+      @win.clear_line(y, x)
       @win.addstr(msg)
       @win.refresh
     end
@@ -214,10 +224,8 @@ class CLI::CommandWindow
       change_window_size(need_line, 0) do
         @win.clear
         need_line.times do |line|
-          @win.setpos(line, 0)
-          #show_str = str[line * maxx ... line * maxx + 1]
-          show_str = 'ts'
-          print show_str
+          show_str = str[line * win_maxx ... line * win_maxx + 1]
+          print_at(show_str, line, 0)
         end
       end
     end

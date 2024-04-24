@@ -46,11 +46,13 @@ class CLI::ExecuteCommand
   
   
   def commands
-    cmds = public_methods
+    cmds = public_methods.inspect
+    @logger.debug(cmds)
     @cmd_win.expand_print(cmds)
   end
 
-  def tes
-    @cmd_win.print('test')
+  def test
+    @cmd_win.print_at('test', 0, 1)
+    @cmd_win.sleep_until_key_type
   end
 end
