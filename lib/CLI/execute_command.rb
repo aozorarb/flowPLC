@@ -36,7 +36,10 @@ class CLI::ExecuteCommand
   alias :quit :exit
 
     
-  def push_item(flow_idx, item)               @plc.push_item(flow_idx, item) end
+  def push_item(flow_idx, item_class_name)
+    @plc.push_item(flow_idx, item) 
+  end
+
   def insert_item(flow_idx, inflow_idx, item) @plc.insert_item(flow_idx, inflow_idx, item) end
   def new_flow(flow_idx)                      @plc.new_flow(flow_idx) end
   def delete_flow(flow_idx)                   @plc.delete_flow(flow_idx) end
@@ -46,7 +49,7 @@ class CLI::ExecuteCommand
   
   
   def commands
-    cmds = public_methods.inspect
+    cmds = public_methods(false).inspect
     @logger.debug(cmds)
     @cmd_win.expand_print(cmds)
   end

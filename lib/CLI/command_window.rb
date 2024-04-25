@@ -218,17 +218,15 @@ class CLI::CommandWindow
 
 
   def expand_print(str)
+    logger = Logger.new('log/command_window.log')
     need_line = (str.size + 1) / @win.maxx
-    win_maxx = @win.maxx
     @win.keep_pos do
       change_window_size(need_line, 0) do
         @win.clear
-        need_line.times do |line|
-          show_str = str[line * win_maxx ... line * win_maxx + 1]
-          print_at(show_str, line, 0)
-        end
+        print_at(str, 0, 0)
+        sleep_until_key_type
+        @win.clear
       end
     end
-    sleep_until_key_type
   end
 end
