@@ -74,9 +74,13 @@ class CLI::CommandWindow
   private def execute_command
     @exec_command.call(@buff)
   rescue NoMethodError
-    warn "#{@buff} is not command"
+    warn "Not a command: #{@buff}"
   rescue ArgumentError
     /given (?<given>\d+), expected (?<expected>\d+)/ =~ $!.full_message
+    # Why cannot use 'if' after expression
+    if given.nil? || expected.nil?
+      raise $!
+    end
     warn "wrong number of argments: expected #{expected} but given #{given}"
   ensure
     exit_enter_command
@@ -95,7 +99,7 @@ class CLI::CommandWindow
   def print_at(msg, y, x)
     @win.keep_pos do
       @win.setpos(y, x)
-      @win.clear_line(y, x)
+      @win.clear_line(y, @win.maxx)
       @win.addstr(msg)
       @win.refresh
     end

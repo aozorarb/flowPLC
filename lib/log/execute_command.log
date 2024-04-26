@@ -56,3 +56,36 @@ D, [2024-04-25T16:48:39.738147 #2462] DEBUG -- : #<MatchData "q" cmd:"q" args:""
 D, [2024-04-25T16:48:55.821318 #3330] DEBUG -- : #<MatchData "test" cmd:"test" args:"">
 D, [2024-04-25T16:49:00.199427 #3330] DEBUG -- : #<MatchData "commands" cmd:"commands" args:"">
 D, [2024-04-25T16:49:00.200344 #3330] DEBUG -- : [:insert_item, :new_flow, :delete_item_at, :item_name_at, :delete_flow, :delete_item, :exit, :quit, :commands, :test, :call, :cmd_win=, :q, :push_item]
+D, [2024-04-26T16:00:58.965760 #2197] DEBUG -- : #<MatchData "test" cmd:"test" args:"">
+D, [2024-04-26T16:01:03.892047 #2197] DEBUG -- : #<MatchData "commands" cmd:"commands" args:"">
+D, [2024-04-26T16:01:03.893058 #2197] DEBUG -- : [:insert_item, :new_flow, :delete_item_at, :item_name_at, :delete_flow, :delete_item, :exit, :quit, :test, :commands, :call, :cmd_win=, :q, :push_item]
+D, [2024-04-26T16:10:24.978561 #2197] DEBUG -- : #<MatchData "push_item" cmd:"push_item" args:"">
+D, [2024-04-26T16:10:55.603694 #2197] DEBUG -- : #<MatchData "push_item Item::Input('sora')" cmd:"push_item" args:"Item::Input('sora')">
+D, [2024-04-26T16:11:31.198565 #2197] DEBUG -- : #<MatchData "push_item 0, Item::Input('Aaaa')" cmd:"push_item" args:"0, Item::Input('Aaaa')">
+D, [2024-04-26T16:13:59.467158 #2474] DEBUG -- : #<MatchData "new_flow 0" cmd:"new_flow" args:"0">
+D, [2024-04-26T16:14:08.148414 #2474] DEBUG -- : #<MatchData "new flow" cmd:"new" args:"flow">
+D, [2024-04-26T16:14:14.724045 #2474] DEBUG -- : #<MatchData "new_flow" cmd:"new_flow" args:"">
+D, [2024-04-26T16:14:46.814948 #2474] DEBUG -- : #<MatchData "test" cmd:"test" args:"">
+D, [2024-04-26T16:14:54.743658 #2474] DEBUG -- : #<MatchData "new_flow" cmd:"new_flow" args:"">
+D, [2024-04-26T16:14:59.717418 #2474] DEBUG -- : #<MatchData "new_flow 1" cmd:"new_flow" args:"1">
+D, [2024-04-26T16:15:03.599001 #2474] DEBUG -- : #<MatchData "q" cmd:"q" args:"">
+D, [2024-04-26T16:15:12.387548 #2493] DEBUG -- : #<MatchData "new_flow 1" cmd:"new_flow" args:"1">
+D, [2024-04-26T16:26:47.008094 #2684] DEBUG -- : #<MatchData "te" cmd:"te" args:"">
+D, [2024-04-26T16:26:54.417219 #2684] DEBUG -- : #<MatchData "push" cmd:"push" args:"">
+D, [2024-04-26T16:26:57.126508 #2684] DEBUG -- : #<MatchData "commands" cmd:"commands" args:"">
+D, [2024-04-26T16:26:57.127388 #2684] DEBUG -- : [:insert_item, :new_flow, :delete_item_at, :item_name_at, :delete_flow, :delete_item, :exit, :quit, :test, :commands, :call, :cmd_win=, :q, :push_item]
+D, [2024-04-26T16:27:03.735291 #2684] DEBUG -- : #<MatchData "insert_item" cmd:"insert_item" args:"">
+D, [2024-04-26T16:27:43.199713 #2684] DEBUG -- : #<MatchData "commands" cmd:"commands" args:"">
+D, [2024-04-26T16:27:43.200605 #2684] DEBUG -- : [:insert_item, :new_flow, :delete_item_at, :item_name_at, :delete_flow, :delete_item, :exit, :quit, :test, :commands, :call, :cmd_win=, :q, :push_item]
+D, [2024-04-26T16:28:02.335950 #2684] DEBUG -- : #<MatchData "test" cmd:"test" args:"">
+D, [2024-04-26T16:28:04.852910 #2684] DEBUG -- : #<MatchData "test 1" cmd:"test" args:"1">
+D, [2024-04-26T16:28:13.500118 #2684] DEBUG -- : #<MatchData "new_flow" cmd:"new_flow" args:"">
+D, [2024-04-26T16:28:18.342867 #2684] DEBUG -- : #<MatchData "new_flow 1" cmd:"new_flow" args:"1">
+D, [2024-04-26T16:43:33.723343 #2798] DEBUG -- : #<MatchData "push_item 1" cmd:"push_item" args:"1">
+D, [2024-04-26T16:46:47.959259 #2834] DEBUG -- : #<MatchData "push_item 10, 20" cmd:"push_item" args:"10, 20">
+D, [2024-04-26T16:46:53.896229 #2834] DEBUG -- : #<MatchData "push_item" cmd:"push_item" args:"">
+D, [2024-04-26T16:47:07.886412 #2834] DEBUG -- : #<MatchData "create_" cmd:"create_" args:"">
+D, [2024-04-26T16:47:10.402978 #2834] DEBUG -- : #<MatchData "commands" cmd:"commands" args:"">
+D, [2024-04-26T16:47:10.403862 #2834] DEBUG -- : [:insert_item, :new_flow, :delete_flow, :delete_item_at, :item_name_at, :delete_item, :exit, :quit, :test, :commands, :call, :cmd_win=, :q, :push_item]
+D, [2024-04-26T16:48:34.897783 #2834] DEBUG -- : #<MatchData "new_flow" cmd:"new_flow" args:"">
+D, [2024-04-26T16:48:40.990126 #2834] DEBUG -- : #<MatchData "new_flow 1" cmd:"new_flow" args:"1">

@@ -1,6 +1,7 @@
 require 'logger'
 require_relative 'error'
 require_relative 'command_window'
+require_relative '../flowPLC/item'
 
 
 class CLI::ExecuteCommand
@@ -36,16 +37,20 @@ class CLI::ExecuteCommand
   alias :quit :exit
 
     
-  def push_item(flow_idx, item_class_name)
-    @plc.push_item(flow_idx, item) 
+  private def item_name2class(item_class_name)
+    # FIXME: use other class create method for security
+    include FlowPLC::Item
+    eval("klass = #{item_class_name}.new")
+    klass
   end
 
-  def insert_item(flow_idx, inflow_idx, item) @plc.insert_item(flow_idx, inflow_idx, item) end
+  def push_item(flow_idx, item_class)    @plc.push_item(flow_idx, item_name2class(item_class)) end
+  def insert_item(flow_idx, inflow_idx, item_class) @plc.insert_item(flow_idx, inflow_idx, item_class) end
   def new_flow(flow_idx)                      @plc.new_flow(flow_idx) end
   def delete_flow(flow_idx)                   @plc.delete_flow(flow_idx) end
   def delete_item_at(flow_idx, inflow_idx)    @plc.delete_item_at(flow_idx, inflow_idx) end
   def item_name_at(flow_idx, inflow_idx)      @plc.item_name_at(flow_idx, inflow_idx) end
-  def delete_item(name)                       @plc.delete_item(name) end
+  def delete_item(item_name)                       @plc.delete_item(item_name) end
   
   
   def commands
