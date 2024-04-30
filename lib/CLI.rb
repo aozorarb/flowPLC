@@ -1,4 +1,5 @@
 require 'curses'
+require 'logger'
 require_relative 'flowPLC'
 require_relative 'CLI/execute_command'
 require_relative 'CLI/flows_window'
@@ -21,6 +22,7 @@ module CLI
       @flows_win = CLI::FlowsWindow.new(@plc, @exec_command)
       @cmd_win = CLI::CommandWindow.new(@plc, @exec_command)
       @exec_command.cmd_win = @cmd_win
+      @logger = Logger.new('log/core.log')
     end
 
 
@@ -69,9 +71,7 @@ module CLI
         @cmd_win.enter_command
       end
     end
-
   end
-
 end
 
 

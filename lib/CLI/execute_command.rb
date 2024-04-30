@@ -60,8 +60,8 @@ class CLI::ExecuteCommand
     @cmd_win.expand_print(cmds)
   end
 
-  def test
-    @cmd_win.print_at('test', 0, 1)
+  def print(message)
+    @cmd_win.print_at(message.to_s, 0, 1)
     @cmd_win.sleep_until_key_type
   end
 end
