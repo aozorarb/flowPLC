@@ -89,3 +89,32 @@ D, [2024-04-26T16:47:10.402978 #2834] DEBUG -- : #<MatchData "commands" cmd:"com
 D, [2024-04-26T16:47:10.403862 #2834] DEBUG -- : [:insert_item, :new_flow, :delete_flow, :delete_item_at, :item_name_at, :delete_item, :exit, :quit, :test, :commands, :call, :cmd_win=, :q, :push_item]
 D, [2024-04-26T16:48:34.897783 #2834] DEBUG -- : #<MatchData "new_flow" cmd:"new_flow" args:"">
 D, [2024-04-26T16:48:40.990126 #2834] DEBUG -- : #<MatchData "new_flow 1" cmd:"new_flow" args:"1">
+D, [2024-04-30T16:00:55.187896 #2040] DEBUG -- : #<MatchData "te" cmd:"te" args:"">
+D, [2024-04-30T16:00:56.557630 #2040] DEBUG -- : #<MatchData "aa" cmd:"aa" args:"">
+D, [2024-04-30T16:00:57.589763 #2040] DEBUG -- : #<MatchData "q" cmd:"q" args:"">
+D, [2024-04-30T16:15:49.873054 #2336] DEBUG -- : #<MatchData "test" cmd:"test" args:"">
+D, [2024-04-30T16:16:00.887523 #2336] DEBUG -- : #<MatchData "push_expand(" cmd:"push_expand" args:"(">
+D, [2024-04-30T16:16:04.092336 #2336] DEBUG -- : #<MatchData "commands" cmd:"commands" args:"">
+D, [2024-04-30T16:16:04.093286 #2336] DEBUG -- : [:insert_item, :new_flow, :delete_flow, :delete_item_at, :item_name_at, :delete_item, :exit, :quit, :test, :commands, :call, :cmd_win=, :q, :push_item]
+D, [2024-04-30T16:16:22.714406 #2336] DEBUG -- : #<MatchData "now_flow(0)" cmd:"now_flow" args:"(0)">
+D, [2024-04-30T16:16:30.512330 #2336] DEBUG -- : #<MatchData "new_flow 0" cmd:"new_flow" args:"0">
+D, [2024-04-30T16:31:49.158252 #2550] DEBUG -- : #<MatchData "q" cmd:"q" args:"">
+D, [2024-04-30T16:32:02.972688 #2566] DEBUG -- : #<MatchData "q" cmd:"q" args:"">
+D, [2024-04-30T16:32:16.914003 #2582] DEBUG -- : #<MatchData "q" cmd:"q" args:"">
+D, [2024-04-30T16:33:13.690398 #2601] DEBUG -- : #<MatchData "aa" cmd:"aa" args:"">
+D, [2024-04-30T16:33:26.862262 #2601] DEBUG -- : #<MatchData "insert_item" cmd:"insert_item" args:"">
+D, [2024-04-30T16:33:34.739130 #2601] DEBUG -- : #<MatchData "commands" cmd:"commands" args:"">
+D, [2024-04-30T16:33:34.740227 #2601] DEBUG -- : [:insert_item, :new_flow, :delete_flow, :delete_item_at, :item_name_at, :delete_item, :exit, :quit, :test, :commands, :call, :cmd_win=, :q, :push_item]
+D, [2024-04-30T16:33:49.030236 #2601] DEBUG -- : #<MatchData "new_flow(0)" cmd:"new_flow" args:"(0)">
+D, [2024-04-30T16:33:58.267875 #2601] DEBUG -- : #<MatchData "new_flow(1)" cmd:"new_flow" args:"(1)">
+D, [2024-04-30T16:34:10.970111 #2601] DEBUG -- : #<MatchData "new_flow(10)" cmd:"new_flow" args:"(10)">
+D, [2024-04-30T16:37:07.007061 #2601] DEBUG -- : #<MatchData "q" cmd:"q" args:"">
+D, [2024-04-30T16:37:24.449937 #2643] DEBUG -- : #<MatchData "new_flow" cmd:"new_flow" args:"">
+D, [2024-04-30T16:37:33.708808 #2643] DEBUG -- : #<MatchData "new_flow" cmd:"new_flow" args:"">
+D, [2024-04-30T16:40:05.087259 #2643] DEBUG -- : #<MatchData "s:q" cmd:"s" args:":q">
+D, [2024-04-30T16:40:06.454995 #2643] DEBUG -- : #<MatchData "q" cmd:"q" args:"">
+D, [2024-04-30T16:41:44.667863 #2702] DEBUG -- : #<MatchData "new_flow" cmd:"new_flow" args:"">
+D, [2024-04-30T16:42:05.978938 #2702] DEBUG -- : #<MatchData "q" cmd:"q" args:"">
+D, [2024-04-30T16:42:11.505489 #2719] DEBUG -- : #<MatchData "new_flow" cmd:"new_flow" args:"">
+D, [2024-04-30T16:42:15.538937 #2719] DEBUG -- : #<MatchData "flow" cmd:"flow" args:"">
+D, [2024-04-30T16:43:30.868991 #2719] DEBUG -- : #<MatchData "q" cmd:"q" args:"">

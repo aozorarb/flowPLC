@@ -44,13 +44,14 @@ class CLI::ExecuteCommand
     klass
   end
 
-  def push_item(flow_idx, item_class)    @plc.push_item(flow_idx, item_name2class(item_class)) end
+  def push_item(flow_idx, item_class)               @plc.push_item(flow_idx, item_name2class(item_class)) end
   def insert_item(flow_idx, inflow_idx, item_class) @plc.insert_item(flow_idx, inflow_idx, item_class) end
-  def new_flow(flow_idx)                      @plc.new_flow(flow_idx) end
-  def delete_flow(flow_idx)                   @plc.delete_flow(flow_idx) end
-  def delete_item_at(flow_idx, inflow_idx)    @plc.delete_item_at(flow_idx, inflow_idx) end
-  def item_name_at(flow_idx, inflow_idx)      @plc.item_name_at(flow_idx, inflow_idx) end
-  def delete_item(item_name)                       @plc.delete_item(item_name) end
+  def new_flow()                                    @plc.new_flow end
+  def new_flow_at(flow_idx)                         @plc.new_flow_at(flow_idx) end
+  def delete_flow(flow_idx)                         @plc.delete_flow(flow_idx) end
+  def delete_item_at(flow_idx, inflow_idx)          @plc.delete_item_at(flow_idx, inflow_idx) end
+  def item_name_at(flow_idx, inflow_idx)            @plc.item_name_at(flow_idx, inflow_idx) end
+  def delete_item(item_name)                        @plc.delete_item(item_name) end
   
   
   def commands

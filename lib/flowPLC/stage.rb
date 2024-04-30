@@ -29,6 +29,7 @@ module FlowPLC
 
     # push item to already exist flow
     def push_item(flow_idx, item)
+      flow_idx = flow_idx.to_i
       return nil if @data[flow_idx].nil?
       @manager.add(item)
       @data[flow_idx] << item
@@ -39,6 +40,8 @@ module FlowPLC
 
     # insert item to already exist flow
     def insert_item(flow_idx, inflow_idx, item)
+      flow_idx = flow_idx.to_i
+      inflow_idx = inflow_idx.to_i
       return nil if @data[flow_idx].nil? || inflow_idx > @data[flow_idx].size
       @manager.add(item)
       @data[flow_idx].insert(inflow_idx, item)
@@ -48,7 +51,14 @@ module FlowPLC
 
 
     # make new flow
-    def new_flow(flow_idx)
+    def new_flow
+      @data << []
+      @flow_state << []
+    end
+
+
+    def new_flow_at(flow_idx)
+      flow_idx = flow_idx.to_i
       return nil if flow_idx > @data.size
       @data.insert(flow_idx, [])
       @flow_state.insert(flow_idx, [])
@@ -57,6 +67,7 @@ module FlowPLC
 
 
     def delete_flow(flow_idx)
+      flow_idx = flow_idx.to_i
       return nil if @data[flow_idx].nil?
       @data[flow_idx].each do |dt|
         @manager.delete(dt)
@@ -73,6 +84,8 @@ module FlowPLC
 
 
     def delete_item_at(flow_idx, inflow_idx)
+      flow_idx = flow_idx.to_i
+      inflow_idx = inflow_idx.to_i
       return nil unless flow_idx < @data.size && inflow_idx < @data[flow_idx].size
       @manager.delete(@data[flow_idx][inflow_idx])
       @flow_state[flow_idx].delete_at(inflow_idx)
