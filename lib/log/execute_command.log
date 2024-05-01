@@ -118,3 +118,21 @@ D, [2024-04-30T16:42:05.978938 #2702] DEBUG -- : #<MatchData "q" cmd:"q" args:""
 D, [2024-04-30T16:42:11.505489 #2719] DEBUG -- : #<MatchData "new_flow" cmd:"new_flow" args:"">
 D, [2024-04-30T16:42:15.538937 #2719] DEBUG -- : #<MatchData "flow" cmd:"flow" args:"">
 D, [2024-04-30T16:43:30.868991 #2719] DEBUG -- : #<MatchData "q" cmd:"q" args:"">
+D, [2024-05-01T16:31:19.293963 #2218] DEBUG -- : #<MatchData "aa" cmd:"aa" args:"">
+D, [2024-05-01T16:32:44.346085 #2218] DEBUG -- : #<MatchData ":q" cmd:"" args:":q">
+D, [2024-05-01T16:32:45.266117 #2218] DEBUG -- : #<MatchData "q" cmd:"q" args:"">
+D, [2024-05-01T16:33:26.602399 #2371] DEBUG -- : #<MatchData "saa" cmd:"saa" args:"">
+D, [2024-05-01T16:33:29.778368 #2371] DEBUG -- : #<MatchData "new_flow" cmd:"new_flow" args:"">
+D, [2024-05-01T16:34:14.357721 #2371] DEBUG -- : #<MatchData "new_flow" cmd:"new_flow" args:"">
+D, [2024-05-01T16:34:52.035623 #2371] DEBUG -- : #<MatchData "q" cmd:"q" args:"">
+D, [2024-05-01T16:36:03.775903 #2389] DEBUG -- : #<MatchData ":::::q" cmd:"" args:":::::q">
+D, [2024-05-01T16:36:44.436627 #2408] DEBUG -- : #<MatchData "new_flow" cmd:"new_flow" args:"">
+D, [2024-05-01T16:36:51.713196 #2408] DEBUG -- : #<MatchData ":q" cmd:"" args:":q">
+D, [2024-05-01T16:36:52.793339 #2408] DEBUG -- : #<MatchData "q" cmd:"q" args:"">
+D, [2024-05-01T16:40:25.142962 #2430] DEBUG -- : #<MatchData "test" cmd:"test" args:"">
+D, [2024-05-01T16:40:28.026883 #2430] DEBUG -- : #<MatchData "command" cmd:"command" args:"">
+D, [2024-05-01T16:40:30.529008 #2430] DEBUG -- : #<MatchData "commands" cmd:"commands" args:"">
+D, [2024-05-01T16:40:30.529995 #2430] DEBUG -- : [:push_item, :exit, :insert_item, :new_flow_at, :new_flow, :delete_flow, :delete_item_at, :item_name_at, :call, :delete_item, :print, :quit, :cmd_win=, :q, :commands]
+D, [2024-05-01T16:40:38.560849 #2430] DEBUG -- : #<MatchData "info" cmd:"info" args:"">
+D, [2024-05-01T16:40:42.368989 #2430] DEBUG -- : #<MatchData "debug_mode" cmd:"debug_mode" args:"">
+D, [2024-05-01T16:50:25.554659 #2430] DEBUG -- : #<MatchData "q" cmd:"q" args:"">
