@@ -71,6 +71,7 @@ module CLI
         @cmd_win.enter_command
       end
     end
+
   end
 end
 

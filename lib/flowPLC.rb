@@ -115,6 +115,5 @@ module FlowPLC
       warn "#{name} is not usable"
     end
 
-
   end
 end

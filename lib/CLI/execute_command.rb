@@ -24,6 +24,7 @@ class CLI::ExecuteCommand
     args = args.split(',').map(&:strip)
     public_send(cmd, *args)
   rescue # for DEBUG
+    @logger.warn($!.full_message)
     raise #Exception, $!
   end
 
@@ -37,15 +38,14 @@ class CLI::ExecuteCommand
   alias :quit :exit
 
     
-  private def item_name2class(item_class_name)
-    # FIXME: use other class create method for security
-    include FlowPLC::Item
-    eval("klass = #{item_class_name}.new")
+  private def item_name2class(item_class_name, item_name)
+    # FIXME: cannot work because 'klass is underfind'. Find another way
+    eval("klass = FlowPLC::Item::#{item_class_name}.new('#{item_name}')")
     klass
   end
 
-  def push_item(flow_idx, item_class)               @plc.push_item(flow_idx, item_name2class(item_class)) end
-  def insert_item(flow_idx, inflow_idx, item_class) @plc.insert_item(flow_idx, inflow_idx, item_class) end
+  def push_item(flow_idx, item_class, item_name)    @plc.push_item(flow_idx, item_name2class(item_class, item_name)) end
+  def insert_item(flow_idx, inflow_idx, item_class, item_name) @plc.insert_item(flow_idx, inflow_idx, item_name2class(item_class, item_name)) end
   def new_flow()                                    @plc.new_flow end
   def new_flow_at(flow_idx)                         @plc.new_flow_at(flow_idx) end
   def delete_flow(flow_idx)                         @plc.delete_flow(flow_idx) end
@@ -63,5 +63,10 @@ class CLI::ExecuteCommand
   def print(message)
     @cmd_win.print_at(message.to_s, 0, 1)
     @cmd_win.sleep_until_key_type
+  end
+
+  def d_print_stage
+    msg = @plc.stage.show_state.inspect
+    @cmd_win.expand_print(msg)
   end
 end
