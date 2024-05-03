@@ -15,7 +15,8 @@ module FlowPLC
     # access Stage methods
     def push_item(flow_idx, item)               @stage.push_item(flow_idx, item) end
     def insert_item(flow_idx, inflow_idx, item) @stage.insert_item(flow_idx, inflow_idx, item) end
-    def new_flow(flow_idx)                      @stage.new_flow(flow_idx) end
+    def new_flow_at(flow_idx)                   @stage.new_flow_at(flow_idx) end
+    def new_flow()                              @stage.new_flow end
     def delete_flow(flow_idx)                   @stage.delete_flow(flow_idx) end
     def delete_item_at(flow_idx, inflow_idx)    @stage.delete_item_at(flow_idx, inflow_idx) end
     def item_name_at(flow_idx, inflow_idx)      @stage[flow_idx][inflow_idx].name end
@@ -114,10 +115,5 @@ module FlowPLC
       warn "#{name} is not usable"
     end
 
-
-    # for code test. evec by self.send
-    private def test_mode
-      @stage.send(:test_mode)
-    end
   end
 end

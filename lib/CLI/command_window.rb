@@ -74,9 +74,13 @@ class CLI::CommandWindow
   private def execute_command
     @exec_command.call(@buff)
   rescue NoMethodError
-    warn "#{@buff} is not command"
+    warn "Not a command: #{@buff}"
   rescue ArgumentError
     /given (?<given>\d+), expected (?<expected>\d+)/ =~ $!.full_message
+    # Why cannot use 'if' after expression
+    if given.nil? || expected.nil?
+      raise $!
+    end
     warn "wrong number of argments: expected #{expected} but given #{given}"
   ensure
     exit_enter_command
@@ -95,7 +99,7 @@ class CLI::CommandWindow
   def print_at(msg, y, x)
     @win.keep_pos do
       @win.setpos(y, x)
-      @win.clear_line(y, x)
+      @win.clear_line(y, @win.maxx)
       @win.addstr(msg)
       @win.refresh
     end
@@ -218,17 +222,15 @@ class CLI::CommandWindow
 
 
   def expand_print(str)
+    logger = Logger.new('log/command_window.log')
     need_line = (str.size + 1) / @win.maxx
-    win_maxx = @win.maxx
     @win.keep_pos do
       change_window_size(need_line, 0) do
         @win.clear
-        need_line.times do |line|
-          show_str = str[line * win_maxx ... line * win_maxx + 1]
-          print_at(show_str, line, 0)
-        end
+        print_at(str, 0, 0)
+        sleep_until_key_type
+        @win.clear
       end
     end
-    sleep_until_key_type
   end
 end
