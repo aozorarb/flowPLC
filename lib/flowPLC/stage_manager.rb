@@ -1,4 +1,6 @@
 # check that a name which given with item is not registerd
+module FlowPLC; end
+
 class FlowPLC::StageManager
 
   ItemHolder = Struct.new(:item, :count)
@@ -53,7 +55,4 @@ class FlowPLC::StageManager
     end
   end
 
-  private def test_mode
-    attr_accessor :register
-  end
 end
