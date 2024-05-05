@@ -1,14 +1,13 @@
-require_relative 'flowPLC/item'
 require_relative 'flowPLC/stage'
 require_relative 'flowPLC/data_file'
-#load 'flowPLC/item.rb'
-#load 'flowPLC/stage.rb'
-#load 'flowPLC/data_file.rb'
+require_relative 'flowPLC/item_execute'
 
 module FlowPLC
   class Core
+
     def initialize
       @stage = FlowPLC::Stage.new
+      FlowPLC::ItemExecute.stage = @stage
     end
     attr_reader :stage
 
@@ -22,52 +21,6 @@ module FlowPLC
     def item_name_at(flow_idx, inflow_idx)      @stage[flow_idx][inflow_idx].name end
     def delete_item(name)                       @stage.delete_item(name) end
 
-    # item execute if previous item's state is true
-    private def run_enable_item(item)
-      include FlowPLC
-      case item
-      when Item::Output
-        item.enable
-      when Item::Timer
-        item.start
-        item.run
-      end
-    end
-
-
-    # when previous item's state is false
-    private def run_disable_item(item)
-      include FlowPLC
-      case item
-      when Item::Output
-        item.disable
-      when Item::Timer
-        # timer require constant input until count up
-        item.reset
-      end
-    end
-
-
-    def run
-      @stage.data.each_with_index do |flow, flow_idx|
-        flow.each_with_index do |item, inflow_idx|
-          # item execute if previous item's state is true
-          # first item always execute
-          if inflow_idx == 0
-            run_enable_item(item)
-          else
-            if @stage.flow_state[flow_idx][inflow_idx-1]
-              run_item(item)
-            else
-              run_disable_item(item)
-            end
-          end
-          # item refresh after it ran
-          @stage.flow_state[flow_idx][inflow_idx] = item.state
-        end
-      end
-    end
-
 
     def puts_state
       @stage.show_class
@@ -78,6 +31,16 @@ module FlowPLC
     def puts_state_deep
       @stage.show_detail
       @stage.show_state
+    end
+
+
+    def run
+      FlowPLC::ItemExecute.run
+    end
+    
+
+    def item_exec(name, command)
+      FlowPLC::ItemExecute.item_exec(name, command)
     end
 
 
@@ -106,13 +69,6 @@ module FlowPLC
     rescue
       warn "'#{filename}' is not found"
       false
-    end
-
-
-    def item_exec(name, command)
-      @stage.item_exec(name, command)
-    rescue UnusableNameError
-      warn "#{name} is not usable"
     end
 
   end

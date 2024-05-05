@@ -1,6 +1,4 @@
 require_relative 'stage_manager'
-require_relative 'error'
-# load 'flowPLC/stage_manager.rb'
 
 # 'flow' indicates flow line
 # method prefixed '_' helps  method with the same name without '_'
@@ -22,13 +20,25 @@ class FlowPLC::Stage
   end
 
 
+  private def name2item_class(item_class_name)
+    Object.const_get(item_class_name)
+  rescue NameError
+    raise NameError, "Not item name: #{item_class_name}"
+  end
+
+
   def item_exec(name, command)
-    raise UnusableNameError, "Invalid name: #{name}" if @manager.item_exec(name.to_sym, command).nil?
+    @manager.item_exec(name.to_sym, command)
+  rescue UnusableNameError
+    "Invalid name: #{name}" 
+  rescue NoMethodError
+    "Not Method: #{command}"
   end
 
 
   # push item to already exist flow
   def push_item(flow_idx, item)
+    item = name2item_class(item)
     flow_idx = flow_idx.to_i
     return nil if @data[flow_idx].nil?
     @manager.add(item)
@@ -42,6 +52,7 @@ class FlowPLC::Stage
   def insert_item(flow_idx, inflow_idx, item)
     flow_idx = flow_idx.to_i
     inflow_idx = inflow_idx.to_i
+    item = name2item_class(item)
     return nil if @data[flow_idx].nil? || inflow_idx > @data[flow_idx].size
     @manager.add(item)
     @data[flow_idx].insert(inflow_idx, item)
