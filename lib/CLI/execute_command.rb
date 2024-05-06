@@ -38,14 +38,8 @@ class CLI::ExecuteCommand
   alias :quit :exit
 
     
-  private def item_name2class(item_class_name, item_name)
-    # FIXME: cannot work because 'klass is underfind'. Find another way
-    eval("klass = FlowPLC::Item::#{item_class_name}.new('#{item_name}')")
-    klass
-  end
-
-  def push_item(flow_idx, item_class, item_name)    @plc.push_item(flow_idx, item_name2class(item_class, item_name)) end
-  def insert_item(flow_idx, inflow_idx, item_class, item_name) @plc.insert_item(flow_idx, inflow_idx, item_name2class(item_class, item_name)) end
+  def push_item(flow_idx, item, item_args)    @plc.push_item(flow_idx, item, item_args) end
+  def insert_item(flow_idx, inflow_idx, item, item_args) @plc.insert_item(flow_idx, inflow_idx, item, item_args) end
   def new_flow()                                    @plc.new_flow end
   def new_flow_at(flow_idx)                         @plc.new_flow_at(flow_idx) end
   def delete_flow(flow_idx)                         @plc.delete_flow(flow_idx) end

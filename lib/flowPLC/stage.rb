@@ -20,8 +20,9 @@ class FlowPLC::Stage
   end
 
 
-  private def name2item_class(item_class_name)
-    Object.const_get(item_class_name)
+  private def name2item_class(item_class_name, item_args)
+    item_class = Object.const_get("FlowPLC::Item::#{item_class_name}")
+    item_class.new(*item_args)
   rescue NameError
     raise NameError, "Not item name: #{item_class_name}"
   end
@@ -37,8 +38,8 @@ class FlowPLC::Stage
 
 
   # push item to already exist flow
-  def push_item(flow_idx, item)
-    item = name2item_class(item)
+  def push_item(flow_idx, item, item_args)
+    item = name2item_class(item, item_args)
     flow_idx = flow_idx.to_i
     return nil if @data[flow_idx].nil?
     @manager.add(item)
@@ -49,10 +50,10 @@ class FlowPLC::Stage
 
 
   # insert item to already exist flow
-  def insert_item(flow_idx, inflow_idx, item)
+  def insert_item(flow_idx, inflow_idx, item, item_args)
     flow_idx = flow_idx.to_i
     inflow_idx = inflow_idx.to_i
-    item = name2item_class(item)
+    item = name2item_class(item, item_args)
     return nil if @data[flow_idx].nil? || inflow_idx > @data[flow_idx].size
     @manager.add(item)
     @data[flow_idx].insert(inflow_idx, item)

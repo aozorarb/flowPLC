@@ -12,14 +12,14 @@ module FlowPLC
     attr_reader :stage
 
     # access Stage methods
-    def push_item(flow_idx, item)               @stage.push_item(flow_idx, item) end
-    def insert_item(flow_idx, inflow_idx, item) @stage.insert_item(flow_idx, inflow_idx, item) end
-    def new_flow_at(flow_idx)                   @stage.new_flow_at(flow_idx) end
-    def new_flow()                              @stage.new_flow end
-    def delete_flow(flow_idx)                   @stage.delete_flow(flow_idx) end
-    def delete_item_at(flow_idx, inflow_idx)    @stage.delete_item_at(flow_idx, inflow_idx) end
-    def item_name_at(flow_idx, inflow_idx)      @stage[flow_idx][inflow_idx].name end
-    def delete_item(name)                       @stage.delete_item(name) end
+    def push_item(flow_idx, item, item_args)               @stage.push_item(flow_idx, item, item_args) end
+    def insert_item(flow_idx, inflow_idx, item, item_args) @stage.insert_item(flow_idx, inflow_idx, item, item_args) end
+    def new_flow_at(flow_idx)                              @stage.new_flow_at(flow_idx) end
+    def new_flow()                                         @stage.new_flow end
+    def delete_flow(flow_idx)                              @stage.delete_flow(flow_idx) end
+    def delete_item_at(flow_idx, inflow_idx)               @stage.delete_item_at(flow_idx, inflow_idx) end
+    def item_name_at(flow_idx, inflow_idx)                 @stage[flow_idx][inflow_idx].name end
+    def delete_item(name)                                  @stage.delete_item(name) end
 
 
     def puts_state
