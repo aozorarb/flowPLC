@@ -1,6 +1,6 @@
 require 'curses'
+require 'logger'
 require_relative 'config_parser'
-
 module CLI;end
 
 class CLI::FlowsWindow
@@ -92,7 +92,6 @@ class CLI::FlowsWindow
       @win.addch('-')
     end
   end
-
 
 end
 
