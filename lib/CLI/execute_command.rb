@@ -11,7 +11,7 @@ class CLI::ExecuteCommand
   end
   attr_writer :cmd_win
 
-  # error: NoMethodError, ArgumentError
+  # error: NoMethodError, ArgumentError, CommandMessage
   def call(command, args)
     public_send(command, args)
   end
@@ -45,8 +45,31 @@ class CLI::ExecuteCommand
   def delete_flow(flow_idx)                         @plc.delete_flow(flow_idx) end
   def delete_item_at(flow_idx, inflow_idx)          @plc.delete_item_at(flow_idx, inflow_idx) end
   def item_name_at(flow_idx, inflow_idx)            @plc.item_name_at(flow_idx, inflow_idx) end
-  def delete_item(item_name)                        @plc.delete_item(item_name) end
-  
+  def delete_item(item_name)                  @plc.delete_item(item_name) end
+
+  def save(filename)
+    ret = @plc.save(filename)
+    print
+      if ret
+        "#{filename} saved"
+      else
+        'Already file exist (save! to overwrite)'
+      end
+  end
+
+  def save!(filename)
+    ret = @plc.save!(filename)
+    print
+      if ret
+        "#{filename} saved (overwrote)"
+      else
+        'invalid filename, or something wrong'
+      end
+  end
+
+  alias :w  :save
+  alias :w! :save!
+
   
   def commands
     cmds = public_methods(false).inspect
@@ -63,4 +86,5 @@ class CLI::ExecuteCommand
     msg = @plc.stage.show_state.inspect
     @cmd_win.expand_print(msg)
   end
+
 end

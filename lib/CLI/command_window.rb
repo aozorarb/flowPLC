@@ -1,4 +1,5 @@
 require 'curses'
+require 'reline'
 require_relative 'error'
 require_relative 'config_parser'
 
@@ -184,6 +185,11 @@ class CLI::CommandWindow
   private def cursor_back()    @x = (@x - 1).clamp(0, @buff.size) end
   private def cursor_home()    @x = 0 end
   private def cursor_end()     @x = @buff.size end
+
+
+  def gererate_completation
+    @completation_words = []
+  end
 
 
   def enter_command

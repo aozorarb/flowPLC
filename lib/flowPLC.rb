@@ -48,7 +48,6 @@ module FlowPLC
       DataFile.save(@stage, filename)
       true
     rescue
-      warn "'#{filename}' is already used name"
       false
     end
 
@@ -57,7 +56,6 @@ module FlowPLC
       DataFile.save(@stage, filename, overwrite: true)
       true
     rescue
-      warn "'#{filename}' is not usable"
       false
     end
 
