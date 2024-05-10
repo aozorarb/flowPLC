@@ -14,8 +14,8 @@ module FlowPLC::DataFile
   end
 
 
-  def self.load(file_name)
-    raise 'The file is not found' if File.exists?(filename)
+  def self.load(filename)
+    raise 'The file is not found' if File.exist?(filename)
     store = YAML::Store.new(filename)
     res = ''
     store.transaction do

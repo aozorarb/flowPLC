@@ -38,6 +38,12 @@ class CLI::ExecuteCommand
   alias :quit :exit
 
     
+  private def print_cond(condition, on_true, on_false)
+    print (
+      condition ? on_true : on_false
+    )
+  end
+
   def push_item(flow_idx, item, item_args)    @plc.push_item(flow_idx, item, item_args) end
   def insert_item(flow_idx, inflow_idx, item, item_args) @plc.insert_item(flow_idx, inflow_idx, item, item_args) end
   def new_flow()                                    @plc.new_flow end
@@ -49,27 +55,23 @@ class CLI::ExecuteCommand
 
   def save(filename)
     ret = @plc.save(filename)
-    print
-      if ret
-        "#{filename} saved"
-      else
-        'Already file exist (save! to overwrite)'
-      end
+    print_cond(ret, "#{filename} saved", 'Already file exist (save! to overwrite)')
   end
 
   def save!(filename)
     ret = @plc.save!(filename)
-    print
-      if ret
-        "#{filename} saved (overwrote)"
-      else
-        'invalid filename, or something wrong'
-      end
+    print_cond(ret, "#{filename} saved (overwrote)", 'invalid filename, or something wrong')
   end
 
   alias :w  :save
   alias :w! :save!
 
+
+  def load(filename)
+    ret = @plc.load(filename)
+    print_cond(ret, "#{filename} load", 'cannot load')
+  end
+  alias :r :load
   
   def commands
     cmds = public_methods(false).inspect
