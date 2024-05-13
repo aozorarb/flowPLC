@@ -60,8 +60,8 @@ module FlowPLC
     end
 
 
-    def load(file_name)
-      data = DataFile.load(file_name)
+    def load(filename)
+      data = DataFile.load(filename)
       @stage.consist_with_data_file(data)
       true
     rescue

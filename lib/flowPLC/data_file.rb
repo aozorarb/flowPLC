@@ -20,7 +20,7 @@ module FlowPLC::DataFile
     res = ''
     store.transaction do
       res = @store['stage']
-    end
+   end
     if res == ''
       return nil
     else
