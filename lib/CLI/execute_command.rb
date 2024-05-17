@@ -69,6 +69,7 @@ class CLI::ExecuteCommand
 
   def load(filename)
     ret = @plc.load(filename)
+    @logger.warn ret
     print_cond(ret, "#{filename} load", 'cannot load')
   end
   alias :r :load
@@ -84,8 +85,13 @@ class CLI::ExecuteCommand
     @cmd_win.sleep_until_key_type
   end
 
-  def d_print_stage
-    msg = @plc.stage.show_state.inspect
+  def d_p_state
+    msg = @plc.stage.flow_state.inspect
+    @cmd_win.expand_print(msg)
+  end
+
+  def d_p_stage
+    msg = @plc.stage.data.inspect
     @cmd_win.expand_print(msg)
   end
 

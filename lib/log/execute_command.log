@@ -989,3 +989,385 @@ W, [2024-05-13T17:04:34.040918 #2082]  WARN -- : /home/info_exec/aozora/flowPLC/
 
 D, [2024-05-13T17:04:36.327295 #2082] DEBUG -- : #<MatchData "commands" cmd:"commands" args:"">
 D, [2024-05-13T17:04:36.328200 #2082] DEBUG -- : [:save, :save!, :r, :load, :exit, :print, :call, :q, :quit, :w, :w!, :commands, :d_print_stage, :push_item, :insert_item, :new_flow_at, :new_flow, :delete_flow, :delete_item_at, :item_name_at, :delete_item, :cmd_win=]
+D, [2024-05-17T15:59:21.534212 #2907] DEBUG -- : #<MatchData "commands" cmd:"commands" args:"">
+D, [2024-05-17T15:59:21.537935 #2907] DEBUG -- : [:save, :save!, :r, :load, :exit, :print, :call, :q, :quit, :w, :w!, :commands, :d_print_stage, :push_item, :insert_item, :new_flow_at, :new_flow, :delete_flow, :delete_item_at, :item_name_at, :delete_item, :cmd_win=]
+D, [2024-05-17T15:59:24.644594 #2907] DEBUG -- : #<MatchData "ls" cmd:"ls" args:"">
+W, [2024-05-17T15:59:24.661284 #2907]  WARN -- : /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send': [1mundefined method `ls' for #<CLI::ExecuteCommand:0x0000007faf92b178 @plc=#<FlowPLC::Core:0x0000007faf92b948 @stage=#<FlowPLC::Stage:0x0000007faf92b8a8 @data=[], @flow_state=[], @manager=#<FlowPLC::StageManager:0x0000007faf92b790 @register={}>>>, @logger=#<Logger:0x0000007faf92b0d8 @level=0, @progname=nil, @default_formatter=#<Logger::Formatter:0x0000007faf92af70 @datetime_format=nil>, @formatter=nil, @logdev=#<Logger::LogDevice:0x0000007faf938440 @shift_period_suffix="%Y%m%d", @shift_size=1048576, @shift_age=0, @filename="log/execute_command.log", @dev=#<File:log/execute_command.log>, @binmode=false, @mon_data=#<Monitor:0x0000007faf92ad18>, @mon_data_owner_object_id=200>>, @cmd_win=#<CLI::CommandWindow:0x0000007faf938350 @plc=#<FlowPLC::Core:0x0000007faf92b948 @stage=#<FlowPLC::Stage:0x0000007faf92b8a8 @data=[], @flow_state=[], @manager=#<FlowPLC::StageManager:0x0000007faf92b790 @register={}>>>, @exec_command=#<CLI::ExecuteCommand:0x0000007faf92b178 ...>, @win=#<Curses::Window:0x0000007faf92a7f0>, @x=2, @window_commands={10=>:execute_command, 13=>:execute_command, 343=>:execute_command, 1=>:cursor_home, 262=>:cursor_home, 5=>:cursor_end, 360=>:cursor_end, 6=>:cursor_forward, 261=>:cursor_forward, 2=>:cursor_back, 260=>:cursor_back, 8=>:backspace, 127=>:backspace, 263=>:backspace, 23=>:clear_before_word, 21=>:clear_before_cursor, 11=>:clear_after_cursor, 27=>:exit_enter_command}, @end_enter_command=false, @buff="ls">> ([1;4mNoMethodError[m[1m)[m
+
+[1m    public_send(cmd, *args)[m
+[1m    ^^^^^^^^^^^[m
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+
+D, [2024-05-17T15:59:26.956666 #2907] DEBUG -- : #<MatchData "system" cmd:"system" args:"">
+W, [2024-05-17T15:59:26.967340 #2907]  WARN -- : /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send': [1mprivate method `system' called for #<CLI::ExecuteCommand:0x0000007faf92b178 @plc=#<FlowPLC::Core:0x0000007faf92b948 @stage=#<FlowPLC::Stage:0x0000007faf92b8a8 @data=[], @flow_state=[], @manager=#<FlowPLC::StageManager:0x0000007faf92b790 @register={}>>>, @logger=#<Logger:0x0000007faf92b0d8 @level=0, @progname=nil, @default_formatter=#<Logger::Formatter:0x0000007faf92af70 @datetime_format=nil>, @formatter=nil, @logdev=#<Logger::LogDevice:0x0000007faf938440 @shift_period_suffix="%Y%m%d", @shift_size=1048576, @shift_age=0, @filename="log/execute_command.log", @dev=#<File:log/execute_command.log>, @binmode=false, @mon_data=#<Monitor:0x0000007faf92ad18>, @mon_data_owner_object_id=200>>, @cmd_win=#<CLI::CommandWindow:0x0000007faf938350 @plc=#<FlowPLC::Core:0x0000007faf92b948 @stage=#<FlowPLC::Stage:0x0000007faf92b8a8 @data=[], @flow_state=[], @manager=#<FlowPLC::StageManager:0x0000007faf92b790 @register={}>>>, @exec_command=#<CLI::ExecuteCommand:0x0000007faf92b178 ...>, @win=#<Curses::Window:0x0000007faf92a7f0>, @x=6, @window_commands={10=>:execute_command, 13=>:execute_command, 343=>:execute_command, 1=>:cursor_home, 262=>:cursor_home, 5=>:cursor_end, 360=>:cursor_end, 6=>:cursor_forward, 261=>:cursor_forward, 2=>:cursor_back, 260=>:cursor_back, 8=>:backspace, 127=>:backspace, 263=>:backspace, 23=>:clear_before_word, 21=>:clear_before_cursor, 11=>:clear_after_cursor, 27=>:exit_enter_command}, @end_enter_command=false, @buff="system">> ([1;4mNoMethodError[m[1m)[m
+
+[1m    public_send(cmd, *args)[m
+[1m    ^^^^^^^^^^^[m
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+
+D, [2024-05-17T16:00:04.311555 #2907] DEBUG -- : #<MatchData "new_flow" cmd:"new_flow" args:"">
+D, [2024-05-17T16:00:07.597492 #2907] DEBUG -- : #<MatchData "push_item" cmd:"push_item" args:"">
+W, [2024-05-17T16:00:07.603476 #2907]  WARN -- : /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:47:in `push_item': [1mwrong number of arguments (given 0, expected 3) ([1;4mArgumentError[m[1m)[m
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+
+D, [2024-05-17T16:00:15.593971 #2907] DEBUG -- : #<MatchData "commands" cmd:"commands" args:"">
+D, [2024-05-17T16:00:15.594925 #2907] DEBUG -- : [:save, :save!, :r, :load, :exit, :print, :call, :q, :quit, :w, :w!, :commands, :d_print_stage, :push_item, :insert_item, :new_flow_at, :new_flow, :delete_flow, :delete_item_at, :item_name_at, :delete_item, :cmd_win=]
+D, [2024-05-17T16:00:42.356050 #2907] DEBUG -- : #<MatchData "push_item 0, Item, sora" cmd:"push_item" args:"0, Item, sora">
+W, [2024-05-17T16:00:42.380266 #2907]  WARN -- : /home/info_exec/aozora/flowPLC/lib/flowPLC/stage.rb:27:in `rescue in name2item_class': [1mNot item name: Item ([1;4mNameError[m[1m)[m
+
+[1m    raise NameError, "Not item name: #{item_class_name}"[m
+[1m    ^^^^^[m
+	from /home/info_exec/aozora/flowPLC/lib/flowPLC/stage.rb:23:in `name2item_class'
+	from /home/info_exec/aozora/flowPLC/lib/flowPLC/stage.rb:42:in `push_item'
+	from /home/info_exec/aozora/flowPLC/lib/flowPLC.rb:15:in `push_item'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:47:in `push_item'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+/home/info_exec/aozora/flowPLC/lib/flowPLC/stage.rb:24:in `const_get': [1muninitialized constant FlowPLC::Item::Item ([1;4mNameError[m[1m)[m
+
+[1m    item_class = Object.const_get("FlowPLC::Item::#{item_class_name}")[m
+[1m                       ^^^^^^^^^^[m
+	from /home/info_exec/aozora/flowPLC/lib/flowPLC/stage.rb:24:in `name2item_class'
+	from /home/info_exec/aozora/flowPLC/lib/flowPLC/stage.rb:42:in `push_item'
+	from /home/info_exec/aozora/flowPLC/lib/flowPLC.rb:15:in `push_item'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:47:in `push_item'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+
+D, [2024-05-17T16:01:52.775726 #2952] DEBUG -- : #<MatchData "ls" cmd:"ls" args:"">
+W, [2024-05-17T16:01:52.787493 #2952]  WARN -- : /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send': [1mundefined method `ls' for #<CLI::ExecuteCommand:0x0000007f994cb238 @plc=#<FlowPLC::Core:0x0000007f994cba08 @stage=#<FlowPLC::Stage:0x0000007f994cb968 @data=[], @flow_state=[], @manager=#<FlowPLC::StageManager:0x0000007f994cb878 @register={}>>>, @logger=#<Logger:0x0000007f994cb198 @level=0, @progname=nil, @default_formatter=#<Logger::Formatter:0x0000007f994cb058 @datetime_format=nil>, @formatter=nil, @logdev=#<Logger::LogDevice:0x0000007f994d83e8 @shift_period_suffix="%Y%m%d", @shift_size=1048576, @shift_age=0, @filename="log/execute_command.log", @dev=#<File:log/execute_command.log>, @binmode=false, @mon_data=#<Monitor:0x0000007f994cadd8>, @mon_data_owner_object_id=200>>, @cmd_win=#<CLI::CommandWindow:0x0000007f994d82f8 @plc=#<FlowPLC::Core:0x0000007f994cba08 @stage=#<FlowPLC::Stage:0x0000007f994cb968 @data=[], @flow_state=[], @manager=#<FlowPLC::StageManager:0x0000007f994cb878 @register={}>>>, @exec_command=#<CLI::ExecuteCommand:0x0000007f994cb238 ...>, @win=#<Curses::Window:0x0000007f994ca8b0>, @x=2, @window_commands={10=>:execute_command, 13=>:execute_command, 343=>:execute_command, 1=>:cursor_home, 262=>:cursor_home, 5=>:cursor_end, 360=>:cursor_end, 6=>:cursor_forward, 261=>:cursor_forward, 2=>:cursor_back, 260=>:cursor_back, 8=>:backspace, 127=>:backspace, 263=>:backspace, 23=>:clear_before_word, 21=>:clear_before_cursor, 11=>:clear_after_cursor, 27=>:exit_enter_command}, @end_enter_command=false, @buff="ls">> ([1;4mNoMethodError[m[1m)[m
+
+[1m    public_send(cmd, *args)[m
+[1m    ^^^^^^^^^^^[m
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+
+D, [2024-05-17T16:02:01.355656 #2952] DEBUG -- : #<MatchData "commands" cmd:"commands" args:"">
+D, [2024-05-17T16:02:01.356633 #2952] DEBUG -- : [:save, :save!, :r, :load, :exit, :print, :call, :q, :quit, :w, :w!, :commands, :d_print_stage, :push_item, :insert_item, :new_flow_at, :new_flow, :delete_flow, :delete_item_at, :item_name_at, :delete_item, :cmd_win=]
+D, [2024-05-17T16:02:06.530521 #2952] DEBUG -- : #<MatchData "d_state_print" cmd:"d_state_print" args:"">
+W, [2024-05-17T16:02:06.544656 #2952]  WARN -- : /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send': [1mundefined method `d_state_print' for #<CLI::ExecuteCommand:0x0000007f994cb238 @plc=#<FlowPLC::Core:0x0000007f994cba08 @stage=#<FlowPLC::Stage:0x0000007f994cb968 @data=[], @flow_state=[], @manager=#<FlowPLC::StageManager:0x0000007f994cb878 @register={}>>>, @logger=#<Logger:0x0000007f994cb198 @level=0, @progname=nil, @default_formatter=#<Logger::Formatter:0x0000007f994cb058 @datetime_format=nil>, @formatter=nil, @logdev=#<Logger::LogDevice:0x0000007f994d83e8 @shift_period_suffix="%Y%m%d", @shift_size=1048576, @shift_age=0, @filename="log/execute_command.log", @dev=#<File:log/execute_command.log>, @binmode=false, @mon_data=#<Monitor:0x0000007f994cadd8>, @mon_data_owner_object_id=200>>, @cmd_win=#<CLI::CommandWindow:0x0000007f994d82f8 @plc=#<FlowPLC::Core:0x0000007f994cba08 @stage=#<FlowPLC::Stage:0x0000007f994cb968 @data=[], @flow_state=[], @manager=#<FlowPLC::StageManager:0x0000007f994cb878 @register={}>>>, @exec_command=#<CLI::ExecuteCommand:0x0000007f994cb238 ...>, @win=#<Curses::Window:0x0000007f994ca8b0>, @x=13, @window_commands={10=>:execute_command, 13=>:execute_command, 343=>:execute_command, 1=>:cursor_home, 262=>:cursor_home, 5=>:cursor_end, 360=>:cursor_end, 6=>:cursor_forward, 261=>:cursor_forward, 2=>:cursor_back, 260=>:cursor_back, 8=>:backspace, 127=>:backspace, 263=>:backspace, 23=>:clear_before_word, 21=>:clear_before_cursor, 11=>:clear_after_cursor, 27=>:exit_enter_command}, @end_enter_command=false, @buff="d_state_print">> ([1;4mNoMethodError[m[1m)[m
+
+[1m    public_send(cmd, *args)[m
+[1m    ^^^^^^^^^^^[m
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+
+D, [2024-05-17T16:02:10.580863 #2952] DEBUG -- : #<MatchData "commands" cmd:"commands" args:"">
+D, [2024-05-17T16:02:10.581898 #2952] DEBUG -- : [:save, :save!, :r, :load, :exit, :print, :call, :q, :quit, :w, :w!, :commands, :d_print_stage, :push_item, :insert_item, :new_flow_at, :new_flow, :delete_flow, :delete_item_at, :item_name_at, :delete_item, :cmd_win=]
+D, [2024-05-17T16:02:15.606139 #2952] DEBUG -- : #<MatchData "d_print_stage" cmd:"d_print_stage" args:"">
+D, [2024-05-17T16:02:26.706149 #2952] DEBUG -- : #<MatchData "push_item 0, Input, sora" cmd:"push_item" args:"0, Input, sora">
+D, [2024-05-17T16:03:16.057993 #2952] DEBUG -- : #<MatchData "d_puts_state" cmd:"d_puts_state" args:"">
+W, [2024-05-17T16:03:16.073292 #2952]  WARN -- : /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send': [1mundefined method `d_puts_state' for #<CLI::ExecuteCommand:0x0000007f994cb238 @plc=#<FlowPLC::Core:0x0000007f994cba08 @stage=#<FlowPLC::Stage:0x0000007f994cb968 @data=[], @flow_state=[], @manager=#<FlowPLC::StageManager:0x0000007f994cb878 @register={}>>>, @logger=#<Logger:0x0000007f994cb198 @level=0, @progname=nil, @default_formatter=#<Logger::Formatter:0x0000007f994cb058 @datetime_format=nil>, @formatter=nil, @logdev=#<Logger::LogDevice:0x0000007f994d83e8 @shift_period_suffix="%Y%m%d", @shift_size=1048576, @shift_age=0, @filename="log/execute_command.log", @dev=#<File:log/execute_command.log>, @binmode=false, @mon_data=#<Monitor:0x0000007f994cadd8>, @mon_data_owner_object_id=200>>, @cmd_win=#<CLI::CommandWindow:0x0000007f994d82f8 @plc=#<FlowPLC::Core:0x0000007f994cba08 @stage=#<FlowPLC::Stage:0x0000007f994cb968 @data=[], @flow_state=[], @manager=#<FlowPLC::StageManager:0x0000007f994cb878 @register={}>>>, @exec_command=#<CLI::ExecuteCommand:0x0000007f994cb238 ...>, @win=#<Curses::Window:0x0000007f994ca8b0>, @x=12, @window_commands={10=>:execute_command, 13=>:execute_command, 343=>:execute_command, 1=>:cursor_home, 262=>:cursor_home, 5=>:cursor_end, 360=>:cursor_end, 6=>:cursor_forward, 261=>:cursor_forward, 2=>:cursor_back, 260=>:cursor_back, 8=>:backspace, 127=>:backspace, 263=>:backspace, 23=>:clear_before_word, 21=>:clear_before_cursor, 11=>:clear_after_cursor, 27=>:exit_enter_command}, @end_enter_command=false, @buff="d_puts_state">> ([1;4mNoMethodError[m[1m)[m
+
+[1m    public_send(cmd, *args)[m
+[1m    ^^^^^^^^^^^[m
+[1mDid you mean?  d_print_stage[m
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+
+D, [2024-05-17T16:03:22.748260 #2952] DEBUG -- : #<MatchData "d_print_state" cmd:"d_print_state" args:"">
+W, [2024-05-17T16:03:22.763230 #2952]  WARN -- : /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send': [1mundefined method `d_print_state' for #<CLI::ExecuteCommand:0x0000007f994cb238 @plc=#<FlowPLC::Core:0x0000007f994cba08 @stage=#<FlowPLC::Stage:0x0000007f994cb968 @data=[], @flow_state=[], @manager=#<FlowPLC::StageManager:0x0000007f994cb878 @register={}>>>, @logger=#<Logger:0x0000007f994cb198 @level=0, @progname=nil, @default_formatter=#<Logger::Formatter:0x0000007f994cb058 @datetime_format=nil>, @formatter=nil, @logdev=#<Logger::LogDevice:0x0000007f994d83e8 @shift_period_suffix="%Y%m%d", @shift_size=1048576, @shift_age=0, @filename="log/execute_command.log", @dev=#<File:log/execute_command.log>, @binmode=false, @mon_data=#<Monitor:0x0000007f994cadd8>, @mon_data_owner_object_id=200>>, @cmd_win=#<CLI::CommandWindow:0x0000007f994d82f8 @plc=#<FlowPLC::Core:0x0000007f994cba08 @stage=#<FlowPLC::Stage:0x0000007f994cb968 @data=[], @flow_state=[], @manager=#<FlowPLC::StageManager:0x0000007f994cb878 @register={}>>>, @exec_command=#<CLI::ExecuteCommand:0x0000007f994cb238 ...>, @win=#<Curses::Window:0x0000007f994ca8b0>, @x=13, @window_commands={10=>:execute_command, 13=>:execute_command, 343=>:execute_command, 1=>:cursor_home, 262=>:cursor_home, 5=>:cursor_end, 360=>:cursor_end, 6=>:cursor_forward, 261=>:cursor_forward, 2=>:cursor_back, 260=>:cursor_back, 8=>:backspace, 127=>:backspace, 263=>:backspace, 23=>:clear_before_word, 21=>:clear_before_cursor, 11=>:clear_after_cursor, 27=>:exit_enter_command}, @end_enter_command=false, @buff="d_print_state">> ([1;4mNoMethodError[m[1m)[m
+
+[1m    public_send(cmd, *args)[m
+[1m    ^^^^^^^^^^^[m
+[1mDid you mean?  d_print_stage[m
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+
+D, [2024-05-17T16:03:32.633381 #2952] DEBUG -- : #<MatchData "commands" cmd:"commands" args:"">
+D, [2024-05-17T16:03:32.634380 #2952] DEBUG -- : [:save, :save!, :r, :load, :exit, :print, :call, :q, :quit, :w, :w!, :commands, :d_print_stage, :push_item, :insert_item, :new_flow_at, :new_flow, :delete_flow, :delete_item_at, :item_name_at, :delete_item, :cmd_win=]
+D, [2024-05-17T16:03:38.304061 #2952] DEBUG -- : #<MatchData "d_print_state" cmd:"d_print_state" args:"">
+W, [2024-05-17T16:03:38.319416 #2952]  WARN -- : /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send': [1mundefined method `d_print_state' for #<CLI::ExecuteCommand:0x0000007f994cb238 @plc=#<FlowPLC::Core:0x0000007f994cba08 @stage=#<FlowPLC::Stage:0x0000007f994cb968 @data=[], @flow_state=[], @manager=#<FlowPLC::StageManager:0x0000007f994cb878 @register={}>>>, @logger=#<Logger:0x0000007f994cb198 @level=0, @progname=nil, @default_formatter=#<Logger::Formatter:0x0000007f994cb058 @datetime_format=nil>, @formatter=nil, @logdev=#<Logger::LogDevice:0x0000007f994d83e8 @shift_period_suffix="%Y%m%d", @shift_size=1048576, @shift_age=0, @filename="log/execute_command.log", @dev=#<File:log/execute_command.log>, @binmode=false, @mon_data=#<Monitor:0x0000007f994cadd8>, @mon_data_owner_object_id=200>>, @cmd_win=#<CLI::CommandWindow:0x0000007f994d82f8 @plc=#<FlowPLC::Core:0x0000007f994cba08 @stage=#<FlowPLC::Stage:0x0000007f994cb968 @data=[], @flow_state=[], @manager=#<FlowPLC::StageManager:0x0000007f994cb878 @register={}>>>, @exec_command=#<CLI::ExecuteCommand:0x0000007f994cb238 ...>, @win=#<Curses::Window:0x0000007f994ca8b0>, @x=13, @window_commands={10=>:execute_command, 13=>:execute_command, 343=>:execute_command, 1=>:cursor_home, 262=>:cursor_home, 5=>:cursor_end, 360=>:cursor_end, 6=>:cursor_forward, 261=>:cursor_forward, 2=>:cursor_back, 260=>:cursor_back, 8=>:backspace, 127=>:backspace, 263=>:backspace, 23=>:clear_before_word, 21=>:clear_before_cursor, 11=>:clear_after_cursor, 27=>:exit_enter_command}, @end_enter_command=false, @buff="d_print_state">> ([1;4mNoMethodError[m[1m)[m
+
+[1m    public_send(cmd, *args)[m
+[1m    ^^^^^^^^^^^[m
+[1mDid you mean?  d_print_stage[m
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+
+D, [2024-05-17T16:03:42.758789 #2952] DEBUG -- : #<MatchData "d_print_stage" cmd:"d_print_stage" args:"">
+D, [2024-05-17T16:10:19.406557 #2952] DEBUG -- : #<MatchData "new_flow" cmd:"new_flow" args:"">
+D, [2024-05-17T16:10:28.871015 #2952] DEBUG -- : #<MatchData "d_print_stage" cmd:"d_print_stage" args:"">
+D, [2024-05-17T16:10:35.710179 #2952] DEBUG -- : #<MatchData "new_flow" cmd:"new_flow" args:"">
+D, [2024-05-17T16:10:42.625183 #2952] DEBUG -- : #<MatchData "d_print_stage" cmd:"d_print_stage" args:"">
+D, [2024-05-17T16:10:55.568830 #2952] DEBUG -- : #<MatchData ":" cmd:"" args:":">
+W, [2024-05-17T16:10:55.578490 #2952]  WARN -- : /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send': [1mundefined method `' for #<CLI::ExecuteCommand:0x0000007f994cb238 @plc=#<FlowPLC::Core:0x0000007f994cba08 @stage=#<FlowPLC::Stage:0x0000007f994cb968 @data=[[], []], @flow_state=[[], []], @manager=#<FlowPLC::StageManager:0x0000007f994cb878 @register={}>>>, @logger=#<Logger:0x0000007f994cb198 @level=0, @progname=nil, @default_formatter=#<Logger::Formatter:0x0000007f994cb058 @datetime_format=nil>, @formatter=nil, @logdev=#<Logger::LogDevice:0x0000007f994d83e8 @shift_period_suffix="%Y%m%d", @shift_size=1048576, @shift_age=0, @filename="log/execute_command.log", @dev=#<File:log/execute_command.log>, @binmode=false, @mon_data=#<Monitor:0x0000007f994cadd8>, @mon_data_owner_object_id=200>>, @cmd_win=#<CLI::CommandWindow:0x0000007f994d82f8 @plc=#<FlowPLC::Core:0x0000007f994cba08 @stage=#<FlowPLC::Stage:0x0000007f994cb968 @data=[[], []], @flow_state=[[], []], @manager=#<FlowPLC::StageManager:0x0000007f994cb878 @register={}>>>, @exec_command=#<CLI::ExecuteCommand:0x0000007f994cb238 ...>, @win=#<Curses::Window:0x0000007f994ca8b0>, @x=1, @window_commands={10=>:execute_command, 13=>:execute_command, 343=>:execute_command, 1=>:cursor_home, 262=>:cursor_home, 5=>:cursor_end, 360=>:cursor_end, 6=>:cursor_forward, 261=>:cursor_forward, 2=>:cursor_back, 260=>:cursor_back, 8=>:backspace, 127=>:backspace, 263=>:backspace, 23=>:clear_before_word, 21=>:clear_before_cursor, 11=>:clear_after_cursor, 27=>:exit_enter_command}, @end_enter_command=false, @buff=":">> ([1;4mNoMethodError[m[1m)[m
+
+[1m    public_send(cmd, *args)[m
+[1m    ^^^^^^^^^^^[m
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+
+D, [2024-05-17T16:11:23.482671 #2952] DEBUG -- : #<MatchData "new_item " cmd:"new_item" args:"">
+W, [2024-05-17T16:11:23.498004 #2952]  WARN -- : /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send': [1mundefined method `new_item' for #<CLI::ExecuteCommand:0x0000007f994cb238 @plc=#<FlowPLC::Core:0x0000007f994cba08 @stage=#<FlowPLC::Stage:0x0000007f994cb968 @data=[[], []], @flow_state=[[], []], @manager=#<FlowPLC::StageManager:0x0000007f994cb878 @register={}>>>, @logger=#<Logger:0x0000007f994cb198 @level=0, @progname=nil, @default_formatter=#<Logger::Formatter:0x0000007f994cb058 @datetime_format=nil>, @formatter=nil, @logdev=#<Logger::LogDevice:0x0000007f994d83e8 @shift_period_suffix="%Y%m%d", @shift_size=1048576, @shift_age=0, @filename="log/execute_command.log", @dev=#<File:log/execute_command.log>, @binmode=false, @mon_data=#<Monitor:0x0000007f994cadd8>, @mon_data_owner_object_id=200>>, @cmd_win=#<CLI::CommandWindow:0x0000007f994d82f8 @plc=#<FlowPLC::Core:0x0000007f994cba08 @stage=#<FlowPLC::Stage:0x0000007f994cb968 @data=[[], []], @flow_state=[[], []], @manager=#<FlowPLC::StageManager:0x0000007f994cb878 @register={}>>>, @exec_command=#<CLI::ExecuteCommand:0x0000007f994cb238 ...>, @win=#<Curses::Window:0x0000007f994ca8b0>, @x=9, @window_commands={10=>:execute_command, 13=>:execute_command, 343=>:execute_command, 1=>:cursor_home, 262=>:cursor_home, 5=>:cursor_end, 360=>:cursor_end, 6=>:cursor_forward, 261=>:cursor_forward, 2=>:cursor_back, 260=>:cursor_back, 8=>:backspace, 127=>:backspace, 263=>:backspace, 23=>:clear_before_word, 21=>:clear_before_cursor, 11=>:clear_after_cursor, 27=>:exit_enter_command}, @end_enter_command=false, @buff="new_item ">> ([1;4mNoMethodError[m[1m)[m
+
+[1m    public_send(cmd, *args)[m
+[1m    ^^^^^^^^^^^[m
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+
+D, [2024-05-17T16:11:28.732036 #2952] DEBUG -- : #<MatchData "new_flow" cmd:"new_flow" args:"">
+D, [2024-05-17T16:12:06.861999 #2952] DEBUG -- : #<MatchData "push_item 0, Input, o" cmd:"push_item" args:"0, Input, o">
+D, [2024-05-17T16:12:11.976500 #2952] DEBUG -- : #<MatchData "d_print_stage" cmd:"d_print_stage" args:"">
+D, [2024-05-17T16:12:38.181326 #2952] DEBUG -- : #<MatchData "d_print_stage" cmd:"d_print_stage" args:"">
+D, [2024-05-17T16:19:24.806223 #2952] DEBUG -- : #<MatchData "q" cmd:"q" args:"">
+D, [2024-05-17T16:19:44.590123 #4558] DEBUG -- : #<MatchData "new_flow" cmd:"new_flow" args:"">
+D, [2024-05-17T16:19:55.676473 #4558] DEBUG -- : #<MatchData "push_item 0, Input, test" cmd:"push_item" args:"0, Input, test">
+D, [2024-05-17T16:20:05.322554 #4558] DEBUG -- : #<MatchData "d_print_stage" cmd:"d_print_stage" args:"">
+D, [2024-05-17T16:22:59.709218 #4558] DEBUG -- : #<MatchData "show" cmd:"show" args:"">
+W, [2024-05-17T16:22:59.722796 #4558]  WARN -- : /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send': [1mundefined method `show' for #<CLI::ExecuteCommand:0x0000007faa7fb2f8 @plc=#<FlowPLC::Core:0x0000007faa7fbaf0 @stage=#<FlowPLC::Stage:0x0000007faa7fba50 @data=[[#<FlowPLC::Item::Input:0x0000007faa9f53b0 @name=:test, @state=false>]], @flow_state=[[false]], @manager=#<FlowPLC::StageManager:0x0000007faa7fb938 @register={:test=>#<struct FlowPLC::StageManager::ItemHolder item=#<FlowPLC::Item::Input:0x0000007faa9f53b0 @name=:test, @state=false>, amount=1>}>>>, @logger=#<Logger:0x0000007faa7fb258 @level=0, @progname=nil, @default_formatter=#<Logger::Formatter:0x0000007faa7fb118 @datetime_format=nil>, @formatter=nil, @logdev=#<Logger::LogDevice:0x0000007faa8083e0 @shift_period_suffix="%Y%m%d", @shift_size=1048576, @shift_age=0, @filename="log/execute_command.log", @dev=#<File:log/execute_command.log>, @binmode=false, @mon_data=#<Monitor:0x0000007faa7fae98>, @mon_data_owner_object_id=200>>, @cmd_win=#<CLI::CommandWindow:0x0000007faa8082f0 @plc=#<FlowPLC::Core:0x0000007faa7fbaf0 @stage=#<FlowPLC::Stage:0x0000007faa7fba50 @data=[[#<FlowPLC::Item::Input:0x0000007faa9f53b0 @name=:test, @state=false>]], @flow_state=[[false]], @manager=#<FlowPLC::StageManager:0x0000007faa7fb938 @register={:test=>#<struct FlowPLC::StageManager::ItemHolder item=#<FlowPLC::Item::Input:0x0000007faa9f53b0 @name=:test, @state=false>, amount=1>}>>>, @exec_command=#<CLI::ExecuteCommand:0x0000007faa7fb2f8 ...>, @win=#<Curses::Window:0x0000007faa7fa970>, @x=4, @window_commands={10=>:execute_command, 13=>:execute_command, 343=>:execute_command, 1=>:cursor_home, 262=>:cursor_home, 5=>:cursor_end, 360=>:cursor_end, 6=>:cursor_forward, 261=>:cursor_forward, 2=>:cursor_back, 260=>:cursor_back, 8=>:backspace, 127=>:backspace, 263=>:backspace, 23=>:clear_before_word, 21=>:clear_before_cursor, 11=>:clear_after_cursor, 27=>:exit_enter_command}, @end_enter_command=false, @buff="show">> ([1;4mNoMethodError[m[1m)[m
+
+[1m    public_send(cmd, *args)[m
+[1m    ^^^^^^^^^^^[m
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+
+D, [2024-05-17T16:23:05.859457 #4558] DEBUG -- : #<MatchData "commands" cmd:"commands" args:"">
+D, [2024-05-17T16:23:05.860517 #4558] DEBUG -- : [:save, :save!, :r, :load, :exit, :print, :call, :q, :quit, :w, :w!, :commands, :d_print_stage, :push_item, :insert_item, :new_flow_at, :new_flow, :delete_flow, :delete_item_at, :item_name_at, :delete_item, :cmd_win=]
+D, [2024-05-17T16:23:29.320358 #4558] DEBUG -- : #<MatchData "d_p_stage" cmd:"d_p_stage" args:"">
+W, [2024-05-17T16:23:29.334778 #4558]  WARN -- : /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send': [1mundefined method `d_p_stage' for #<CLI::ExecuteCommand:0x0000007faa7fb2f8 @plc=#<FlowPLC::Core:0x0000007faa7fbaf0 @stage=#<FlowPLC::Stage:0x0000007faa7fba50 @data=[[#<FlowPLC::Item::Input:0x0000007faa9f53b0 @name=:test, @state=false>]], @flow_state=[[false]], @manager=#<FlowPLC::StageManager:0x0000007faa7fb938 @register={:test=>#<struct FlowPLC::StageManager::ItemHolder item=#<FlowPLC::Item::Input:0x0000007faa9f53b0 @name=:test, @state=false>, amount=1>}>>>, @logger=#<Logger:0x0000007faa7fb258 @level=0, @progname=nil, @default_formatter=#<Logger::Formatter:0x0000007faa7fb118 @datetime_format=nil>, @formatter=nil, @logdev=#<Logger::LogDevice:0x0000007faa8083e0 @shift_period_suffix="%Y%m%d", @shift_size=1048576, @shift_age=0, @filename="log/execute_command.log", @dev=#<File:log/execute_command.log>, @binmode=false, @mon_data=#<Monitor:0x0000007faa7fae98>, @mon_data_owner_object_id=200>>, @cmd_win=#<CLI::CommandWindow:0x0000007faa8082f0 @plc=#<FlowPLC::Core:0x0000007faa7fbaf0 @stage=#<FlowPLC::Stage:0x0000007faa7fba50 @data=[[#<FlowPLC::Item::Input:0x0000007faa9f53b0 @name=:test, @state=false>]], @flow_state=[[false]], @manager=#<FlowPLC::StageManager:0x0000007faa7fb938 @register={:test=>#<struct FlowPLC::StageManager::ItemHolder item=#<FlowPLC::Item::Input:0x0000007faa9f53b0 @name=:test, @state=false>, amount=1>}>>>, @exec_command=#<CLI::ExecuteCommand:0x0000007faa7fb2f8 ...>, @win=#<Curses::Window:0x0000007faa7fa970>, @x=9, @window_commands={10=>:execute_command, 13=>:execute_command, 343=>:execute_command, 1=>:cursor_home, 262=>:cursor_home, 5=>:cursor_end, 360=>:cursor_end, 6=>:cursor_forward, 261=>:cursor_forward, 2=>:cursor_back, 260=>:cursor_back, 8=>:backspace, 127=>:backspace, 263=>:backspace, 23=>:clear_before_word, 21=>:clear_before_cursor, 11=>:clear_after_cursor, 27=>:exit_enter_command}, @end_enter_command=false, @buff="d_p_stage">> ([1;4mNoMethodError[m[1m)[m
+
+[1m    public_send(cmd, *args)[m
+[1m    ^^^^^^^^^^^[m
+[1mDid you mean?  d_print_stage[m
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+
+D, [2024-05-17T16:23:31.375713 #4558] DEBUG -- : #<MatchData "q" cmd:"q" args:"">
+D, [2024-05-17T16:23:35.874738 #4580] DEBUG -- : #<MatchData "d_p_stage" cmd:"d_p_stage" args:"">
+W, [2024-05-17T16:23:35.883739 #4580]  WARN -- : /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send': [1mundefined method `d_p_stage' for #<CLI::ExecuteCommand:0x0000007f9f10b098 @plc=#<FlowPLC::Core:0x0000007f9f10b818 @stage=#<FlowPLC::Stage:0x0000007f9f10b778 @data=[], @flow_state=[], @manager=#<FlowPLC::StageManager:0x0000007f9f10b688 @register={}>>>, @logger=#<Logger:0x0000007f9f10aff8 @level=0, @progname=nil, @default_formatter=#<Logger::Formatter:0x0000007f9f10aeb8 @datetime_format=nil>, @formatter=nil, @logdev=#<Logger::LogDevice:0x0000007f9f118720 @shift_period_suffix="%Y%m%d", @shift_size=1048576, @shift_age=0, @filename="log/execute_command.log", @dev=#<File:log/execute_command.log>, @binmode=false, @mon_data=#<Monitor:0x0000007f9f10abe8>, @mon_data_owner_object_id=200>>, @cmd_win=#<CLI::CommandWindow:0x0000007f9f1185e0 @plc=#<FlowPLC::Core:0x0000007f9f10b818 @stage=#<FlowPLC::Stage:0x0000007f9f10b778 @data=[], @flow_state=[], @manager=#<FlowPLC::StageManager:0x0000007f9f10b688 @register={}>>>, @exec_command=#<CLI::ExecuteCommand:0x0000007f9f10b098 ...>, @win=#<Curses::Window:0x0000007f9f10a710>, @x=9, @window_commands={10=>:execute_command, 13=>:execute_command, 343=>:execute_command, 1=>:cursor_home, 262=>:cursor_home, 5=>:cursor_end, 360=>:cursor_end, 6=>:cursor_forward, 261=>:cursor_forward, 2=>:cursor_back, 260=>:cursor_back, 8=>:backspace, 127=>:backspace, 263=>:backspace, 23=>:clear_before_word, 21=>:clear_before_cursor, 11=>:clear_after_cursor, 27=>:exit_enter_command}, @end_enter_command=false, @buff="d_p_stage">> ([1;4mNoMethodError[m[1m)[m
+
+[1m    public_send(cmd, *args)[m
+[1m    ^^^^^^^^^^^[m
+[1mDid you mean?  d_print_stage[m
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+
+D, [2024-05-17T16:23:39.625221 #4580] DEBUG -- : #<MatchData "commands" cmd:"commands" args:"">
+D, [2024-05-17T16:23:39.628460 #4580] DEBUG -- : [:save, :save!, :r, :load, :exit, :print, :call, :q, :quit, :w, :w!, :commands, :d_print_stage, :push_item, :insert_item, :new_flow_at, :new_flow, :delete_flow, :delete_item_at, :item_name_at, :delete_item, :cmd_win=]
+D, [2024-05-17T16:23:45.504891 #4580] DEBUG -- : #<MatchData "q" cmd:"q" args:"">
+D, [2024-05-17T16:24:40.722165 #4616] DEBUG -- : #<MatchData "d_p_stage" cmd:"d_p_stage" args:"">
+D, [2024-05-17T16:24:51.777997 #4616] DEBUG -- : #<MatchData "new_flow" cmd:"new_flow" args:"">
+D, [2024-05-17T16:25:01.723786 #4616] DEBUG -- : #<MatchData "push_item 0, Input, sora" cmd:"push_item" args:"0, Input, sora">
+D, [2024-05-17T16:25:10.363967 #4616] DEBUG -- : #<MatchData "d_p_stage" cmd:"d_p_stage" args:"">
+D, [2024-05-17T16:25:33.239512 #4616] DEBUG -- : #<MatchData "save data.dt" cmd:"save" args:"data.dt">
+D, [2024-05-17T16:25:37.769540 #4616] DEBUG -- : #<MatchData "q" cmd:"q" args:"">
+D, [2024-05-17T16:25:49.919735 #4842] DEBUG -- : #<MatchData "load data.dt" cmd:"load" args:"data.dt">
+D, [2024-05-17T16:25:58.830328 #4842] DEBUG -- : #<MatchData "load data.dt" cmd:"load" args:"data.dt">
+D, [2024-05-17T16:26:40.321516 #4842] DEBUG -- : #<MatchData "q" cmd:"q" args:"">
+D, [2024-05-17T16:26:44.640532 #4859] DEBUG -- : #<MatchData "load tet" cmd:"load" args:"tet">
+W, [2024-05-17T16:26:44.647568 #4859]  WARN -- : /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:72:in `raise': [1mexception class/object expected ([1;4mTypeError[m[1m)[m
+
+[1m    raise ret[m
+[1m          ^^^[m
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:72:in `load'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+
+D, [2024-05-17T16:27:16.291292 #4877] DEBUG -- : #<MatchData "load test.dt" cmd:"load" args:"test.dt">
+W, [2024-05-17T16:27:16.294836 #4877]  WARN -- : false
+D, [2024-05-17T16:28:40.698145 #4877] DEBUG -- : #<MatchData "q" cmd:"q" args:"">
+D, [2024-05-17T16:28:46.877853 #4893] DEBUG -- : #<MatchData "load te" cmd:"load" args:"te">
+W, [2024-05-17T16:28:46.892432 #4893]  WARN -- : /home/info_exec/aozora/flowPLC/lib/flowPLC/data_file.rb:22:in `block in load': [1mundefined method `[]' for nil:NilClass ([1;4mNoMethodError[m[1m)[m
+
+[1m      res = @store['stage'][m
+[1m                  ^^^^^^^^^[m
+	from /home/info_exec/.rbenv/versions/3.2.2/lib/ruby/3.2.0/pstore.rb:575:in `block in transaction'
+	from /home/info_exec/.rbenv/versions/3.2.2/lib/ruby/3.2.0/pstore.rb:574:in `catch'
+	from /home/info_exec/.rbenv/versions/3.2.2/lib/ruby/3.2.0/pstore.rb:574:in `transaction'
+	from /home/info_exec/aozora/flowPLC/lib/flowPLC/data_file.rb:21:in `load'
+	from /home/info_exec/aozora/flowPLC/lib/flowPLC.rb:64:in `load'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:71:in `load'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+
+D, [2024-05-17T16:28:48.977495 #4893] DEBUG -- : #<MatchData "load" cmd:"load" args:"">
+W, [2024-05-17T16:28:48.984747 #4893]  WARN -- : /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:70:in `load': [1mwrong number of arguments (given 0, expected 1) ([1;4mArgumentError[m[1m)[m
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+
+D, [2024-05-17T16:28:50.986902 #4893] DEBUG -- : #<MatchData "load te" cmd:"load" args:"te">
+W, [2024-05-17T16:28:50.988210 #4893]  WARN -- : /home/info_exec/aozora/flowPLC/lib/flowPLC/data_file.rb:18:in `load': [1mThe file is not found ([1;4mRuntimeError[m[1m)[m
+	from /home/info_exec/aozora/flowPLC/lib/flowPLC.rb:64:in `load'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:71:in `load'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+
+D, [2024-05-17T16:29:13.876325 #4910] DEBUG -- : #<MatchData "load data.dt" cmd:"load" args:"data.dt">
+W, [2024-05-17T16:29:13.878188 #4910]  WARN -- : /home/info_exec/aozora/flowPLC/lib/flowPLC/data_file.rb:18:in `load': [1mThe file is not found ([1;4mRuntimeError[m[1m)[m
+	from /home/info_exec/aozora/flowPLC/lib/flowPLC.rb:64:in `load'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:71:in `load'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+
+D, [2024-05-17T16:29:23.864183 #4931] DEBUG -- : #<MatchData "l " cmd:"l" args:"">
+W, [2024-05-17T16:29:23.878453 #4931]  WARN -- : /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send': [1mundefined method `l' for #<CLI::ExecuteCommand:0x0000007fb3a9b1a8 @plc=#<FlowPLC::Core:0x0000007fb3a9b950 @stage=#<FlowPLC::Stage:0x0000007fb3a9b8b0 @data=[], @flow_state=[], @manager=#<FlowPLC::StageManager:0x0000007fb3a9b798 @register={}>>>, @logger=#<Logger:0x0000007fb3a9b108 @level=0, @progname=nil, @default_formatter=#<Logger::Formatter:0x0000007fb3a9afc8 @datetime_format=nil>, @formatter=nil, @logdev=#<Logger::LogDevice:0x0000007fb3aa8a88 @shift_period_suffix="%Y%m%d", @shift_size=1048576, @shift_age=0, @filename="log/execute_command.log", @dev=#<File:log/execute_command.log>, @binmode=false, @mon_data=#<Monitor:0x0000007fb3a9ad48>, @mon_data_owner_object_id=200>>, @cmd_win=#<CLI::CommandWindow:0x0000007fb3aa8948 @plc=#<FlowPLC::Core:0x0000007fb3a9b950 @stage=#<FlowPLC::Stage:0x0000007fb3a9b8b0 @data=[], @flow_state=[], @manager=#<FlowPLC::StageManager:0x0000007fb3a9b798 @register={}>>>, @exec_command=#<CLI::ExecuteCommand:0x0000007fb3a9b1a8 ...>, @win=#<Curses::Window:0x0000007fb3a9a820>, @x=2, @window_commands={10=>:execute_command, 13=>:execute_command, 343=>:execute_command, 1=>:cursor_home, 262=>:cursor_home, 5=>:cursor_end, 360=>:cursor_end, 6=>:cursor_forward, 261=>:cursor_forward, 2=>:cursor_back, 260=>:cursor_back, 8=>:backspace, 127=>:backspace, 263=>:backspace, 23=>:clear_before_word, 21=>:clear_before_cursor, 11=>:clear_after_cursor, 27=>:exit_enter_command}, @end_enter_command=false, @buff="l ">> ([1;4mNoMethodError[m[1m)[m
+
+[1m    public_send(cmd, *args)[m
+[1m    ^^^^^^^^^^^[m
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+
+D, [2024-05-17T16:29:26.610522 #4931] DEBUG -- : #<MatchData "r" cmd:"r" args:"">
+W, [2024-05-17T16:29:26.620131 #4931]  WARN -- : /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:70:in `load': [1mwrong number of arguments (given 0, expected 1) ([1;4mArgumentError[m[1m)[m
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+
+D, [2024-05-17T16:29:33.854418 #4931] DEBUG -- : #<MatchData "r test.dt" cmd:"r" args:"test.dt">
+W, [2024-05-17T16:29:33.855710 #4931]  WARN -- : /home/info_exec/aozora/flowPLC/lib/flowPLC/data_file.rb:18:in `load': [1mThe file is not found ([1;4mRuntimeError[m[1m)[m
+	from /home/info_exec/aozora/flowPLC/lib/flowPLC.rb:64:in `load'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:71:in `load'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `public_send'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/execute_command.rb:25:in `call'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:76:in `execute_command'
+	from /home/info_exec/aozora/flowPLC/lib/CLI/command_window.rb:210:in `enter_command'
+	from CLI.rb:72:in `select_action'
+	from CLI.rb:63:in `draw_loop'
+	from CLI.rb:31:in `start'
+	from CLI.rb:14:in `start'
+	from CLI.rb:80:in `<main>'
+

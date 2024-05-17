@@ -8,7 +8,7 @@ module FlowPLC; end
 
 class FlowPLC::Stage
 
-  attr_reader :data
+  attr_reader :data, :flow_state
   # data is flows union
   # flow_state is each item's state of each flows
 
@@ -102,11 +102,6 @@ class FlowPLC::Stage
     @manager.delete(@data[flow_idx][inflow_idx])
     @flow_state[flow_idx].delete_at(inflow_idx)
     @data[flow_idx].delete_at(inflow_idx)
-  end
-
-
-  def show_state
-    pp @flow_state
   end
 
 
