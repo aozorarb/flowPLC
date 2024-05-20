@@ -72,11 +72,17 @@ class FlowPLC::Item::Test < Minitest::Test
 
     item.start
     item.run
-    assert_equal false,  item.state
+    exp_item.running = true
+    exp_item.progress = 1
 
-    5.times { item.run }
+    assert_equal exp_item,  item
+
+    9.times { item.run }
     
-    assert_equal true, item.state
+    exp_item.running = false
+    exp_item.state = true
+    exp_item.progress = 10
+    assert_equal exp_item, item
 
 
   end
