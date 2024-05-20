@@ -1,16 +1,6 @@
 require 'minitest/autorun'
 require_relative '../../lib/flowPLC/stage'
-
-class FlowPLC::Item::BasicItem
-  def ==(other)
-    # judge by inner item. No object_id
-    vars = self.instance_variables
-    vars.all? {|v| self.instance_variable_get(v) == other.instance_variable_get(v) }
-  end
-end
-
-
-
+require_relative 'helper'
 class FlowPLC::Stage::Test < Minitest::Test
   def setup
     FlowPLC::Stage.class_exec do
