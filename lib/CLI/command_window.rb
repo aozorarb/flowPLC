@@ -187,8 +187,21 @@ class CLI::CommandWindow
   private def cursor_end()     @x = @buff.size end
 
 
-  def gererate_completation
-    @completation_words = []
+  private def generate_completion
+    @completion = ExecuteCommand.allocate.public_methods
+  end
+
+
+  private def init_completion
+    generate_completion
+    Readline.completion_proc = ->(input) do
+      @completion_words.grep(/^#{Regexp.escape(input)}/)
+    end
+  end
+  
+
+  private def commands_match
+    @exec_command.commands_match(@buff)
   end
 
 

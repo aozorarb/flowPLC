@@ -13,6 +13,7 @@ command_commands:
   C-H: backspace
   0x7f: backspace
   KEY-BACKSPACE: backspace
+  C-D: commands_match
   C-W: clear_before_word
   C-U: clear_before_cursor
   C-K: clear_after_cursor

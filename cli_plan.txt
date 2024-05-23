@@ -48,6 +48,22 @@ This example's name space is 3.
 
 
 
+### DebugWindow UI
+
+@stage.data:
+  #{@stage.data}
+
+@stage_manager:
+  #{@stage.manager}
+
+
+DebugWindow displays FlowPLC's information for debug.
+Call ExecuteCommand#open_debug to display DebugWindow.
+Call ExecuteCommand#end_debug to close DebugWindow.
+
+DebugWindow displays at over FlowsWindow.
+
+
 ## window template (height, width) = (10, 20)
 
 +--------------------+
