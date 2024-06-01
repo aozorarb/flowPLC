@@ -33,8 +33,9 @@ class FlowPLC::Stage::Test < Minitest::Test
   end
 
   def test_push_item_invalid_index
-    assert_equal nil, @stage.push_item(100, 'Input', 'in')
+    assert_nil @stage.push_item(100, 'Input', 'in')
   end
+
 
   def test_insert_item
     @stage.insert_item(0, 0, 'Input', ['in'])
@@ -44,23 +45,22 @@ class FlowPLC::Stage::Test < Minitest::Test
   end
 
   def test_insert_item_not_found
-    assert_raises(FlowPLC::InvalidItemError) { @stage.insert_item(0, 'NotFound', ['404']) }
+    assert_raises(FlowPLC::NotItemError) { @stage.insert_item(0, 0, 'NotFound', ['404']) }
   end
 
   def test_insert_item_invalid_index
-    assert_equal nil, @stage.insert_item(100, 'Input', 'test')
+    assert_nil @stage.insert_item(100, 0, 'Input', 'test')
   end
 
   
   def test_new_flow_at
     @stage.data.clear
     @stage.new_flow_at(0)
-
     assert_equal [[]], @stage.data
   end
 
   def test_new_flow_at_invalid_index
-    assert_equal nil, @stage.new_flow_at(100)
+    assert_nil @stage.new_flow_at(100)
   end
 
   def test_delete_flow

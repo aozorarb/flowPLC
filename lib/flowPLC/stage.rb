@@ -21,14 +21,14 @@ class FlowPLC::Stage
     item_class = Object.const_get("FlowPLC::Item::#{item_class_name}")
     item_class.new(*item_args)
   rescue NameError
-    raise NameError, "Not item name: #{item_class_name}"
+    raise FlowPLC::NotItemError, "Not item name: #{item_class_name}"
   end
 
 
   private def valid_index?(*indexies)
     case indexies.size
     when 1
-      !@data[indexies[0]].nil?
+      !@data[indexies[0]].nil? || indexies[0] == 0
     when 2
       (!@data[indexies[0]].nil?) && indexies[1].between?(0, @data[indexies[0]].size)
     else
@@ -78,13 +78,12 @@ class FlowPLC::Stage
   # make new flow
   def new_flow
     @data << []
-    @data
   end
 
 
   def new_flow_at(flow_idx)
     flow_idx = flow_idx.to_i
-    return nil if valid_index?(flow_idx)
+    return nil unless valid_index?(flow_idx)
 
     @data.insert(flow_idx, [])
     @data
