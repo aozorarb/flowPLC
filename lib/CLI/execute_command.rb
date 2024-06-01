@@ -80,15 +80,20 @@ class CLI::ExecuteCommand
     @cmd_win.expand_print(cmds)
   end
 
+
+  def commands_match(sub)
+    cmds = public_methods(false)
+    match_cmds = cmds.take_while {|cmd| /^:#{sub}.*/ =~ cmd }
+    @logger.debug(match_cmds)
+    @cmd_win.expand_print(match_cmds.inspect)
+  end
+
+
   def print(message)
     @cmd_win.print_at(message.to_s, 0, 1)
     @cmd_win.sleep_until_key_type
   end
 
-  def d_p_state
-    msg = @plc.stage.flow_state.inspect
-    @cmd_win.expand_print(msg)
-  end
 
   def d_p_stage
     msg = @plc.stage.data.inspect
