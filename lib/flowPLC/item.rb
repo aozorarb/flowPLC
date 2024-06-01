@@ -26,6 +26,8 @@ module FlowPLC::Item
 
 
   class Output < BasicItem
+    # The reason for not using names such as 'on' and 'off' is
+    # to emphasise that they cannot be manipulated by the user.
     def enable() @state = true end
     def disable() @state = false end
   end
@@ -38,7 +40,6 @@ module FlowPLC::Item
       @time = time
       @progress = 0
       @running = false
-      @type 
     end
 
 

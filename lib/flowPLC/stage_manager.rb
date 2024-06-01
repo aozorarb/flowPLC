@@ -35,26 +35,4 @@ class FlowPLC::StageManager
     end
   end
 
-
-  def item_exec(name, command, *args)
-    raise UnusableNameError unless @register[name]
-    if args.size == 0
-      @register[name].method(command).call
-    else
-      @register[name].method(command).call(args)
-    end
-  rescue
-    raise "Underfind method #{command} for #{name}"
-  end
-
-
-  def consist_with_stage(stage_data)
-    @register.clear
-    stage_data.each do |flow|
-      flow.each do |item|
-        add(item)
-      end
-    end
-  end
-
 end

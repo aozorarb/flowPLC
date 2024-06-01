@@ -19,7 +19,7 @@ module FlowPLC::DataFile
     store = YAML::Store.new(filename)
     res = ''
     store.transaction do
-      res = @store['stage']
+      res = store['stage']
    end
     if res == ''
       return nil

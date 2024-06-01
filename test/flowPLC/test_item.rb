@@ -2,10 +2,9 @@ require 'minitest/autorun'
 require_relative '../../lib/flowPLC/item'
 require_relative 'helper'
 
-class FlowPLC::Item::BasicItem
-  attr_writer :name, :state
+class FlowPLC::Item::Timer
+  attr_accessor :time, :progress, :running
 end
-
 
 class FlowPLC::Item::Test < Minitest::Test
   include FlowPLC::Item
@@ -51,9 +50,6 @@ class FlowPLC::Item::Test < Minitest::Test
 
 
   def test_timer
-    FlowPLC::Item::Timer.class_exec do
-      attr_accessor :time, :progress, :running
-    end
     item = Timer.new('test', 10)
     exp_item = Timer.new('test', 10)
     exp_item.name = :test

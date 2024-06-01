@@ -8,14 +8,11 @@ module FlowPLC; end
 
 class FlowPLC::Stage
 
-  attr_reader :data, :flow_state
+  attr_reader :data
   # data is flows union
-  # flow_state is each item's state of each flows
-
 
   def initialize
     @data = []
-    @flow_state = []
     @manager = FlowPLC::StageManager.new
   end
 
@@ -28,12 +25,28 @@ class FlowPLC::Stage
   end
 
 
-  def item_exec(name, command)
-    @manager.item_exec(name.to_sym, command)
-  rescue UnusableNameError
-    "Invalid name: #{name}" 
-  rescue NoMethodError
-    "Not Method: #{command}"
+  private def valid_index?(*indexies)
+    case indexies.size
+    when 1
+      !@data[indexies[0]].nil?
+    when 2
+      (!@data[indexies[0]].nil?) && indexies[1].between?(0, @data[indexies[0]].size)
+    else
+      raise ArgumentError, 'Given size of indexies must be 1 or 2'
+    end
+  end
+
+
+  def item_exec(flow_idx, inflow_idx, command, *args)
+    flow_idx = flow_idx.to_i
+    inflow_idx = inflow_idx.to_i
+    raise FlowPLC::InvalidIndex unless valid_index?(flow_idx, inflow_idx)
+
+    if args.size == 0
+      @data[flow_idx][inflow_idx].method(command).call
+    else
+      @data[flow_idx][inflow_idx].method(command).call(*args)
+    end
   end
 
 
@@ -41,11 +54,11 @@ class FlowPLC::Stage
   def push_item(flow_idx, item, item_args)
     item = name2item_class(item, item_args)
     flow_idx = flow_idx.to_i
-    return nil if @data[flow_idx].nil?
+    return nil unless valid_index?(flow_idx)
+
     @manager.add(item)
     @data[flow_idx] << item
-    @flow_state[flow_idx] << false
-    true
+    @data
   end
 
 
@@ -54,53 +67,47 @@ class FlowPLC::Stage
     flow_idx = flow_idx.to_i
     inflow_idx = inflow_idx.to_i
     item = name2item_class(item, item_args)
-    return nil if @data[flow_idx].nil? || inflow_idx > @data[flow_idx].size
+    return nil unless valid_index?(flow_idx, inflow_idx)
+
     @manager.add(item)
     @data[flow_idx].insert(inflow_idx, item)
-    @flow_state[flow_idx].insert(inflow_idx, false)
-    true
+    @data
   end
 
 
   # make new flow
   def new_flow
     @data << []
-    @flow_state << []
+    @data
   end
 
 
   def new_flow_at(flow_idx)
     flow_idx = flow_idx.to_i
-    return nil if flow_idx > @data.size
+    return nil if valid_index?(flow_idx)
+
     @data.insert(flow_idx, [])
-    @flow_state.insert(flow_idx, [])
-    true
+    @data
   end
 
 
   def delete_flow(flow_idx)
     flow_idx = flow_idx.to_i
-    return nil if @data[flow_idx].nil?
+    return nil unless valid_index?(flow_idx)
+
     @data[flow_idx].each do |dt|
       @manager.delete(dt)
     end
-    @flow_state.delete_at(flow_idx)
     @data.delete_at(flow_idx)
-  end
-
-
-  def delete_item(item_name)
-    @manager.delete(item_name)
-    @data.delete(item_name)
   end
 
 
   def delete_item_at(flow_idx, inflow_idx)
     flow_idx = flow_idx.to_i
     inflow_idx = inflow_idx.to_i
-    return nil unless flow_idx < @data.size && inflow_idx < @data[flow_idx].size
+    return nil unless valid_index?(flow_idx, inflow_idx)
+
     @manager.delete(@data[flow_idx][inflow_idx])
-    @flow_state[flow_idx].delete_at(inflow_idx)
     @data[flow_idx].delete_at(inflow_idx)
   end
 
@@ -132,12 +139,12 @@ class FlowPLC::Stage
   end
 
 
-  def consist_with_data_file(data)
+  def consist_with_data_file(stage_data)
     if data.nil?
       return nil
     else
-      @data = data
-      @manager.consist_with_stage(@data)
+      @data = stage_data.data
+      @manager = stage_data.instance_variable_get(:@manager)
     end
   end
 

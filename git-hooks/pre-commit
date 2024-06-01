@@ -1,0 +1,14 @@
+#!/bin/sh
+SCRIPT_DIR=$(dirname "$0")
+REPO_ROOT=$(git rev-parse --show-toplevel)
+cd "$REPO_ROOT/test"
+
+rake test
+
+if [ $? -eq 0 ] ; then
+  echo 'Test is passed'
+else
+  echo "Test is not passed"
+  exit 1
+fi
+

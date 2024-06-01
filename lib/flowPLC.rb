@@ -19,7 +19,6 @@ module FlowPLC
     def delete_flow(flow_idx)                              @stage.delete_flow(flow_idx) end
     def delete_item_at(flow_idx, inflow_idx)               @stage.delete_item_at(flow_idx, inflow_idx) end
     def item_name_at(flow_idx, inflow_idx)                 @stage[flow_idx][inflow_idx].name end
-    def delete_item(name)                                  @stage.delete_item(name) end
 
 
     def puts_state
@@ -39,8 +38,8 @@ module FlowPLC
     end
     
 
-    def item_exec(name, command)
-      FlowPLC::ItemExecute.item_exec(name, command)
+    def item_exec(flow_idx, inflow_idx, command, *args)
+      FlowPLC::ItemExecute.item_exec(flow_idx, inflow_idx, command, args)
     end
 
 
@@ -64,9 +63,9 @@ module FlowPLC
       data = DataFile.load(filename)
       @stage.consist_with_data_file(data)
       true
-    rescue
-      warn "'#{filename}' is not found"
-      false
+    #rescue
+    #  warn "'#{filename}' is not found"
+    #  false
     end
 
   end

@@ -1,0 +1,13 @@
+---
+stage: !ruby/object:FlowPLC::Stage
+  data:
+  - - &1 !ruby/object:FlowPLC::Item::Input
+      name: :in
+      state: false
+  flow_state:
+  - - false
+  manager: !ruby/object:FlowPLC::StageManager
+    register:
+      :in: !ruby/struct:FlowPLC::StageManager::ItemHolder
+        item: *1
+        amount: 1

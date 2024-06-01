@@ -1,0 +1,10 @@
+require 'rake/testtask'
+
+Rake::TestTask.new do |t|
+  t.libs << 'test'
+  test_files = FileList['FlowPLC/*.rb']
+  test_files.exclude('FlowPLC/help.rb')
+  t.test_files = test_files
+end
+
+

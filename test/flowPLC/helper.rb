@@ -1,4 +1,9 @@
+require_relative '../../lib/flowPLC.rb'
+
 class FlowPLC::Item::BasicItem
+
+  attr_accessor :name, :state
+  
   def ==(other)
     # judge by inner item. No object_id
     vars = self.instance_variables
