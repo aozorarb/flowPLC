@@ -1,5 +1,3 @@
-require_relative 'stage_manager'
-
 # 'flow' indicates flow line
 # method prefixed '_' helps  method with the same name without '_'
 # mainly recursion method

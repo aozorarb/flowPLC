@@ -1,5 +1,3 @@
-require_relative 'item'
-require_relative 'error'
 # check that a name which given with item is not registerd
 module FlowPLC; end
 

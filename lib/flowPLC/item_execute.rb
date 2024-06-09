@@ -1,8 +1,3 @@
-require_relative 'error'
-require_relative 'item'
-
-module FlowPLC; end
-
 module FlowPLC::ItemExecute
   attr_writer :stage
   module_function :stage=
