@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require_relative '../../lib/flowPLC/stage'
 require_relative 'helper'
 
-FlowPLC::Stage.class_exec do
+class FlowPLC::Stage
   attr_writer :data
 end
 
