@@ -1,3 +1,12 @@
+require_relative 'flowPLC/version'
+require_relative 'flowPLC/error'
+require_relative 'flowPLC/item'
+require_relative 'flowPLC/item_execute'
+require_relative 'flowPLC/stage_manager'
+require_relative 'flowPLC/stage'
+require_relative 'flowPLC/data_file'
+
+
 module FlowPLC
   class Core
 
