@@ -6,7 +6,6 @@ require_relative 'flowPLC/stage_manager'
 require_relative 'flowPLC/stage'
 require_relative 'flowPLC/data_file'
 
-
 module FlowPLC
   class Core
 
